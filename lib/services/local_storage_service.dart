@@ -35,4 +35,12 @@ class LocalStorageService {
 
   Future<void> setLocaleCode(String code) =>
       _prefs.setString(_localeCodeKey, code);
+
+  static const String _themeModeKey = 'theme_mode';
+
+  /// Saved appearance: `light`, `dark`, or null if never chosen.
+  String? get themeMode => _prefs.getString(_themeModeKey);
+
+  Future<void> setThemeMode(String mode) =>
+      _prefs.setString(_themeModeKey, mode);
 }

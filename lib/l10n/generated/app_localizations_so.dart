@@ -367,7 +367,7 @@ class AppLocalizationsSo extends AppLocalizations {
   String get homeMenuCalendar => 'Kalandarka Masaajidka';
 
   @override
-  String get homeMenuNews => 'Wararka iyo Maqaallada';
+  String get homeMenuNews => 'Wararka & Maqaallada';
 
   @override
   String get homeMenuDonations => 'Barnaamijka Deeqaha';
@@ -870,4 +870,1217 @@ class AppLocalizationsSo extends AppLocalizations {
   @override
   String get eventSaveError =>
       'Dhacdada lama kaydin karin. Fadlan isku day mar kale.';
+
+  @override
+  String get newsTitle => 'Wararka & Maqaallada';
+
+  @override
+  String get newsSearchHint => 'Raadi maqaallada';
+
+  @override
+  String get newsClearSearch => 'Tirtir raadinta';
+
+  @override
+  String get newsAllCategories => 'Dhammaan';
+
+  @override
+  String get newsFeatured => 'La soo xulay';
+
+  @override
+  String get newsLatest => 'Wararkii ugu dambeeyay';
+
+  @override
+  String get newsRecommended => 'La soo jeediyay';
+
+  @override
+  String get newsAllArticles => 'Dhammaan maqaallada';
+
+  @override
+  String get newsSortNewest => 'Ugu cusub';
+
+  @override
+  String get newsSortOldest => 'Ugu da’sanaa';
+
+  @override
+  String newsResultsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count natiijo',
+      one: '1 natiijo',
+      zero: 'Natiijo ma jirto',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get newsClearFilters => 'Tirtir shaandhada';
+
+  @override
+  String get newsNoResultsTitle => 'Maqaal lama helin';
+
+  @override
+  String get newsNoResultsMessage => 'Isku day erayo kale ama qayb kale.';
+
+  @override
+  String get newsEmptyTitle => 'Weli maqaal lama daabicin';
+
+  @override
+  String get newsEmptyMessage =>
+      'Wararka iyo maqaallada la daabaco halkan ayay ka muuqan doonaan.';
+
+  @override
+  String newsReadingTime(int minutes) {
+    return '$minutes daqiiqo akhris';
+  }
+
+  @override
+  String get newsMockTitle => 'Maqaallo tusaale ah — ma aha kuwo dhab ah';
+
+  @override
+  String get newsMockMessage =>
+      'Maqaalladan waa xog tusaale ah (mock) oo loogu talagalay tijaabinta naqshadda. Ma aha wararka dhabta ah ee masaajidka, kumana jiraan xukun diimeed, aayad, xadiis ama xigasho.';
+
+  @override
+  String get newsSaved => 'Maqaallada la keydiyay';
+
+  @override
+  String get newsBookmark => 'Keydi maqaalka';
+
+  @override
+  String get newsRemoveBookmark => 'Ka saar kuwa la keydiyay';
+
+  @override
+  String get newsBookmarkAdded => 'Waxaa lagu keydiyey qalabkan oo kaliya.';
+
+  @override
+  String get newsBookmarkRemoved => 'Waa laga saaray maqaallada la keydiyay.';
+
+  @override
+  String get newsBookmarkError =>
+      'Maqaallada la keydiyay lama cusboonaysiin karin. Fadlan isku day mar kale.';
+
+  @override
+  String get newsBookmarkLoginRequired => 'Gal si aad maqaallada u keydiso.';
+
+  @override
+  String get newsSignIn => 'Gal';
+
+  @override
+  String get newsSavedEmptyTitle => 'Maqaal la keydiyay ma jiro';
+
+  @override
+  String get newsSavedEmptyMessage =>
+      'Taabo astaanta keydinta ee maqaalka si aad u keydiso.';
+
+  @override
+  String get newsSavedLocalNote =>
+      'Maqaallada la keydiyay waxay ku jiraan qalabkan oo kaliya. Weli laguma wadaajiyo qalabyo kale.';
+
+  @override
+  String get newsSavedSignedOut =>
+      'Gal si aad u aragto maqaalladaada la keydiyay.';
+
+  @override
+  String get newsUnavailable => 'Maqaalkan hadda lama heli karo.';
+
+  @override
+  String get newsShare => 'La wadaag';
+
+  @override
+  String get newsShareError => 'Wadaagistu hadda ma shaqaynayso.';
+
+  @override
+  String get newsNotFound => 'Maqaalkan lama helin.';
+
+  @override
+  String newsPublished(String date) {
+    return 'La daabacay $date';
+  }
+
+  @override
+  String newsUpdated(String date) {
+    return 'La cusbooneysiiyay $date';
+  }
+
+  @override
+  String get newsReferences => 'Tixraacyada';
+
+  @override
+  String get newsRelated => 'Maqaallo la xiriira';
+
+  @override
+  String get donTitle => 'Deeqaha';
+
+  @override
+  String get donIntro =>
+      'Deeqahaagu waxay gacan ka geystaan dayactirka masaajidka, waxbarashada Qur\'aanka iyo caawinta qoysaska baahan. Alle ha kaa abaal mariyo.';
+
+  @override
+  String get donSampleTitle =>
+      'Xog tusaale ah — ma aha ololayaal ama lacag dhab ah';
+
+  @override
+  String get donSampleMessage =>
+      'Ololayaashan, lacagahan iyo diiwaannadan waa xog tusaale ah (mock) oo loogu talagalay tijaabinta naqshadda. Lacag lama ururinayo, wax lacag ahna lama socodsiinayo.';
+
+  @override
+  String get donConfirmedVsPendingTitle => 'La xaqiijiyay iyo sugaya';
+
+  @override
+  String get donConfirmedVsPendingBody =>
+      'Waxaa loo tiriyaa \"la xaqiijiyay\" oo keliya deeqaha uu hayaha khasnadda masaajidku hubiyay. Deeqaha sugaya si gooni ah ayaa loo muujiyaa, laguma darayo wadarta.';
+
+  @override
+  String get donActiveCampaigns => 'Ololayaasha socda';
+
+  @override
+  String get donSeeAll => 'Dhammaan';
+
+  @override
+  String get donNoCampaigns => 'Olole ma jiro';
+
+  @override
+  String get donNoCampaignsMessage =>
+      'Hadda ma jiro olole deeq ururin ah oo socda.';
+
+  @override
+  String get donNoCampaignsFilter => 'Ma jiro olole u dhigma shaandhadan.';
+
+  @override
+  String get donDonate => 'Ku deeq';
+
+  @override
+  String get donHistoryTitle => 'Taariikhda deeqaha';
+
+  @override
+  String get donCampaignsTitle => 'Ololayaasha';
+
+  @override
+  String get donStaffTitle => 'Maamulka deeqaha';
+
+  @override
+  String get donFilterAll => 'Dhammaan';
+
+  @override
+  String get donAllCategories => 'Dhammaan qaybaha';
+
+  @override
+  String get donAllMethods => 'Dhammaan hababka';
+
+  @override
+  String get donCatConstruction => 'Dhismaha masaajidka';
+
+  @override
+  String get donCatMaintenance => 'Dayactirka masaajidka';
+
+  @override
+  String get donCatUtilities => 'Korontada iyo biyaha';
+
+  @override
+  String get donCatQuran => 'Waxbarashada Qur\'aanka';
+
+  @override
+  String get donCatFamilies => 'Taageerada qoysaska baahan';
+
+  @override
+  String get donCatRamadan => 'Quudinta Ramadaan';
+
+  @override
+  String get donCatGeneral => 'Deeqaha guud ee masaajidka';
+
+  @override
+  String get donCampaignDraft => 'Qabyo';
+
+  @override
+  String get donCampaignActive => 'Socda';
+
+  @override
+  String get donCampaignCompleted => 'Dhammaaday';
+
+  @override
+  String get donCampaignArchived => 'La kaydiyay';
+
+  @override
+  String get donMethodCash => 'Lacag caddaan ah';
+
+  @override
+  String get donMethodBank => 'Bangi';
+
+  @override
+  String get donMethodMobile => 'Lacag moobayl (EVC/Zaad/Sahal/e-Dahab)';
+
+  @override
+  String get donMethodOnline => 'Lacag-bixin online';
+
+  @override
+  String get donStatusPending => 'Sugaya';
+
+  @override
+  String get donStatusConfirmed => 'La xaqiijiyay';
+
+  @override
+  String get donStatusFailed => 'Fashilmay';
+
+  @override
+  String get donStatusRefunded => 'La celiyay';
+
+  @override
+  String get donStatusDemo => 'Tijaabo — lama socodsiin';
+
+  @override
+  String get donStatusVoided => 'La buriyay';
+
+  @override
+  String donProgressSemantics(String raised, String target, int percent) {
+    return '$raised la xaqiijiyay oo ka mid ah $target, boqolkiiba $percent';
+  }
+
+  @override
+  String donRaisedOf(String target) {
+    return 'oo ka mid ah $target';
+  }
+
+  @override
+  String donRemaining(String amount) {
+    return '$amount ayaa hartay';
+  }
+
+  @override
+  String donPendingNotCounted(String amount) {
+    return 'Sugaya xaqiijin (lama tirin): $amount';
+  }
+
+  @override
+  String get donCampaignDetails => 'Faahfaahinta ololaha';
+
+  @override
+  String get donCampaignNotFound => 'Ololahan lama helin.';
+
+  @override
+  String get donTarget => 'Hadafka';
+
+  @override
+  String get donConfirmedReceived => 'Deeqaha la xaqiijiyay ee la helay';
+
+  @override
+  String get donRemainingLabel => 'Inta hartay';
+
+  @override
+  String get donCurrencyLabel => 'Lacagta (currency)';
+
+  @override
+  String get donStartDate => 'Taariikhda bilowga';
+
+  @override
+  String get donEndDate => 'Taariikhda dhammaadka';
+
+  @override
+  String get donNoConfirmedYet =>
+      'Weli lama diiwaangelin deeq la xaqiijiyay oo ololahan ah.';
+
+  @override
+  String get donCampaignClosed => 'Ololahan hadda deeq ma aqbalayo.';
+
+  @override
+  String get donDemoWarningTitle => 'Habka tijaabada — lacag lama socodsiinayo';
+
+  @override
+  String get donDemoWarningBody =>
+      'Nuqulkan laguma bixin karo deeq dhab ah. Markaad dirto waxaa la sameynayaa diiwaan tijaabo ah oo keliya: lacag lagaa qaadi maayo, wadarna laguma darayo, rasiidna lama bixinayo. Waligaa ha gelin lambarka kaarka, PIN ama password-ka bangiga.';
+
+  @override
+  String get donCampaign => 'Ololaha';
+
+  @override
+  String get donSuggested => 'Qaddarro la soo jeediyay';
+
+  @override
+  String donAmountLabel(String code) {
+    return 'Qaddarka ($code)';
+  }
+
+  @override
+  String donCurrencyNote(String code) {
+    return 'Lacagta: $code';
+  }
+
+  @override
+  String get donAnonymous => 'Si qarsoodi ah u deeq';
+
+  @override
+  String get donAnonymousHint =>
+      'Magacaaga lama diiwaangelinayo lamana muujinayo.';
+
+  @override
+  String get donDonorNameOptional => 'Magacaaga (ikhtiyaari)';
+
+  @override
+  String get donDonorContactOptional => 'Telefoon ama iimayl (ikhtiyaari)';
+
+  @override
+  String get donDonorContactHint =>
+      'Kaliya haddii aad rabto in masaajidku kula soo xiriiro.';
+
+  @override
+  String get donMessageOptional => 'Fariin (ikhtiyaari)';
+
+  @override
+  String get donMethod => 'Habka lacag-bixinta';
+
+  @override
+  String get donMethodNote =>
+      'Hababka lacag-bixinta waxaa loo muujiyay qorshe ahaan oo keliya. Weli lama xirin adeeg lacag-bixin.';
+
+  @override
+  String get donSubmitDemo => 'Dir (tijaabo — lama socodsiin)';
+
+  @override
+  String get donSubmitError =>
+      'Wax khalad ah ayaa dhacay. Fadlan isku day mar kale.';
+
+  @override
+  String get donAmountInvalid => 'Geli qaddar sax ah, tusaale 20 ama 20.50.';
+
+  @override
+  String get donAmountNotPositive => 'Qaddarku waa inuu ka badnaadaa eber.';
+
+  @override
+  String get donAmountDecimals => 'Isticmaal ugu badnaan 2 jajab tobanle.';
+
+  @override
+  String get donAmountTooLarge => 'Qaddarku aad buu u badan yahay.';
+
+  @override
+  String get donDemoDoneTitle => 'Codsiga tijaabada waa la diiwaangeliyay';
+
+  @override
+  String get donDemoDoneBody =>
+      'Tani MA AHAYN lacag-bixin. Lacag lama qaadin, qaddarkana laguma darin wadarta olole kasta, rasiidna lama bixin.';
+
+  @override
+  String get donReference => 'Tixraac';
+
+  @override
+  String get donAmount => 'Qaddarka';
+
+  @override
+  String get donPaymentStatus => 'Xaaladda lacag-bixinta';
+
+  @override
+  String get donDemoNotSavedSignedOut =>
+      'Ma aadan gelin, sidaa darteed diiwaankan tijaabada ah kama muuqan doono taariikhda deeqahaaga.';
+
+  @override
+  String get donBackToDonations => 'Ku noqo deeqaha';
+
+  @override
+  String get donHistorySignIn => 'Gal si aad u aragto taariikhda deeqahaaga.';
+
+  @override
+  String get donHistorySearch => 'Ku raadi tixraac ama olole';
+
+  @override
+  String get donPeriodAll => 'Waqti kasta';
+
+  @override
+  String get donPeriod30 => '30-kii maalmood ee la soo dhaafay';
+
+  @override
+  String get donPeriodYear => 'Sannadkan';
+
+  @override
+  String get donHistoryPrivacy =>
+      'Halkan waxaa ka muuqda oo keliya diiwaannada deeqahaaga. Deeqaha qarsoodiga ah marnaba ma muujiyaan magaca deeq-bixiyaha.';
+
+  @override
+  String get donHistoryEmpty => 'Deeqo ma jiraan';
+
+  @override
+  String get donHistoryEmptyMessage => 'Weli ma lihid diiwaan deeq ah.';
+
+  @override
+  String get donHistoryNoMatch => 'Ma jiraan deeqo u dhigma shaandhooyinkan.';
+
+  @override
+  String get donReceipt => 'Rasiid';
+
+  @override
+  String get donReceiptTitle => 'Rasiidka deeqda';
+
+  @override
+  String get donReceiptSample => 'TUSAALE — MA AHA RASIID RASMI AH';
+
+  @override
+  String get donDonor => 'Deeq-bixiyaha';
+
+  @override
+  String get donAnonymousDonor => 'Deeq-bixiye qarsoodi ah';
+
+  @override
+  String get donDate => 'Taariikhda';
+
+  @override
+  String get donReceiptNotVerified => 'Lama xaqiijin';
+
+  @override
+  String get donReceiptThanks =>
+      'Waad ku mahadsan tahay deeqdaada. Alle ha kaa aqbalo oo ha kaa abaal mariyo.';
+
+  @override
+  String get donReceiptUnavailable => 'Rasiid lama heli karo';
+
+  @override
+  String get donReceiptUnavailableMessage =>
+      'Rasiidku wuxuu jiraa oo keliya deeqaha uu masaajidku xaqiijiyay. Deeqaha tijaabada, sugaya, fashilmay iyo kuwa la buriyay rasiid ma leh.';
+
+  @override
+  String get donReceiptExportPending =>
+      'Soo dejinta PDF iyo wadaagista rasiidka waxaa lagu dari doonaa mar dambe.';
+
+  @override
+  String get donStaffNotice =>
+      'Qalabka shaqaalaha (tijaabo). Oggolaanshaha hadda app-ka gudihiisa oo keliya ayaa lagu hubiyaa; server-ka ayaa mar dambe xaqiijin doona doorka Hayaha Khasnadda / Maamulaha. Isbeddelladu waxay ku jiraan qalabkan oo keliya, wayna lumayaan marka app-ka la xiro.';
+
+  @override
+  String get donRecordOffline => 'Diiwaangeli deeq offline ah';
+
+  @override
+  String get donExpensesTitle => 'Kharashaadka';
+
+  @override
+  String get donReportsTitle => 'Warbixinta lacagta';
+
+  @override
+  String donPendingReview(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Sugaya xaqiijin ($count)',
+      zero: 'Sugaya xaqiijin',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get donNoPending => 'Ma jiraan deeqo sugaya xaqiijin.';
+
+  @override
+  String get donAllRecords => 'Dhammaan diiwaannada';
+
+  @override
+  String get donRecordExplain =>
+      'Deeqda waxaa loo kaydinayaa SUGAYA. Waxaa la tirinayaa oo keliya kadib xaqiijin gooni ah.';
+
+  @override
+  String get donExternalReference => 'Tixraaca macaamilka (ikhtiyaari)';
+
+  @override
+  String get donRecordSave => 'U kaydi sugaya';
+
+  @override
+  String get donRecordedLocal =>
+      'Waxaa lagu kaydiyay qalabkan oo keliya (ku-meel-gaar).';
+
+  @override
+  String get donRecordDetails => 'Diiwaanka deeqda';
+
+  @override
+  String get donRecordNotFound => 'Diiwaankan lama helin.';
+
+  @override
+  String get donRecordedBy => 'Waxaa diiwaangeliyay';
+
+  @override
+  String get donConfirm => 'Xaqiiji (la hubiyay)';
+
+  @override
+  String get donConfirmTitle => 'Ma xaqiijinaysaa deeqdan?';
+
+  @override
+  String get donConfirmExplain =>
+      'Xaqiiji oo keliya kadib markaad hubiso in lacagta si dhab ah loo helay (lacagta caddaanka ah oo la tiriyay, ama macaamilka bangiga / moobaylka oo la hubiyay).';
+
+  @override
+  String get donVoid => 'Buri';
+
+  @override
+  String get donVoidTitle => 'Ma burinaysaa diiwaankan?';
+
+  @override
+  String get donVoidExplain =>
+      'Diiwaannada lacagta marnaba lama tirtiro. Burintu waxay ka saartaa wadarta, diiwaankuna wuxuu ku sii jirayaa taariikhda isbeddellada.';
+
+  @override
+  String get donVoidReason => 'Sababta';
+
+  @override
+  String get donAudit => 'Taariikhda isbeddellada';
+
+  @override
+  String get donAuditNote =>
+      'Tijaabadan dhexdeeda waxay ku jirtaa xusuusta oo keliya. Server-ka ayaa hayn doona diiwaan joogto ah oo aan wax laga tirtiri karin.';
+
+  @override
+  String get donAuditDemo => 'Codsi tijaabo ah';
+
+  @override
+  String get donAuditRecorded => 'La diiwaangeliyay';
+
+  @override
+  String get donAuditConfirmed => 'La xaqiijiyay';
+
+  @override
+  String get donAuditVoided => 'La buriyay';
+
+  @override
+  String get donAuditExpenseRecorded => 'Kharash la diiwaangeliyay';
+
+  @override
+  String get donAuditExpenseApproved => 'Kharash la oggolaaday';
+
+  @override
+  String get donAuditExpenseRejected => 'Kharash la diiday';
+
+  @override
+  String get donExpensesNotice =>
+      'Shaqaalaha oo keliya. Kharashaadka cusub waa in la oggolaadaa ka hor inta aan warbixinta lagu tirin.';
+
+  @override
+  String donExpensesApprovedTotal(String code) {
+    return 'Kharashaadka la oggolaaday ($code)';
+  }
+
+  @override
+  String get donExpensesEmpty => 'Kharash lama diiwaangelin';
+
+  @override
+  String get donExpenseAdd => 'Ku dar kharash';
+
+  @override
+  String get donExpenseCategory => 'Nooca';
+
+  @override
+  String get donExpenseReason => 'Sababta shaqo';
+
+  @override
+  String get donExpensePayee => 'Cidda la siiyay / alaab-qeybiye (ikhtiyaari)';
+
+  @override
+  String get donExpenseDocument => 'Ku lifaaq rasiid';
+
+  @override
+  String get donExpensePendingNote =>
+      'Kharashka waxaa loo kaydinayaa sugaya oggolaansho.';
+
+  @override
+  String get donExpenseDetails => 'Kharash';
+
+  @override
+  String get donExpenseApprove => 'Oggolow';
+
+  @override
+  String get donExpenseReject => 'Diid';
+
+  @override
+  String get donExpenseApproved => 'La oggolaaday';
+
+  @override
+  String get donExpenseRejected => 'La diiday';
+
+  @override
+  String get donExpCatMaintenance => 'Dayactir';
+
+  @override
+  String get donExpCatElectricity => 'Koronto';
+
+  @override
+  String get donExpCatWater => 'Biyo';
+
+  @override
+  String get donExpCatCleaning => 'Nadiifin';
+
+  @override
+  String get donExpCatSalaries => 'Mushaharaad';
+
+  @override
+  String get donExpCatEducation => 'Waxbarasho';
+
+  @override
+  String get donExpCatCommunity => 'Taageerada bulshada';
+
+  @override
+  String get donExpCatOther => 'Kale';
+
+  @override
+  String get donReportSample =>
+      'Waxaa laga xisaabiyay xog tusaale ah — ma aha lacagta dhabta ah ee masaajidka.';
+
+  @override
+  String get donReportDay => 'Maalin';
+
+  @override
+  String get donReportMonth => 'Bil';
+
+  @override
+  String get donReportYear => 'Sannad';
+
+  @override
+  String get donReportPrev => 'Muddadii hore';
+
+  @override
+  String get donReportNext => 'Muddada xigta';
+
+  @override
+  String get donReportEmpty => 'Diiwaan la xaqiijiyay kuma jiro muddadan';
+
+  @override
+  String get donReportEmptyMessage => 'Dooro muddo kale.';
+
+  @override
+  String get donReportConfirmed => 'Deeqaha la xaqiijiyay';
+
+  @override
+  String get donReportExpenses => 'Kharashaadka la oggolaaday';
+
+  @override
+  String get donReportNet => 'Farqiga muddada (net)';
+
+  @override
+  String get donReportNetNote =>
+      'Net = deeqaha la xaqiijiyay − kharashaadka la oggolaaday ee muddadan. Ma aha lacagta masaajidka gacanta ugu jirta.';
+
+  @override
+  String get donReportByCampaign => 'Olole ahaan';
+
+  @override
+  String get donReportByMethod => 'Habka lacag-bixinta ahaan';
+
+  @override
+  String get donReportProgress => 'Horumarka ololayaasha';
+
+  @override
+  String get donReportRulesTitle => 'Sida tirooyinka loo xisaabiyo';
+
+  @override
+  String get donReportRules =>
+      '• Deeqaha la xaqiijiyay: kaliya deeqaha la hubiyay — sugaya, fashilmay, la celiyay, la buriyay iyo tijaabo waa laga reebay.\n• Kharashaadka: kuwa la oggolaaday ee aan la burin.\n• Net: deeqaha la xaqiijiyay laga jaray kharashaadka muddada la doortay.\n• Horumarka ololaha: deeqaha la xaqiijiyay ÷ hadafka, ugu badnaan 100%.\n• Lacagaha (currency) lama isku daro: lacag kasta wadarteeda gaar ah ayay leedahay.';
+
+  @override
+  String get donReportExportPending =>
+      'Soo saarista CSV / PDF waxaa lagu dari doonaa waji dambe.';
+
+  @override
+  String get tabHome => 'HOME';
+
+  @override
+  String get tabSettings => 'SETTINGS';
+
+  @override
+  String get tabProfile => 'PROFILE';
+
+  @override
+  String get tabAbout => 'ABOUT';
+
+  @override
+  String get settingsTitle => 'Dejimaha';
+
+  @override
+  String get settingsNotifications => 'Doorashooyinka ogeysiisyada';
+
+  @override
+  String get settingsNotificationsPending => 'Ogeysiisyadu weli ma shaqeeyaan.';
+
+  @override
+  String get settingsLanguage => 'Luqadda';
+
+  @override
+  String get settingsLanguageHint => 'Soomaali, Ingiriisi ama Carabi';
+
+  @override
+  String get settingsAppearance => 'Muuqaalka';
+
+  @override
+  String get settingsPrivacy => 'Asturnaanta & Amniga';
+
+  @override
+  String get settingsPrivacyPending =>
+      'Waxay shaqayn doontaa marka akoonnada la xiro server-ka.';
+
+  @override
+  String get settingsHelp => 'Caawimaad & Taageero';
+
+  @override
+  String get settingsHelpPending =>
+      'Bogagga caawimaadda waxaa lagu dari doonaa mar dambe.';
+
+  @override
+  String get settingsAbout => 'Ku saabsan app-ka';
+
+  @override
+  String get settingsAboutHint => 'Macluumaadka app-ka iyo developer-ka';
+
+  @override
+  String get profileTabTitle => 'Akoonka';
+
+  @override
+  String get profileSignedOutTitle => 'Ma aadan gelin';
+
+  @override
+  String get profileSignedOutMessage =>
+      'Gal si aad u aragto macluumaadka akoonkaaga.';
+
+  @override
+  String get profileSignIn => 'Gal';
+
+  @override
+  String get profileAccountInfo => 'Macluumaadka akoonka';
+
+  @override
+  String get profileFullName => 'Magaca oo buuxa';
+
+  @override
+  String get profileEmail => 'Iimaylka';
+
+  @override
+  String get profilePhone => 'Lambarka telefoonka';
+
+  @override
+  String get profileNotProvided => 'Lama gelin';
+
+  @override
+  String get profileAccountType => 'Nooca akoonka';
+
+  @override
+  String get profileDemoAccount => 'Akoon tijaabo ah (ma aha akoon dhab ah)';
+
+  @override
+  String get profileDemoNote =>
+      'Xogtan waa wixii aad qortay markaad gashay. Waxay ku jirtaa xusuusta oo keliya, lama kaydinayo meelna looma dirayo.';
+
+  @override
+  String get profileEditProfile => 'Wax ka beddel akoonka';
+
+  @override
+  String get profileChangePassword => 'Beddel furaha sirta ah';
+
+  @override
+  String get profileNeedsBackend =>
+      'Waxay shaqayn doontaa marka akoonnada la xiro server-ka.';
+
+  @override
+  String get aboutTitle => 'Ku saabsan';
+
+  @override
+  String aboutVersion(String version) {
+    return 'Nooca $version';
+  }
+
+  @override
+  String get aboutDescriptionTitle => 'Ku saabsan app-ka';
+
+  @override
+  String get aboutDescription1 =>
+      'Masjid Management App waa mobile application loogu talagalay in lagu fududeeyo maamulka masaajidda iyo helitaanka macluumaadka muhiimka ah ee jamaacada.';
+
+  @override
+  String get aboutDescription2 =>
+      'App-ku wuxuu hiigsanayaa inuu isku keeno adeegyada maamulka masaajidka, si xogta iyo hawlaha muhiimka ah loogu helo hal meel.';
+
+  @override
+  String get aboutFeaturesTitle => 'Adeegyada ugu muhiimsan';
+
+  @override
+  String get aboutFeaturesNote =>
+      '\"Waa la heli karaa (xog tusaale)\" macnaheedu waa in shaashaddu ku shaqeyso xog tusaale ah oo si cad loo calaamadeeyay ilaa server-ka la xiro. Adeegyada \"Dhowaan\" weli lama dhisin.';
+
+  @override
+  String get aboutStatusDemo => 'Waa la heli karaa (xog tusaale)';
+
+  @override
+  String get aboutFeaturePrayer => 'Waqtiyada Salaadda';
+
+  @override
+  String get aboutFeaturePrayerDesc => 'Waqtiyada shanta salaadood.';
+
+  @override
+  String get aboutFeatureDonations => 'Deeqaha';
+
+  @override
+  String get aboutFeatureDonationsDesc =>
+      'Diiwaangelinta iyo la socodka deeqaha.';
+
+  @override
+  String get aboutFeatureEvents => 'Dhacdooyinka';
+
+  @override
+  String get aboutFeatureEventsDesc => 'Wararka iyo munaasabadaha masaajidka.';
+
+  @override
+  String get aboutFeatureQuran => 'Duruusta Qur\'aanka';
+
+  @override
+  String get aboutFeatureQuranDesc => 'Macluumaadka duruusta Qur\'aanka.';
+
+  @override
+  String get aboutFeatureAnnouncements => 'Ogeysiisyada';
+
+  @override
+  String get aboutFeatureAnnouncementsDesc => 'Ogeysiisyada muhiimka ah.';
+
+  @override
+  String get aboutFeatureNotifications => 'Wargelinta';
+
+  @override
+  String get aboutFeatureNotificationsDesc => 'Ogeysiisyada app-ka.';
+
+  @override
+  String get aboutFeatureProfile => 'Akoonka';
+
+  @override
+  String get aboutFeatureProfileDesc =>
+      'Macluumaadka user-ka iyo account-kiisa.';
+
+  @override
+  String get aboutFeatureSettings => 'Dejimaha';
+
+  @override
+  String get aboutFeatureSettingsDesc => 'Habaynta app-ka.';
+
+  @override
+  String get aboutDeveloperTitle => 'About the Developer';
+
+  @override
+  String get aboutEmail => 'Iimayl';
+
+  @override
+  String get aboutPhone => 'Telefoon';
+
+  @override
+  String get aboutLocation => 'Goobta';
+
+  @override
+  String get aboutEmailCopied => 'Iimaylka waa la koobiyeeyay.';
+
+  @override
+  String get aboutPhoneCopied => 'Lambarka telefoonka waa la koobiyeeyay.';
+
+  @override
+  String get notificationsTitle => 'Ogeysiisyada';
+
+  @override
+  String get notificationsEmptyTitle => 'Weli ogeysiis ma jiro';
+
+  @override
+  String get notificationsEmptyMessage =>
+      'Ogeysiisyadu halkan ayay ka muuqan doonaan marka push notifications-ka la xiro server-ka.';
+
+  @override
+  String get themeSwitchToDark => 'U beddel habka habeenka';
+
+  @override
+  String get themeSwitchToLight => 'U beddel habka maalinta';
+
+  @override
+  String get themeDarkActive => 'Habka habeenka ayaa shidan';
+
+  @override
+  String get themeLightActive => 'Habka maalinta ayaa shidan';
+
+  @override
+  String get homeMenuProjects => 'Mashaariicda';
+
+  @override
+  String get projTitle => 'Mashaariicda Masaajidka';
+
+  @override
+  String get projAdd => 'Ku dar mashruuc';
+
+  @override
+  String get projEditTitle => 'Wax ka beddel mashruuca';
+
+  @override
+  String get projDetailsTitle => 'Faahfaahinta mashruuca';
+
+  @override
+  String get projSearchHint => 'Ku raadi magaca mashruuca';
+
+  @override
+  String get projSampleTitle => 'Mashaariic tusaale ah — ma aha kuwo dhab ah';
+
+  @override
+  String get projSampleMessage =>
+      'Mashaariicdan, lacagahan iyo cusbooneysiintan waa xog tusaale ah (mock) oo loogu talagalay tijaabinta naqshadda. Ma aha mashaariicda dhabta ah ee masaajidka.';
+
+  @override
+  String get projEmptyTitle => 'Mashruuc ma jiro';
+
+  @override
+  String get projEmptyMessage =>
+      'Mashaariicda masaajidka halkan ayay ka muuqan doonaan marka la daabaco.';
+
+  @override
+  String get projNoResults => 'Mashruuc lama helin';
+
+  @override
+  String get projFeatured => 'Mashaariicda la soo xulay';
+
+  @override
+  String get projOngoing => 'Mashaariicda socda';
+
+  @override
+  String get projRecent => 'Kuwa dhowaan lagu daray';
+
+  @override
+  String get projNotFound => 'Mashruucan lama helin.';
+
+  @override
+  String get projStatusPlanned => 'La qorsheeyay';
+
+  @override
+  String get projStatusOngoing => 'Socda';
+
+  @override
+  String get projStatusPaused => 'La hakiyay';
+
+  @override
+  String get projStatusCompleted => 'Dhammaaday';
+
+  @override
+  String get projStatusCancelled => 'La joojiyay';
+
+  @override
+  String get projMilestonePending => 'Lama bilaabin';
+
+  @override
+  String get projMilestoneInProgress => 'Socda';
+
+  @override
+  String get projMilestoneCompleted => 'La dhammeeyay';
+
+  @override
+  String get projPhysicalProgress => 'Horumarka shaqada';
+
+  @override
+  String get projProgressUnknown => 'Lama soo sheegin';
+
+  @override
+  String projExpectedEnd(String date) {
+    return 'La filayo $date';
+  }
+
+  @override
+  String projStarts(String date) {
+    return 'Bilow $date';
+  }
+
+  @override
+  String get projInfo => 'Macluumaadka mashruuca';
+
+  @override
+  String get projCategory => 'Qaybta';
+
+  @override
+  String get projMosque => 'Masaajidka';
+
+  @override
+  String get projLocation => 'Goobta';
+
+  @override
+  String get projManager => 'Mas\'uulka / waaxda mashruuca';
+
+  @override
+  String get projExpectedEndLabel => 'Dhammaystirka la filayo';
+
+  @override
+  String get projLastUpdated => 'Markii u dambeysay la cusbooneysiiyay';
+
+  @override
+  String get projObjectives => 'Ujeeddooyinka';
+
+  @override
+  String get projBeneficiaries => 'Cidda laga filayo inay ka faa\'iidaan';
+
+  @override
+  String get projFunding => 'Maalgelinta';
+
+  @override
+  String get projBudget => 'Miisaaniyadda guud';
+
+  @override
+  String get projFundingTarget => 'Hadafka lacag ururinta';
+
+  @override
+  String get projApprovedExpenses =>
+      'Kharashaadka mashruuca la oggolaaday (shaqaale)';
+
+  @override
+  String get projFundingRule =>
+      'La helay = deeqaha la xaqiijiyay ee ololaha mashruucan oo keliya. Deeqaha sugaya iyo tijaabada lama tirin. Inta hartay ma aha lacagta masaajidka gacanta ugu jirta, miisaaniyadduna ma aha lacag horey loo kharash gareeyay.';
+
+  @override
+  String get projNoCampaign =>
+      'Mashruucan laguma xirin olole deeq ururin, sidaa darteed deeq looma furin.';
+
+  @override
+  String get projReportsPending =>
+      'Warbixinnada lacageed ee mashaariicda waxaa lagu dari doonaa marka server-ka la xiro.';
+
+  @override
+  String get projProgress => 'Horumarka shaqada';
+
+  @override
+  String get projProgressSeparate =>
+      'Horumarka shaqada waxaa soo sheega maamulaha, waana ka duwan yahay maalgelinta: in 60% miisaaniyadda la ururiyay macnaheedu ma aha in shaqada 60% la dhammeeyay.';
+
+  @override
+  String get projMilestones => 'Tallaabooyinka muhiimka ah';
+
+  @override
+  String projDue(String date) {
+    return 'Waqtiga $date';
+  }
+
+  @override
+  String get projUpdates => 'Cusbooneysiinta horumarka';
+
+  @override
+  String get projAddUpdate => 'Ku dar cusbooneysiin';
+
+  @override
+  String get projEditUpdateTitle => 'Wax ka beddel cusbooneysiinta';
+
+  @override
+  String get projNoUpdates => 'Weli cusbooneysiin la daabacay ma jirto.';
+
+  @override
+  String get projDraft => 'Qabyo';
+
+  @override
+  String projEditedTimes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count jeer ayaa la beddelay (nuqulladii hore waa la hayaa)',
+      one: 'Hal mar ayaa la beddelay (nuqulkii hore waa la hayaa)',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get projHistory => 'Taariikhda isbeddellada';
+
+  @override
+  String get projDonate => 'Ku Deeq Mashruucan';
+
+  @override
+  String get projClosedForDonations => 'Mashruucan hadda deeq ma aqbalayo.';
+
+  @override
+  String get projDonatingTo => 'Waxaad ku deeqaysaa mashruuca';
+
+  @override
+  String get projErrorAmount => 'Geli qaddar sax ah, tusaale 5000 ama 5000.50.';
+
+  @override
+  String get projErrorNegative => 'Qaddarku ma noqon karo taban.';
+
+  @override
+  String get projErrorDates =>
+      'Taariikhda dhammaystirka la filayo kama horrayn karto taariikhda bilowga.';
+
+  @override
+  String get projErrorPercent => 'Geli tiro dhan oo u dhaxaysa 0 iyo 100.';
+
+  @override
+  String get projFieldTitle => 'Cinwaanka mashruuca';
+
+  @override
+  String get projFieldSummary => 'Sharraxaad gaaban';
+
+  @override
+  String projBudgetLabel(String code) {
+    return 'Miisaaniyadda guud ($code)';
+  }
+
+  @override
+  String projFundingTargetOptional(String code) {
+    return 'Hadafka lacag ururinta ($code, ikhtiyaari — haddii madhan waa miisaaniyadda)';
+  }
+
+  @override
+  String get projLinkedCampaign => 'Ololaha deeq ururinta';
+
+  @override
+  String get projLinkedCampaignHint =>
+      'Deeqaha ololahan waxaa loo tiriyaa lacagta mashruuca. Waxaa liiska ku jira oo keliya ololayaasha isla lacagta (currency) leh.';
+
+  @override
+  String get projNoCampaignOption => 'Midna (deeq looma furin)';
+
+  @override
+  String get projPhysicalProgressField => 'Horumarka shaqada % (ikhtiyaari)';
+
+  @override
+  String get projProgressNote => 'Sharraxaadda horumarka';
+
+  @override
+  String get projFeaturedSwitch => 'Mashruuc la soo xulay';
+
+  @override
+  String get projUploadImages => 'Ku dar sawirro';
+
+  @override
+  String get projImagesPending =>
+      'Soo-gelinta sawirrada waxay shaqayn doontaa marka kaydka (server-ka) la xiro.';
+
+  @override
+  String get projAddMilestone => 'Ku dar tallaabo muhiim ah';
+
+  @override
+  String get projRemoveMilestone => 'Ka saar tallaabadan';
+
+  @override
+  String get projMilestoneTitle => 'Magaca tallaabada';
+
+  @override
+  String get projDueDate => 'Waqtiga loo qabtay';
+
+  @override
+  String get projHistoryCreated => 'Mashruuca waa la sameeyay';
+
+  @override
+  String get projHistoryEdited => 'Mashruuca wax baa laga beddelay';
+
+  @override
+  String projHistoryBudget(String from, String to) {
+    return 'Miisaaniyadda $from → $to';
+  }
+
+  @override
+  String projHistoryStatus(String from, String to) {
+    return 'Xaaladda $from → $to';
+  }
+
+  @override
+  String get projHistoryCampaign => 'Ololaha deeq ururinta waa la beddelay';
+
+  @override
+  String get projUpdateTitle => 'Cinwaanka cusbooneysiinta';
+
+  @override
+  String get projUpdatePercent => 'Horumarka % (ikhtiyaari)';
+
+  @override
+  String get projUpdateMilestone => 'Tallaabada la gaaray (ikhtiyaari)';
+
+  @override
+  String get projPublishSwitch => 'La daabacay';
+
+  @override
+  String get projPublishHint =>
+      'Xubnuhu waxay arkaan oo keliya cusbooneysiinta la daabacay.';
+
+  @override
+  String get projExpenseProject => 'Mashruuca (ikhtiyaari)';
 }

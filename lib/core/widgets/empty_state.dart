@@ -2,6 +2,7 @@ import 'package:material_ui/material_ui.dart';
 
 import '../localization/l10n.dart';
 import '../theme/app_colors.dart';
+import '../theme/app_semantic_colors.dart';
 import '../theme/app_spacing.dart';
 import 'app_button.dart';
 
@@ -27,8 +28,8 @@ class EmptyState extends StatelessWidget {
   Widget build(BuildContext context) {
     return _StateLayout(
       icon: icon,
-      iconColor: AppColors.primary,
-      iconBackground: AppColors.green50,
+      iconColor: Theme.of(context).colorScheme.primary,
+      iconBackground: context.semanticColors.tintedBackground,
       title: title ?? context.l10n.emptyGenericTitle,
       message: message ?? context.l10n.emptyGenericMessage,
       action: actionLabel != null && onAction != null
@@ -85,7 +86,7 @@ class _StateLayout extends StatelessWidget {
               message,
               textAlign: TextAlign.center,
               style: textTheme.bodyMedium?.copyWith(
-                color: AppColors.neutral500,
+                color: context.semanticColors.mutedText,
               ),
             ),
             if (action != null) ...[

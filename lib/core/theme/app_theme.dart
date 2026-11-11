@@ -7,8 +7,8 @@ import 'app_typography.dart';
 
 /// Global theme configuration built from the Masjid Design System.
 ///
-/// Only the light theme exists in the MVP; dark tokens are documented in
-/// `docs/design/color-palette.md` §5 and will be added in v1.1.
+/// Light theme = the original MVP theme (unchanged values). Dark theme uses
+/// the dark tokens of `docs/design/color-palette.md` §5.
 abstract final class AppTheme {
   static const ColorScheme _lightColorScheme = ColorScheme(
     brightness: Brightness.light,
@@ -42,21 +42,83 @@ abstract final class AppTheme {
     surfaceTint: Colors.transparent,
   );
 
+  static const ColorScheme _darkColorScheme = ColorScheme(
+    brightness: Brightness.dark,
+    primary: AppColors.darkPrimary,
+    onPrimary: AppColors.darkBg,
+    primaryContainer: AppColors.darkSurfaceRaised,
+    onPrimaryContainer: AppColors.darkPrimary,
+    secondary: AppColors.darkGold,
+    onSecondary: AppColors.darkBg,
+    secondaryContainer: AppColors.darkGoldContainer,
+    onSecondaryContainer: AppColors.darkGold,
+    error: AppColors.darkError,
+    onError: AppColors.darkBg,
+    errorContainer: Color(0xFF3A1D1B),
+    onErrorContainer: AppColors.darkError,
+    surface: AppColors.darkSurface,
+    onSurface: AppColors.darkModeText,
+    onSurfaceVariant: AppColors.darkTextMuted,
+    surfaceContainerLowest: AppColors.darkBg,
+    surfaceContainerLow: AppColors.darkSurface,
+    surfaceContainer: AppColors.darkSurface,
+    surfaceContainerHigh: AppColors.darkSurfaceRaised,
+    surfaceContainerHighest: AppColors.darkSurfaceRaised,
+    outline: AppColors.darkBorder,
+    outlineVariant: AppColors.darkDivider,
+    shadow: Colors.black,
+    scrim: Colors.black,
+    inverseSurface: AppColors.darkModeText,
+    onInverseSurface: AppColors.darkBg,
+    inversePrimary: AppColors.primary,
+    surfaceTint: Colors.transparent,
+  );
+
   /// Light theme for English and Somali (Inter).
-  static final ThemeData light = _buildLightTheme(arabic: false);
+  static final ThemeData light = _build(arabic: false, dark: false);
 
   /// Light theme for Arabic (Noto Sans Arabic, larger sizes, taller lines).
-  static final ThemeData lightArabic = _buildLightTheme(arabic: true);
+  static final ThemeData lightArabic = _build(arabic: true, dark: false);
 
-  /// Theme matching the app language.
+  static final ThemeData dark = _build(arabic: false, dark: true);
+  static final ThemeData darkArabic = _build(arabic: true, dark: true);
+
+  /// Light theme matching the app language.
   static ThemeData forLocale(Locale locale) =>
       locale.languageCode == 'ar' ? lightArabic : light;
 
-  static ThemeData _buildLightTheme({required bool arabic}) {
-    const scheme = _lightColorScheme;
-    final text = arabic
+  /// Dark theme matching the app language.
+  static ThemeData darkForLocale(Locale locale) =>
+      locale.languageCode == 'ar' ? darkArabic : dark;
+
+  static ThemeData _build({required bool arabic, required bool dark}) {
+    final scheme = dark ? _darkColorScheme : _lightColorScheme;
+    final baseText = arabic
         ? AppTypography.arabicTextTheme
         : AppTypography.textTheme;
+    // Typography hard-codes the light text colour; recolour for dark.
+    final text = dark
+        ? baseText.apply(
+            bodyColor: AppColors.darkModeText,
+            displayColor: AppColors.darkModeText,
+          )
+        : baseText;
+
+    // Colours that differ between light (original values) and dark.
+    final pageBg = dark ? AppColors.darkBg : AppColors.lightBackground;
+    final surface = dark ? AppColors.darkSurface : AppColors.white;
+    final onSurface = dark ? AppColors.darkModeText : AppColors.darkText;
+    final muted = dark ? AppColors.darkTextMuted : AppColors.neutral500;
+    final primary = dark ? AppColors.darkPrimary : AppColors.primary;
+    final onPrimary = dark ? AppColors.darkBg : AppColors.white;
+    final tinted = dark ? AppColors.darkSurfaceRaised : AppColors.green50;
+    final border = dark ? AppColors.darkBorder : AppColors.neutral400;
+    final subtleBorder = dark ? AppColors.darkDivider : AppColors.neutral200;
+    final divider = dark ? AppColors.darkDivider : AppColors.neutral100;
+    final disabledBg = dark
+        ? AppColors.darkSurfaceRaised
+        : AppColors.neutral100;
+    final listIcon = dark ? AppColors.darkTextMuted : AppColors.neutral600;
 
     final buttonShape = RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(AppRadius.md),
@@ -73,8 +135,9 @@ abstract final class AppTheme {
 
     return ThemeData(
       useMaterial3: true,
+      brightness: dark ? Brightness.dark : Brightness.light,
       colorScheme: scheme,
-      scaffoldBackgroundColor: AppColors.lightBackground,
+      scaffoldBackgroundColor: pageBg,
       fontFamily: arabic
           ? AppTypography.arabicFontFamily
           : AppTypography.latinFontFamily,
@@ -84,12 +147,12 @@ abstract final class AppTheme {
       textTheme: text,
       materialTapTargetSize: MaterialTapTargetSize.padded,
       visualDensity: VisualDensity.standard,
-      extensions: const [AppSemanticColors.light],
+      extensions: [dark ? AppSemanticColors.dark : AppSemanticColors.light],
 
       // App bars blend with the page background (design: neutral-25).
       appBarTheme: AppBarTheme(
-        backgroundColor: AppColors.lightBackground,
-        foregroundColor: AppColors.darkText,
+        backgroundColor: pageBg,
+        foregroundColor: onSurface,
         elevation: 0,
         scrolledUnderElevation: 2,
         surfaceTintColor: Colors.transparent,
@@ -99,10 +162,10 @@ abstract final class AppTheme {
       // Primary button = FilledButton (green, white label 6.51:1).
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
-          backgroundColor: AppColors.primary,
-          foregroundColor: AppColors.white,
-          disabledBackgroundColor: AppColors.neutral100,
-          disabledForegroundColor: AppColors.neutral500,
+          backgroundColor: primary,
+          foregroundColor: onPrimary,
+          disabledBackgroundColor: disabledBg,
+          disabledForegroundColor: muted,
           minimumSize: buttonMinSize,
           padding: buttonPadding,
           shape: buttonShape,
@@ -111,8 +174,8 @@ abstract final class AppTheme {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primary,
-          foregroundColor: AppColors.white,
+          backgroundColor: primary,
+          foregroundColor: onPrimary,
           minimumSize: buttonMinSize,
           padding: buttonPadding,
           shape: buttonShape,
@@ -122,63 +185,63 @@ abstract final class AppTheme {
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
-          foregroundColor: AppColors.primary,
+          foregroundColor: primary,
           minimumSize: buttonMinSize,
           padding: buttonPadding,
           shape: buttonShape,
-          side: const BorderSide(color: AppColors.primary, width: 1.5),
+          side: BorderSide(color: primary, width: 1.5),
           textStyle: text.labelLarge,
         ),
       ),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
-          foregroundColor: AppColors.primary,
+          foregroundColor: primary,
           minimumSize: const Size(48, AppSizes.minTouchTarget),
           shape: buttonShape,
           textStyle: text.labelLarge,
         ),
       ),
-      floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        backgroundColor: AppColors.primary,
-        foregroundColor: AppColors.white,
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: primary,
+        foregroundColor: onPrimary,
         elevation: 3,
       ),
 
       // Labels sit above fields in the design; the field itself is outlined.
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: AppColors.white,
+        fillColor: surface,
         contentPadding: const EdgeInsets.symmetric(
           horizontal: AppSpacing.space4,
           vertical: 14,
         ),
-        hintStyle: text.bodyLarge?.copyWith(color: AppColors.neutral500),
-        helperStyle: text.bodySmall?.copyWith(color: AppColors.neutral500),
-        errorStyle: text.bodySmall?.copyWith(color: AppColors.error),
-        border: inputBorder(AppColors.neutral400, 1),
-        enabledBorder: inputBorder(AppColors.neutral400, 1),
-        focusedBorder: inputBorder(AppColors.primary, 2),
-        errorBorder: inputBorder(AppColors.error, 2),
-        focusedErrorBorder: inputBorder(AppColors.error, 2),
-        disabledBorder: inputBorder(AppColors.neutral200, 1),
+        hintStyle: text.bodyLarge?.copyWith(color: muted),
+        helperStyle: text.bodySmall?.copyWith(color: muted),
+        errorStyle: text.bodySmall?.copyWith(color: scheme.error),
+        border: inputBorder(border, 1),
+        enabledBorder: inputBorder(border, 1),
+        focusedBorder: inputBorder(primary, 2),
+        errorBorder: inputBorder(scheme.error, 2),
+        focusedErrorBorder: inputBorder(scheme.error, 2),
+        disabledBorder: inputBorder(subtleBorder, 1),
       ),
 
       cardTheme: CardThemeData(
-        color: AppColors.white,
+        color: surface,
         surfaceTintColor: Colors.transparent,
         elevation: 0,
         margin: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppRadius.lg),
-          side: const BorderSide(color: AppColors.neutral200),
+          side: BorderSide(color: subtleBorder),
         ),
       ),
 
       chipTheme: ChipThemeData(
-        backgroundColor: AppColors.white,
-        selectedColor: AppColors.green50,
+        backgroundColor: surface,
+        selectedColor: tinted,
         labelStyle: text.labelMedium,
-        side: const BorderSide(color: AppColors.neutral200),
+        side: BorderSide(color: subtleBorder),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppRadius.sm),
         ),
@@ -189,52 +252,46 @@ abstract final class AppTheme {
         style: ButtonStyle(
           textStyle: WidgetStatePropertyAll(text.labelMedium),
           backgroundColor: WidgetStateProperty.resolveWith(
-            (states) => states.contains(WidgetState.selected)
-                ? AppColors.green50
-                : AppColors.white,
+            (states) =>
+                states.contains(WidgetState.selected) ? tinted : surface,
           ),
           foregroundColor: WidgetStateProperty.resolveWith(
-            (states) => states.contains(WidgetState.selected)
-                ? AppColors.primary
-                : AppColors.darkText,
+            (states) =>
+                states.contains(WidgetState.selected) ? primary : onSurface,
           ),
-          side: const WidgetStatePropertyAll(
-            BorderSide(color: AppColors.neutral400),
-          ),
+          side: WidgetStatePropertyAll(BorderSide(color: border)),
         ),
       ),
 
       // Active tab uses green (gold on white fails contrast).
       navigationBarTheme: NavigationBarThemeData(
         height: AppSizes.bottomNavHeight,
-        backgroundColor: AppColors.white,
+        backgroundColor: surface,
         surfaceTintColor: Colors.transparent,
-        indicatorColor: AppColors.green50,
+        indicatorColor: tinted,
         elevation: 2,
         iconTheme: WidgetStateProperty.resolveWith(
           (states) => IconThemeData(
             size: 24,
-            color: states.contains(WidgetState.selected)
-                ? AppColors.primary
-                : AppColors.neutral500,
+            color: states.contains(WidgetState.selected) ? primary : muted,
           ),
         ),
         labelTextStyle: WidgetStateProperty.resolveWith(
           (states) => states.contains(WidgetState.selected)
               ? text.labelMedium?.copyWith(
-                  color: AppColors.primary,
+                  color: primary,
                   fontWeight: FontWeight.w600,
                 )
-              : text.labelMedium?.copyWith(color: AppColors.neutral500),
+              : text.labelMedium?.copyWith(color: muted),
         ),
       ),
 
-      bottomSheetTheme: const BottomSheetThemeData(
-        backgroundColor: AppColors.white,
+      bottomSheetTheme: BottomSheetThemeData(
+        backgroundColor: surface,
         surfaceTintColor: Colors.transparent,
         showDragHandle: true,
-        dragHandleColor: AppColors.neutral200,
-        shape: RoundedRectangleBorder(
+        dragHandleColor: subtleBorder,
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             top: Radius.circular(AppRadius.xl),
           ),
@@ -242,7 +299,7 @@ abstract final class AppTheme {
       ),
 
       dialogTheme: DialogThemeData(
-        backgroundColor: AppColors.white,
+        backgroundColor: surface,
         surfaceTintColor: Colors.transparent,
         titleTextStyle: text.titleLarge,
         contentTextStyle: text.bodyLarge,
@@ -252,8 +309,12 @@ abstract final class AppTheme {
       ),
 
       snackBarTheme: SnackBarThemeData(
-        backgroundColor: AppColors.neutral800,
-        contentTextStyle: text.bodyMedium?.copyWith(color: AppColors.white),
+        backgroundColor: dark
+            ? AppColors.darkSurfaceRaised
+            : AppColors.neutral800,
+        contentTextStyle: text.bodyMedium?.copyWith(
+          color: dark ? AppColors.darkModeText : AppColors.white,
+        ),
         actionTextColor: AppColors.gold300,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(
@@ -261,32 +322,26 @@ abstract final class AppTheme {
         ),
       ),
 
-      dividerTheme: const DividerThemeData(
-        color: AppColors.neutral100,
-        thickness: 1,
-        space: 1,
-      ),
+      dividerTheme: DividerThemeData(color: divider, thickness: 1, space: 1),
 
       listTileTheme: ListTileThemeData(
-        iconColor: AppColors.neutral600,
+        iconColor: listIcon,
         titleTextStyle: text.titleSmall,
-        subtitleTextStyle: text.bodyMedium?.copyWith(
-          color: AppColors.neutral500,
-        ),
+        subtitleTextStyle: text.bodyMedium?.copyWith(color: muted),
         contentPadding: const EdgeInsets.symmetric(
           horizontal: AppSpacing.space4,
         ),
       ),
 
-      progressIndicatorTheme: const ProgressIndicatorThemeData(
-        color: AppColors.primary,
-        linearTrackColor: AppColors.green50,
+      progressIndicatorTheme: ProgressIndicatorThemeData(
+        color: primary,
+        linearTrackColor: tinted,
       ),
 
-      textSelectionTheme: const TextSelectionThemeData(
-        cursorColor: AppColors.primary,
-        selectionColor: AppColors.green100,
-        selectionHandleColor: AppColors.primary,
+      textSelectionTheme: TextSelectionThemeData(
+        cursorColor: primary,
+        selectionColor: dark ? AppColors.green700 : AppColors.green100,
+        selectionHandleColor: primary,
       ),
     );
   }

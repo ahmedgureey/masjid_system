@@ -5,6 +5,10 @@
 abstract final class AppConstants {
   static const String appName = 'Masjid Management App';
 
+  /// Keep in sync with `version:` in pubspec.yaml (no package_info
+  /// dependency is used to read it at runtime).
+  static const String appVersion = '1.0.0';
+
   static const String bismillah = 'بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ';
 
   /// Welcome screen verse — Surah Al-Jinn 72:18. Shown in Arabic in every

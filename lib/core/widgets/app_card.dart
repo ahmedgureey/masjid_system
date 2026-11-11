@@ -1,6 +1,6 @@
 import 'package:material_ui/material_ui.dart';
 
-import '../theme/app_colors.dart';
+import '../theme/app_semantic_colors.dart';
 import '../theme/app_spacing.dart';
 
 enum AppCardVariant {
@@ -37,11 +37,12 @@ class AppCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final semantic = context.semanticColors;
     final (background, borderColor) = switch (variant) {
-      AppCardVariant.standard => (AppColors.white, AppColors.neutral200),
-      AppCardVariant.tinted => (AppColors.green50, Colors.transparent),
-      AppCardVariant.gold => (AppColors.gold50, Colors.transparent),
-      AppCardVariant.outlined => (AppColors.white, AppColors.neutral200),
+      AppCardVariant.standard => (semantic.cardBackground, semantic.cardBorder),
+      AppCardVariant.tinted => (semantic.tintedBackground, Colors.transparent),
+      AppCardVariant.gold => (semantic.goldBackground, Colors.transparent),
+      AppCardVariant.outlined => (semantic.cardBackground, semantic.cardBorder),
     };
     final borderRadius = BorderRadius.circular(AppRadius.lg);
 

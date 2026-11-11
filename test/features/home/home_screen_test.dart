@@ -1,10 +1,13 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:masjid_management/features/donations/screens/donations_screen.dart';
 import 'package:masjid_management/features/events/screens/calendar_screen.dart';
 import 'package:masjid_management/features/home/screens/home_screen.dart';
 import 'package:masjid_management/features/home/widgets/home_menu_card.dart';
 import 'package:masjid_management/features/mosque/screens/mosque_profile_screen.dart';
+import 'package:masjid_management/features/news/screens/news_screen.dart';
 import 'package:masjid_management/features/prayer_times/screens/prayer_times_screen.dart';
+import 'package:masjid_management/features/projects/screens/projects_screen.dart';
 import 'package:masjid_management/models/localized_text.dart';
 import 'package:masjid_management/routing/app_routes.dart';
 import 'package:masjid_management/routing/placeholder_screen.dart';
@@ -59,13 +62,12 @@ void main() {
       );
     });
 
-    testWidgets('language button opens the language sheet', (tester) async {
+    testWidgets('language button removed from the header (by request)', (
+      tester,
+    ) async {
       await _openHome(tester);
-      await tester.tap(find.byTooltip('Luqadda'));
-      await tester.pumpAndSettle();
-      await tester.tap(find.text('English').last);
-      await tester.pumpAndSettle();
-      expect(find.text('Contact Us'), findsOneWidget);
+      expect(find.byTooltip('Luqadda'), findsNothing);
+      expect(find.byIcon(Icons.language_rounded), findsNothing);
     });
   });
 
@@ -74,9 +76,9 @@ void main() {
       'Macluumaadka Masaajidka',
       'Waqtiyada Salaadda',
       'Kalandarka Masaajidka',
-      'Wararka iyo Maqaallada',
+      'Wararka & Maqaallada',
       'Barnaamijka Deeqaha',
-      'Nala Soo Xiriir',
+      'Mashaariicda', // replaced "Nala Soo Xiriir"
     ];
 
     testWidgets('six cards in two columns', (tester) async {
@@ -109,11 +111,22 @@ void main() {
                 w is PlaceholderScreen ||
                 w is MosqueProfileScreen ||
                 w is PrayerTimesScreen ||
-                w is CalendarScreen,
+                w is CalendarScreen ||
+                w is NewsScreen ||
+                w is DonationsScreen ||
+                w is ProjectsScreen,
           ),
           findsOneWidget,
         );
-        expect(find.text(title), findsOneWidget); // app bar title
+        // App bar title (the donations page is titled "Deeqaha").
+        expect(
+          find.text(switch (title) {
+            'Barnaamijka Deeqaha' => 'Deeqaha',
+            'Mashaariicda' => 'Mashaariicda Masaajidka',
+            _ => title,
+          }),
+          findsOneWidget,
+        );
 
         await tester.tap(find.byType(BackButton));
         await tester.pumpAndSettle();

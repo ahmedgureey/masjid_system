@@ -71,7 +71,11 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
       case AuthResult.success:
         ref
             .read(demoSessionProvider.notifier)
-            .signIn(displayName: _nameController.text.trim());
+            .signIn(
+              displayName: _nameController.text.trim(),
+              email: _emailController.text.trim(),
+              phone: _phoneController.text.trim(),
+            );
         context.go(AppRoutes.home);
       case AuthResult.backendUnavailable:
         await showInfoDialog(

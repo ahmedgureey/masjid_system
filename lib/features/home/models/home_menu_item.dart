@@ -43,9 +43,11 @@ final List<HomeMenuItem> homeMenuItems = [
     title: (l10n) => l10n.homeMenuDonations,
     route: AppRoutes.donations,
   ),
+  // Replaces "Nala Soo Xiriir" (contact details remain in the mosque
+  // profile; the /contact placeholder route is kept for later).
   HomeMenuItem(
-    icon: Icons.call_rounded,
-    title: (l10n) => l10n.homeMenuContact,
-    route: AppRoutes.contact,
+    icon: Icons.construction_rounded,
+    title: (l10n) => l10n.homeMenuProjects,
+    route: AppRoutes.projects,
   ),
 ];

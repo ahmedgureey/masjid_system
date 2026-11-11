@@ -26,7 +26,10 @@ class StatusChip extends StatelessWidget {
       StatusType.warning => (AppColors.warningContainer, AppColors.warning),
       StatusType.error => (AppColors.errorContainer, AppColors.error),
       StatusType.info => (AppColors.infoContainer, AppColors.info),
-      StatusType.neutral => (AppColors.neutral50, AppColors.neutral600),
+      StatusType.neutral =>
+        Theme.of(context).brightness == Brightness.dark
+            ? (AppColors.darkSurfaceRaised, AppColors.darkTextMuted)
+            : (AppColors.neutral50, AppColors.neutral600),
       // Gold fill always uses dark text (gold on white fails contrast).
       StatusType.gold => (AppColors.gold, AppColors.darkText),
     };

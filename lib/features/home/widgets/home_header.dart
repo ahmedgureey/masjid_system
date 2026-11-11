@@ -7,7 +7,6 @@ import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../core/widgets/brand_mark.dart';
 import '../../../core/widgets/islamic_pattern.dart';
-import '../../../core/widgets/language/language_selector_button.dart';
 
 /// Home header: cover photo, overlapping circular logo, mosque name,
 /// optional subtitle, and live date and time.
@@ -17,11 +16,17 @@ class HomeHeader extends StatelessWidget {
     required this.name,
     required this.dateText,
     required this.timeText,
+    required this.isDarkMode,
+    required this.onToggleTheme,
+    required this.onNotificationsTap,
     this.subtitle,
     this.coverUrl,
     this.logoUrl,
   });
 
+  final bool isDarkMode;
+  final VoidCallback onToggleTheme;
+  final VoidCallback onNotificationsTap;
   final String name;
   final String? subtitle;
   final String dateText;
@@ -50,14 +55,35 @@ class HomeHeader extends StatelessWidget {
                 height: coverHeight + topInset,
                 child: _Cover(coverUrl: coverUrl),
               ),
+              // Same corner and size as the former language button:
+              // notifications bell + light/dark toggle.
               PositionedDirectional(
                 top: topInset + AppSpacing.space2,
                 end: AppSpacing.space2,
-                child: IconButton(
-                  tooltip: context.l10n.language,
-                  color: AppColors.white,
-                  icon: const Icon(Icons.language_rounded),
-                  onPressed: () => showLanguageSheet(context),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      key: const Key('homeNotifications'),
+                      tooltip: context.l10n.notificationsTitle,
+                      color: AppColors.white,
+                      icon: const Icon(Icons.notifications_rounded),
+                      onPressed: onNotificationsTap,
+                    ),
+                    IconButton(
+                      key: const Key('homeThemeToggle'),
+                      tooltip: isDarkMode
+                          ? context.l10n.themeSwitchToLight
+                          : context.l10n.themeSwitchToDark,
+                      color: AppColors.white,
+                      icon: Icon(
+                        isDarkMode
+                            ? Icons.light_mode_rounded
+                            : Icons.dark_mode_rounded,
+                      ),
+                      onPressed: onToggleTheme,
+                    ),
+                  ],
                 ),
               ),
               Align(
@@ -76,7 +102,7 @@ class HomeHeader extends StatelessWidget {
                 name,
                 textAlign: TextAlign.center,
                 style: textTheme.headlineSmall?.copyWith(
-                  color: AppColors.green800,
+                  color: context.semanticColors.brandText,
                 ),
               ),
               if (subtitle != null && subtitle!.trim().isNotEmpty) ...[
@@ -85,7 +111,7 @@ class HomeHeader extends StatelessWidget {
                   subtitle!,
                   textAlign: TextAlign.center,
                   style: textTheme.bodyMedium?.copyWith(
-                    color: AppColors.neutral500,
+                    color: context.semanticColors.mutedText,
                   ),
                 ),
               ],
@@ -142,11 +168,11 @@ class _Cover extends StatelessWidget {
                 color: AppColors.white.withValues(alpha: 0.12),
               ),
             ),
-            // Top corner (opposite the language button) so the logo never
-            // covers it.
+            // Top corner (opposite the notification / theme buttons) so the
+            // logo never covers it.
             PositionedDirectional(
               start: AppSpacing.space4,
-              end: 64,
+              end: 112,
               top: MediaQuery.paddingOf(context).top + AppSpacing.space4,
               child: Align(
                 alignment: AlignmentDirectional.centerStart,
@@ -199,10 +225,10 @@ class _Logo extends StatelessWidget {
       width: size,
       height: size,
       padding: const EdgeInsets.all(4),
-      decoration: const BoxDecoration(
-        color: AppColors.white,
+      decoration: BoxDecoration(
+        color: context.semanticColors.cardBackground,
         shape: BoxShape.circle,
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Color(0x29176B45),
             blurRadius: 12,
@@ -238,20 +264,20 @@ class _InfoPill extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final style = Theme.of(context).textTheme.bodyMedium
-        ?.copyWith(color: AppColors.green800);
+        ?.copyWith(color: context.semanticColors.brandText);
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: AppSpacing.space3,
         vertical: AppSpacing.space2,
       ),
       decoration: BoxDecoration(
-        color: AppColors.green50,
+        color: context.semanticColors.tintedBackground,
         borderRadius: BorderRadius.circular(AppRadius.full),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 16, color: AppColors.primary),
+          Icon(icon, size: 16, color: Theme.of(context).colorScheme.primary),
           const SizedBox(width: AppSpacing.space2),
           Flexible(
             child: Text(

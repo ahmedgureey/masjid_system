@@ -30,7 +30,7 @@ Menu — six cards, two columns × three rows:
 | 1 | Mosque Profile | Macluumaadka Masaajidka | عن المسجد | Mosque |
 | 2 | Prayer Times | Waqtiyada Salaadda | مواقيت الصلاة | Clock |
 | 3 | Mosque Calendar | Kalandarka Masaajidka | تقويم المسجد | Calendar |
-| 4 | News & Articles | Wararka iyo Maqaallada | الأخبار والمقالات | Newspaper |
+| 4 | News & Articles | Wararka & Maqaallada | الأخبار والمقالات | Newspaper |
 | 5 | Donation Program | Barnaamijka Deeqaha | برنامج التبرعات | Heart |
 | 6 | Contact Us *(default)* | Nala Soo Xiriir | اتصل بنا | Phone |
 

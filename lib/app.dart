@@ -5,6 +5,7 @@ import 'core/localization/app_locales.dart';
 import 'core/localization/l10n.dart';
 import 'core/localization/locale_provider.dart';
 import 'core/theme/app_theme.dart';
+import 'core/theme/theme_mode_provider.dart';
 import 'routing/app_router.dart';
 
 /// Root widget: theme, localization (English / Somali / Arabic with RTL)
@@ -21,7 +22,8 @@ class MasjidApp extends ConsumerWidget {
       onGenerateTitle: (context) => context.l10n.appName,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.forLocale(locale),
-      themeMode: ThemeMode.light,
+      darkTheme: AppTheme.darkForLocale(locale),
+      themeMode: ref.watch(themeModeProvider),
       locale: locale,
       supportedLocales: AppLocales.supported,
       localizationsDelegates: AppLocales.delegates,

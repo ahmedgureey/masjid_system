@@ -61,7 +61,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         final email = _emailController.text.trim();
         ref
             .read(demoSessionProvider.notifier)
-            .signIn(displayName: email.split('@').first);
+            .signIn(displayName: email.split('@').first, email: email);
         context.go(AppRoutes.home);
       case AuthResult.backendUnavailable:
         await showInfoDialog(

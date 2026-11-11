@@ -46,9 +46,11 @@ class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final (background, foreground, overlay) = switch (variant) {
       AppTopBarVariant.standard => (
-        AppColors.lightBackground,
-        AppColors.darkText,
-        SystemUiOverlayStyle.dark,
+        Theme.of(context).scaffoldBackgroundColor,
+        Theme.of(context).colorScheme.onSurface,
+        Theme.of(context).brightness == Brightness.dark
+            ? SystemUiOverlayStyle.light
+            : SystemUiOverlayStyle.dark,
       ),
       AppTopBarVariant.transparent => (
         Colors.transparent,

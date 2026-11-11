@@ -1,6 +1,7 @@
 import 'package:material_ui/material_ui.dart';
 
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_semantic_colors.dart';
 import '../../../core/theme/app_spacing.dart';
 
 /// Home menu card: white, light-green border, rounded corners, subtle
@@ -22,6 +23,8 @@ class HomeMenuCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final borderRadius = BorderRadius.circular(AppRadius.lg);
+    final semantic = context.semanticColors;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Semantics(
       button: true,
       label: title,
@@ -38,10 +41,13 @@ class HomeMenuCard extends StatelessWidget {
           ],
         ),
         child: Material(
-          color: AppColors.white,
+          color: semantic.cardBackground,
           shape: RoundedRectangleBorder(
             borderRadius: borderRadius,
-            side: const BorderSide(color: AppColors.green100, width: 1.2),
+            side: BorderSide(
+              color: isDark ? semantic.cardBorder : AppColors.green100,
+              width: 1.2,
+            ),
           ),
           clipBehavior: Clip.antiAlias,
           child: InkWell(
@@ -56,18 +62,22 @@ class HomeMenuCard extends StatelessWidget {
                     Container(
                       width: 56,
                       height: 56,
-                      decoration: const BoxDecoration(
-                        color: AppColors.green50,
+                      decoration: BoxDecoration(
+                        color: semantic.tintedBackground,
                         shape: BoxShape.circle,
                       ),
-                      child: Icon(icon, size: 28, color: AppColors.primary),
+                      child: Icon(
+                        icon,
+                        size: 28,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
                     ),
                     const SizedBox(height: AppSpacing.space3),
                     Text(
                       title,
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.titleSmall
-                          ?.copyWith(color: AppColors.green800),
+                          ?.copyWith(color: semantic.brandText),
                     ),
                   ],
                 ),

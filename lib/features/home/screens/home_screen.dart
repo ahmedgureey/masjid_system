@@ -5,8 +5,9 @@ import 'package:material_ui/material_ui.dart';
 
 import '../../../core/localization/l10n.dart';
 import '../../../core/localization/locale_provider.dart';
-import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_semantic_colors.dart';
 import '../../../core/theme/app_spacing.dart';
+import '../../../core/theme/theme_mode_provider.dart';
 import '../../../core/utils/clock_provider.dart';
 import '../../../core/utils/date_formatter.dart';
 import '../../../core/widgets/widgets.dart';
@@ -34,7 +35,7 @@ class HomeScreen extends ConsumerWidget {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light,
       child: Scaffold(
-        backgroundColor: AppColors.white,
+        backgroundColor: context.semanticColors.pageBackground,
         body: mosqueAsync.when(
           loading: () => const AppLoadingIndicator(),
           error: (_, _) =>
@@ -54,6 +55,11 @@ class HomeScreen extends ConsumerWidget {
                     use24h: use24h,
                     locale: locale,
                   ),
+                  isDarkMode: ref.watch(themeModeProvider) == ThemeMode.dark,
+                  onToggleTheme: () =>
+                      ref.read(themeModeProvider.notifier).toggle(),
+                  onNotificationsTap: () =>
+                      context.pushIfCurrent(AppRoutes.notifications),
                 ),
                 SafeArea(
                   top: false,
@@ -143,7 +149,10 @@ class _DemoSessionBanner extends ConsumerWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Icon(Icons.science_outlined, color: AppColors.gold800),
+            Icon(
+              Icons.science_outlined,
+              color: context.semanticColors.goldText,
+            ),
             const SizedBox(width: AppSpacing.space3),
             Expanded(
               child: Column(
@@ -152,13 +161,13 @@ class _DemoSessionBanner extends ConsumerWidget {
                   Text(
                     l10n.demoBannerTitle,
                     style: textTheme.titleSmall?.copyWith(
-                      color: AppColors.gold800,
+                      color: context.semanticColors.goldText,
                     ),
                   ),
                   Text(
                     l10n.demoBannerMessage,
                     style: textTheme.bodyMedium?.copyWith(
-                      color: AppColors.gold800,
+                      color: context.semanticColors.goldText,
                     ),
                   ),
                   TextButton(

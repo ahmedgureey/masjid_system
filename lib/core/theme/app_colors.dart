@@ -80,4 +80,22 @@ abstract final class AppColors {
   static const Color warningContainer = Color(0xFFFFFAEB);
   static const Color info = Color(0xFF1D5FA8);
   static const Color infoContainer = Color(0xFFEFF6FF);
+
+  // ---------------------------------------------------------------------------
+  // Dark mode palette (docs/design/color-palette.md §5). The primary green
+  // is lightened because #176B45 is too dark on a near-black surface.
+  // ---------------------------------------------------------------------------
+  static const Color darkBg = Color(0xFF0F1A14);
+  static const Color darkSurface = Color(0xFF16241C);
+  static const Color darkSurfaceRaised = Color(0xFF1E3026);
+  static const Color darkModeText = Color(0xFFE8EEEA);
+  static const Color darkTextMuted = Color(0xFF9CA3AF);
+  static const Color darkPrimary = Color(0xFF4CC38A);
+  static const Color darkGold = Color(0xFFE2C25B);
+  static const Color darkBorder = Color(0xFF7B8B82);
+  static const Color darkDivider = Color(0xFF2A3B31);
+  static const Color darkGoldContainer = Color(0xFF2E2A17);
+  static const Color darkError = Color(0xFFF97066);
+  static const Color darkWarning = Color(0xFFF5B544);
+  static const Color darkInfo = Color(0xFF7CB4F0);
 }
