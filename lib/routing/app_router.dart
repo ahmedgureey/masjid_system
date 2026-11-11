@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../features/component_gallery/presentation/component_gallery_screen.dart';
 import '../features/home/presentation/home_screen.dart';
 import '../features/splash/presentation/splash_screen.dart';
 import 'app_routes.dart';
@@ -21,6 +22,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         path: AppRoutes.home,
         name: 'home',
         builder: (context, state) => const HomeScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.components,
+        name: 'components',
+        builder: (context, state) => const ComponentGalleryScreen(),
       ),
     ],
     errorBuilder: (context, state) => NotFoundScreen(location: state.uri),

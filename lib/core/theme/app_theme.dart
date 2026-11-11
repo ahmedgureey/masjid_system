@@ -42,11 +42,21 @@ abstract final class AppTheme {
     surfaceTint: Colors.transparent,
   );
 
-  static final ThemeData light = _buildLightTheme();
+  /// Light theme for English and Somali (Inter).
+  static final ThemeData light = _buildLightTheme(arabic: false);
 
-  static ThemeData _buildLightTheme() {
+  /// Light theme for Arabic (Noto Sans Arabic, larger sizes, taller lines).
+  static final ThemeData lightArabic = _buildLightTheme(arabic: true);
+
+  /// Theme matching the app language.
+  static ThemeData forLocale(Locale locale) =>
+      locale.languageCode == 'ar' ? lightArabic : light;
+
+  static ThemeData _buildLightTheme({required bool arabic}) {
     const scheme = _lightColorScheme;
-    final text = AppTypography.textTheme;
+    final text = arabic
+        ? AppTypography.arabicTextTheme
+        : AppTypography.textTheme;
 
     final buttonShape = RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(AppRadius.md),
@@ -65,8 +75,12 @@ abstract final class AppTheme {
       useMaterial3: true,
       colorScheme: scheme,
       scaffoldBackgroundColor: AppColors.lightBackground,
-      fontFamily: AppTypography.latinFontFamily,
-      fontFamilyFallback: AppTypography.fontFallback,
+      fontFamily: arabic
+          ? AppTypography.arabicFontFamily
+          : AppTypography.latinFontFamily,
+      fontFamilyFallback: arabic
+          ? AppTypography.arabicFontFallback
+          : AppTypography.fontFallback,
       textTheme: text,
       materialTapTargetSize: MaterialTapTargetSize.padded,
       visualDensity: VisualDensity.standard,
@@ -167,6 +181,26 @@ abstract final class AppTheme {
         side: const BorderSide(color: AppColors.neutral200),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppRadius.sm),
+        ),
+      ),
+
+      // Selected segment: green-50 background + green text (design §2).
+      segmentedButtonTheme: SegmentedButtonThemeData(
+        style: ButtonStyle(
+          textStyle: WidgetStatePropertyAll(text.labelMedium),
+          backgroundColor: WidgetStateProperty.resolveWith(
+            (states) => states.contains(WidgetState.selected)
+                ? AppColors.green50
+                : AppColors.white,
+          ),
+          foregroundColor: WidgetStateProperty.resolveWith(
+            (states) => states.contains(WidgetState.selected)
+                ? AppColors.primary
+                : AppColors.darkText,
+          ),
+          side: const WidgetStatePropertyAll(
+            BorderSide(color: AppColors.neutral400),
+          ),
         ),
       ),
 

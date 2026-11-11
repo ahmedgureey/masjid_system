@@ -6,4 +6,7 @@
 abstract final class AppRoutes {
   static const String splash = '/';
   static const String home = '/home';
+
+  /// DEV ONLY — design-system component gallery.
+  static const String components = '/components';
 }

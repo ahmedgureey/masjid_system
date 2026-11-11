@@ -1,0 +1,69 @@
+{
+  "@@locale": "en",
+
+  "appName": "Masjid Management App",
+  "@appName": { "description": "Full application name." },
+
+  "languageEnglish": "English",
+  "languageSomali": "Soomaali",
+  "languageArabic": "العربية",
+  "@languageArabic": { "description": "Language names are always written in their own language." },
+  "language": "Language",
+
+  "commonOk": "OK",
+  "commonCancel": "Cancel",
+  "commonSave": "Save",
+  "commonContinue": "Continue",
+  "commonRetry": "Try again",
+  "commonSeeAll": "See all",
+  "commonLoading": "Loading…",
+  "commonClose": "Close",
+  "commonBack": "Back",
+
+  "errorGenericTitle": "Something went wrong",
+  "errorGenericMessage": "We couldn't load this right now. Please check your connection and try again.",
+  "errorOfflineTitle": "You're offline",
+  "errorOfflineMessage": "Showing saved data. Some actions need an internet connection.",
+
+  "emptyGenericTitle": "Nothing here yet",
+  "emptyGenericMessage": "When there is something to show, it will appear here.",
+
+  "validationRequired": "This field is required",
+  "validationEmail": "Enter a valid email address",
+  "validationPhone": "Enter a valid phone number",
+  "validationPasswordLength": "Password must be at least {min} characters",
+  "@validationPasswordLength": {
+    "placeholders": { "min": { "type": "int" } }
+  },
+  "showPassword": "Show password",
+  "hidePassword": "Hide password",
+
+  "statusApproved": "Approved",
+  "statusPending": "Pending",
+  "statusRejected": "Rejected",
+  "statusPresent": "Present",
+  "statusAbsent": "Absent",
+  "statusLate": "Late",
+  "statusExcused": "Excused",
+
+  "galleryTitle": "Components",
+  "galleryButtons": "Buttons",
+  "galleryInputs": "Input fields",
+  "galleryCards": "Cards",
+  "galleryStates": "States",
+  "galleryChips": "Status chips",
+  "galleryOpen": "View components",
+  "galleryPrimary": "Record donation",
+  "gallerySecondary": "View receipt",
+  "galleryAccent": "Donate now",
+  "galleryTextButton": "Skip",
+  "galleryDestructive": "Void",
+  "galleryFullName": "Full name",
+  "galleryFullNameHint": "e.g. Ahmed Abdi",
+  "galleryPassword": "Password",
+  "galleryAmount": "Amount",
+  "galleryNextPrayer": "Next prayer",
+  "galleryCardTitle": "Friday Night Halaqa",
+  "galleryCardBody": "Main hall · 7:30 PM",
+  "galleryTintedBody": "Your donation helps maintain the mosque."
+}

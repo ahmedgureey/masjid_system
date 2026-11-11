@@ -1,11 +1,14 @@
+import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
 
 import '../../../core/constants/app_constants.dart';
+import '../../../core/localization/l10n.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_semantic_colors.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/utils/date_formatter.dart';
-import '../../../core/widgets/brand_mark.dart';
+import '../../../core/widgets/widgets.dart';
+import '../../../routing/app_routes.dart';
 
 /// Temporary Home placeholder confirming the project setup.
 ///
@@ -77,7 +80,10 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Project setup complete', style: textTheme.titleMedium),
+                    Text(
+                      'Project setup complete',
+                      style: textTheme.titleMedium,
+                    ),
                     const SizedBox(height: AppSpacing.space2),
                     Text(
                       'Theme, routing and folder structure are ready. '
@@ -89,6 +95,13 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
+            ),
+            const SizedBox(height: AppSpacing.space4),
+            AppButton.secondary(
+              label: context.l10n.galleryOpen,
+              icon: Icons.widgets_outlined,
+              expand: true,
+              onPressed: () => context.push(AppRoutes.components),
             ),
             const SizedBox(height: AppSpacing.space6),
             Text('Planned modules', style: textTheme.titleLarge),

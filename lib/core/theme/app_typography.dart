@@ -15,6 +15,7 @@ abstract final class AppTypography {
   static const String quranicFontFamily = 'Amiri';
 
   static const List<String> fontFallback = [arabicFontFamily];
+  static const List<String> arabicFontFallback = [latinFontFamily];
 
   static const List<FontFeature> tabularFigures = [
     FontFeature.tabularFigures(),
@@ -27,19 +28,22 @@ abstract final class AppTypography {
     double lineHeight,
     FontWeight weight, {
     double letterSpacing = 0,
+    bool arabic = false,
   }) {
     return TextStyle(
-      fontFamily: latinFontFamily,
-      fontFamilyFallback: fontFallback,
+      fontFamily: arabic ? arabicFontFamily : latinFontFamily,
+      fontFamilyFallback: arabic ? arabicFontFallback : fontFallback,
       fontSize: size,
       height: lineHeight / size,
       fontWeight: weight,
-      letterSpacing: letterSpacing,
+      // Letter spacing breaks Arabic letter joining — always 0 in Arabic.
+      letterSpacing: arabic ? 0 : letterSpacing,
       color: AppColors.darkText,
     );
   }
 
-  /// Material 3 text roles mapped to the design-system type scale.
+  /// Latin (English / Somali) text theme: Material 3 roles mapped to the
+  /// design-system type scale.
   static final TextTheme textTheme = TextTheme(
     // display 32/40 Bold
     displaySmall: _style(32, 40, FontWeight.w700, letterSpacing: -0.5),
@@ -63,6 +67,23 @@ abstract final class AppTypography {
     labelMedium: _style(14, 20, FontWeight.w500, letterSpacing: 0.1),
     // overline 11/16 SemiBold
     labelSmall: _style(11, 16, FontWeight.w600, letterSpacing: 0.8),
+  );
+
+  /// Arabic text theme (Noto Sans Arabic): +2 sp and ~1.6× line height so
+  /// diacritics are not clipped. See `docs/design/typography.md` §3.
+  static final TextTheme arabicTextTheme = TextTheme(
+    displaySmall: _style(34, 54, FontWeight.w700, arabic: true),
+    headlineSmall: _style(26, 42, FontWeight.w700, arabic: true),
+    titleLarge: _style(22, 36, FontWeight.w600, arabic: true),
+    titleMedium: _style(20, 32, FontWeight.w600, arabic: true),
+    titleSmall: _style(18, 28, FontWeight.w600, arabic: true),
+    bodyLarge: _style(18, 29, FontWeight.w400, arabic: true),
+    bodyMedium: _style(16, 26, FontWeight.w400, arabic: true),
+    bodySmall: _style(14, 22, FontWeight.w500, arabic: true),
+    labelLarge: _style(18, 28, FontWeight.w600, arabic: true),
+    labelMedium: _style(16, 24, FontWeight.w500, arabic: true),
+    // No uppercase "overline" in Arabic — caption weight 600 instead.
+    labelSmall: _style(14, 22, FontWeight.w600, arabic: true),
   );
 
   /// Next-prayer countdown: 40/48 SemiBold, tabular figures.
