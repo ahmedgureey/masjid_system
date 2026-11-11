@@ -171,4 +171,73 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get galleryTintedBody => 'تبرعك يساعد في صيانة المسجد.';
+
+  @override
+  String get splashTagline => 'مسجدك في مكان واحد';
+
+  @override
+  String get languageTitle => 'اختر لغتك';
+
+  @override
+  String get languageSubtitle => 'يمكنك تغييرها لاحقًا من الإعدادات.';
+
+  @override
+  String get onboardingSkip => 'تخطي';
+
+  @override
+  String get onboardingNext => 'التالي';
+
+  @override
+  String get onboardingGetStarted => 'ابدأ';
+
+  @override
+  String get onboarding1Title => 'لا تفوّتك صلاة';
+
+  @override
+  String get onboarding1Body =>
+      'مواقيت دقيقة للصلاة والإقامة، وتذكيرات، واتجاه القبلة لمسجدك.';
+
+  @override
+  String get onboarding2Title => 'تبرّع بثقة';
+
+  @override
+  String get onboarding2Body => 'ادعم مسجدك وشاهد أثر تبرعاتك.';
+
+  @override
+  String get onboarding3Title => 'تعلّم وابقَ على تواصل';
+
+  @override
+  String get onboarding3Body =>
+      'حلقات القرآن والفعاليات والإعلانات في مكان واحد.';
+
+  @override
+  String onboardingPageLabel(int current, int total) {
+    return 'الصفحة $current من $total';
+  }
+
+  @override
+  String get welcomeGreeting => 'السلام عليكم';
+
+  @override
+  String get welcomeTitle => 'مرحبًا بك في إدارة المسجد';
+
+  @override
+  String get welcomeSubtitle =>
+      'مواقيت الصلاة والتبرعات والحلقات وأخبار المجتمع لمسجدك.';
+
+  @override
+  String get authLogin => 'تسجيل الدخول';
+
+  @override
+  String get authCreateAccount => 'إنشاء حساب';
+
+  @override
+  String get welcomeTerms =>
+      'بالمتابعة، فإنك توافق على شروط الاستخدام وسياسة الخصوصية.';
+
+  @override
+  String get comingSoonTitle => 'قريبًا';
+
+  @override
+  String get comingSoonMessage => 'ستُبنى هذه الشاشة في الوحدة التالية.';
 }

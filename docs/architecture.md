@@ -36,10 +36,14 @@ Each feature uses up to three layers. A layer is created **only when the feature
 
 ```
 features/<feature>/
-├── presentation/     Screens and feature-specific widgets (UI only)
+├── screens/          Full screens (UI only)
+├── widgets/          Widgets used only by this feature
+├── models/           Feature data classes (incl. clearly marked dummy data in Phase 5)
 ├── application/      Riverpod providers/notifiers: state, use-case logic, decisions
 └── data/             Repositories and data sources (Supabase, local cache) — added in backend phases
 ```
+
+> Since Phase 5 the UI layer is split into `screens/` + `widgets/` (previously `presentation/`). `component_gallery` and the temporary `home` placeholder still use `presentation/` until they are replaced.
 
 Dependency direction (one way only):
 

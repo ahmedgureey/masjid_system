@@ -173,4 +173,76 @@ class AppLocalizationsSo extends AppLocalizations {
   @override
   String get galleryTintedBody =>
       'Deeqdaadu waxay gacan ka geysataa dayactirka masjidka.';
+
+  @override
+  String get splashTagline => 'Masjidkaaga, hal meel';
+
+  @override
+  String get languageTitle => 'Dooro luqaddaada';
+
+  @override
+  String get languageSubtitle =>
+      'Waad beddeli kartaa goor dambe adigoo gelaya Dejinta.';
+
+  @override
+  String get onboardingSkip => 'Ka bood';
+
+  @override
+  String get onboardingNext => 'Xiga';
+
+  @override
+  String get onboardingGetStarted => 'Bilow';
+
+  @override
+  String get onboarding1Title => 'Salaad ha kaa dhaafin';
+
+  @override
+  String get onboarding1Body =>
+      'Waqtiyada salaadda iyo iqaamada oo sax ah, xusuusin iyo Qiblada masjidkaaga.';
+
+  @override
+  String get onboarding2Title => 'Ku deeq kalsooni';
+
+  @override
+  String get onboarding2Body =>
+      'Taageer masjidkaaga oo arag sida deeqahaagu wax u taraan.';
+
+  @override
+  String get onboarding3Title => 'Wax baro oo ku xirnow';
+
+  @override
+  String get onboarding3Body =>
+      'Casharrada Qur\'aanka, munaasabadaha iyo ogeysiisyada hal meel.';
+
+  @override
+  String onboardingPageLabel(int current, int total) {
+    return 'Bogga $current ee $total';
+  }
+
+  @override
+  String get welcomeGreeting => 'Assalaamu calaykum';
+
+  @override
+  String get welcomeTitle => 'Ku soo dhowoow Maamulka Masjidka';
+
+  @override
+  String get welcomeSubtitle =>
+      'Waqtiyada salaadda, deeqaha, casharrada iyo wararka bulshada ee masjidkaaga.';
+
+  @override
+  String get authLogin => 'Gal';
+
+  @override
+  String get authCreateAccount => 'Samee akoon';
+
+  @override
+  String get welcomeTerms =>
+      'Markaad sii wado, waxaad oggolaatay Shuruudaha Isticmaalka iyo Siyaasadda Asturnaanta.';
+
+  @override
+  String get comingSoonTitle => 'Dhowaan';
+
+  @override
+  String get comingSoonMessage =>
+      'Shaashaddan waxaa la dhisi doonaa qaybta xigta.';
 }

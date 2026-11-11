@@ -1,15 +1,16 @@
 {
   "@@locale": "en",
-
   "appName": "Masjid Management App",
-  "@appName": { "description": "Full application name." },
-
+  "@appName": {
+    "description": "Full application name."
+  },
   "languageEnglish": "English",
   "languageSomali": "Soomaali",
   "languageArabic": "العربية",
-  "@languageArabic": { "description": "Language names are always written in their own language." },
+  "@languageArabic": {
+    "description": "Language names are always written in their own language."
+  },
   "language": "Language",
-
   "commonOk": "OK",
   "commonCancel": "Cancel",
   "commonSave": "Save",
@@ -19,25 +20,25 @@
   "commonLoading": "Loading…",
   "commonClose": "Close",
   "commonBack": "Back",
-
   "errorGenericTitle": "Something went wrong",
   "errorGenericMessage": "We couldn't load this right now. Please check your connection and try again.",
   "errorOfflineTitle": "You're offline",
   "errorOfflineMessage": "Showing saved data. Some actions need an internet connection.",
-
   "emptyGenericTitle": "Nothing here yet",
   "emptyGenericMessage": "When there is something to show, it will appear here.",
-
   "validationRequired": "This field is required",
   "validationEmail": "Enter a valid email address",
   "validationPhone": "Enter a valid phone number",
   "validationPasswordLength": "Password must be at least {min} characters",
   "@validationPasswordLength": {
-    "placeholders": { "min": { "type": "int" } }
+    "placeholders": {
+      "min": {
+        "type": "int"
+      }
+    }
   },
   "showPassword": "Show password",
   "hidePassword": "Hide password",
-
   "statusApproved": "Approved",
   "statusPending": "Pending",
   "statusRejected": "Rejected",
@@ -45,7 +46,6 @@
   "statusAbsent": "Absent",
   "statusLate": "Late",
   "statusExcused": "Excused",
-
   "galleryTitle": "Components",
   "galleryButtons": "Buttons",
   "galleryInputs": "Input fields",
@@ -65,5 +65,36 @@
   "galleryNextPrayer": "Next prayer",
   "galleryCardTitle": "Friday Night Halaqa",
   "galleryCardBody": "Main hall · 7:30 PM",
-  "galleryTintedBody": "Your donation helps maintain the mosque."
+  "galleryTintedBody": "Your donation helps maintain the mosque.",
+  "splashTagline": "Your mosque, in one place",
+  "languageTitle": "Choose your language",
+  "languageSubtitle": "You can change it later in Settings.",
+  "onboardingSkip": "Skip",
+  "onboardingNext": "Next",
+  "onboardingGetStarted": "Get started",
+  "onboarding1Title": "Never miss a prayer",
+  "onboarding1Body": "Accurate prayer and Iqamah times, reminders and Qibla for your mosque.",
+  "onboarding2Title": "Give with trust",
+  "onboarding2Body": "Support your mosque and see how your donations help.",
+  "onboarding3Title": "Learn and stay connected",
+  "onboarding3Body": "Qur'an classes, events and announcements in one place.",
+  "onboardingPageLabel": "Page {current} of {total}",
+  "welcomeGreeting": "Assalamu alaikum",
+  "welcomeTitle": "Welcome to Masjid Management App",
+  "welcomeSubtitle": "Prayer times, donations, classes and community news for your mosque.",
+  "authLogin": "Log in",
+  "authCreateAccount": "Create account",
+  "welcomeTerms": "By continuing, you agree to the Terms of Use and Privacy Policy.",
+  "comingSoonTitle": "Coming soon",
+  "comingSoonMessage": "This screen will be built in the next module.",
+  "@onboardingPageLabel": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  }
 }

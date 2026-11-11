@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
 
 import '../../../core/constants/app_constants.dart';
+import '../../../core/localization/l10n.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_semantic_colors.dart';
 import '../../../core/theme/app_spacing.dart';
@@ -52,7 +53,7 @@ class SplashScreen extends ConsumerWidget {
                     ),
                     const SizedBox(height: AppSpacing.space6),
                     Text(
-                      AppConstants.appName,
+                      context.l10n.appName,
                       textAlign: TextAlign.center,
                       style: textTheme.displaySmall?.copyWith(
                         color: AppColors.white,
@@ -60,7 +61,7 @@ class SplashScreen extends ConsumerWidget {
                     ),
                     const SizedBox(height: AppSpacing.space2),
                     Text(
-                      AppConstants.appNameSomali,
+                      context.l10n.splashTagline,
                       textAlign: TextAlign.center,
                       style: textTheme.bodyMedium?.copyWith(
                         color: AppColors.green100,

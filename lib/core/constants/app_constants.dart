@@ -5,9 +5,6 @@
 abstract final class AppConstants {
   static const String appName = 'Masjid Management App';
 
-  /// Somali subtitle shown on the splash screen.
-  static const String appNameSomali = 'Maamulka Masjidka';
-
   static const String bismillah = 'بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ';
 
   /// Minimum time the splash screen stays visible (design: max 2 s).

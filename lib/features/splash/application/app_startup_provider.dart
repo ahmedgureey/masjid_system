@@ -2,14 +2,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/constants/app_constants.dart';
 import '../../../routing/app_routes.dart';
+import '../../../services/local_storage_service.dart';
 
 /// Runs app start-up work while the splash screen is visible and returns the
-/// route to open next.
+/// route to open next:
+/// - first launch → language selection (start of onboarding)
+/// - onboarding already seen → welcome (login / create account)
 ///
-/// Today it only waits for the minimum splash duration. Later phases add:
-/// session check, minimum app-version check, and loading cached prayer data
-/// (see `docs/design/screen-designs.md` §1).
+/// Module 3 adds: signed-in user (dummy session) → home.
 final appStartupProvider = FutureProvider<String>((ref) async {
+  final storage = ref.read(localStorageServiceProvider);
   await Future<void>.delayed(AppConstants.splashMinDuration);
-  return AppRoutes.home;
+  return storage.isOnboardingCompleted
+      ? AppRoutes.welcome
+      : AppRoutes.languageSelection;
 });

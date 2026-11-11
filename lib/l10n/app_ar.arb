@@ -1,13 +1,10 @@
 {
   "@@locale": "ar",
-
   "appName": "إدارة المسجد",
-
   "languageEnglish": "English",
   "languageSomali": "Soomaali",
   "languageArabic": "العربية",
   "language": "اللغة",
-
   "commonOk": "حسنًا",
   "commonCancel": "إلغاء",
   "commonSave": "حفظ",
@@ -17,22 +14,18 @@
   "commonLoading": "جارٍ التحميل…",
   "commonClose": "إغلاق",
   "commonBack": "رجوع",
-
   "errorGenericTitle": "حدث خطأ ما",
   "errorGenericMessage": "تعذّر التحميل الآن. يرجى التحقق من الاتصال والمحاولة مرة أخرى.",
   "errorOfflineTitle": "أنت غير متصل",
   "errorOfflineMessage": "يتم عرض البيانات المحفوظة. بعض الإجراءات تتطلب اتصالًا بالإنترنت.",
-
   "emptyGenericTitle": "لا يوجد شيء بعد",
   "emptyGenericMessage": "عندما يتوفر محتوى سيظهر هنا.",
-
   "validationRequired": "هذا الحقل مطلوب",
   "validationEmail": "أدخل بريدًا إلكترونيًا صحيحًا",
   "validationPhone": "أدخل رقم هاتف صحيحًا",
   "validationPasswordLength": "يجب ألا تقل كلمة المرور عن {min} أحرف",
   "showPassword": "إظهار كلمة المرور",
   "hidePassword": "إخفاء كلمة المرور",
-
   "statusApproved": "مقبول",
   "statusPending": "قيد الانتظار",
   "statusRejected": "مرفوض",
@@ -40,7 +33,6 @@
   "statusAbsent": "غائب",
   "statusLate": "متأخر",
   "statusExcused": "معذور",
-
   "galleryTitle": "المكونات",
   "galleryButtons": "الأزرار",
   "galleryInputs": "حقول الإدخال",
@@ -60,5 +52,26 @@
   "galleryNextPrayer": "الصلاة القادمة",
   "galleryCardTitle": "حلقة ليلة الجمعة",
   "galleryCardBody": "القاعة الرئيسية · 7:30 م",
-  "galleryTintedBody": "تبرعك يساعد في صيانة المسجد."
+  "galleryTintedBody": "تبرعك يساعد في صيانة المسجد.",
+  "splashTagline": "مسجدك في مكان واحد",
+  "languageTitle": "اختر لغتك",
+  "languageSubtitle": "يمكنك تغييرها لاحقًا من الإعدادات.",
+  "onboardingSkip": "تخطي",
+  "onboardingNext": "التالي",
+  "onboardingGetStarted": "ابدأ",
+  "onboarding1Title": "لا تفوّتك صلاة",
+  "onboarding1Body": "مواقيت دقيقة للصلاة والإقامة، وتذكيرات، واتجاه القبلة لمسجدك.",
+  "onboarding2Title": "تبرّع بثقة",
+  "onboarding2Body": "ادعم مسجدك وشاهد أثر تبرعاتك.",
+  "onboarding3Title": "تعلّم وابقَ على تواصل",
+  "onboarding3Body": "حلقات القرآن والفعاليات والإعلانات في مكان واحد.",
+  "onboardingPageLabel": "الصفحة {current} من {total}",
+  "welcomeGreeting": "السلام عليكم",
+  "welcomeTitle": "مرحبًا بك في إدارة المسجد",
+  "welcomeSubtitle": "مواقيت الصلاة والتبرعات والحلقات وأخبار المجتمع لمسجدك.",
+  "authLogin": "تسجيل الدخول",
+  "authCreateAccount": "إنشاء حساب",
+  "welcomeTerms": "بالمتابعة، فإنك توافق على شروط الاستخدام وسياسة الخصوصية.",
+  "comingSoonTitle": "قريبًا",
+  "comingSoonMessage": "ستُبنى هذه الشاشة في الوحدة التالية."
 }

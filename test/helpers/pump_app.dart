@@ -3,9 +3,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:masjid_management/core/localization/app_locales.dart';
 import 'package:masjid_management/core/localization/locale_provider.dart';
 import 'package:masjid_management/core/theme/app_theme.dart';
+import 'package:masjid_management/services/local_storage_service.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-/// Locale controller fixed to a given locale for tests.
+/// Locale controller starting at a given locale for tests.
 class _FixedLocaleController extends LocaleController {
   _FixedLocaleController(this._locale);
 
@@ -15,7 +17,8 @@ class _FixedLocaleController extends LocaleController {
   Locale build() => _locale;
 }
 
-/// Pumps [child] inside the app's theme, localization and Riverpod scope.
+/// Pumps a single widget inside the app's theme, localization and Riverpod
+/// scope (no router). For full-app flows use `pumpFullApp`.
 extension PumpApp on WidgetTester {
   Future<void> pumpApp(
     Widget child, {
@@ -35,9 +38,13 @@ extension PumpApp on WidgetTester {
       addTearDown(platformDispatcher.clearTextScaleFactorTestValue);
     }
 
+    SharedPreferences.setMockInitialValues({});
+    final prefs = await SharedPreferences.getInstance();
+
     await pumpWidget(
       ProviderScope(
         overrides: [
+          sharedPreferencesProvider.overrideWithValue(prefs),
           localeProvider.overrideWith(() => _FixedLocaleController(locale)),
         ],
         child: Consumer(

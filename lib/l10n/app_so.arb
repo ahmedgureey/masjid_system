@@ -1,13 +1,10 @@
 {
   "@@locale": "so",
-
   "appName": "Maamulka Masjidka",
-
   "languageEnglish": "English",
   "languageSomali": "Soomaali",
   "languageArabic": "العربية",
   "language": "Luqadda",
-
   "commonOk": "Haye",
   "commonCancel": "Jooji",
   "commonSave": "Kaydi",
@@ -17,22 +14,18 @@
   "commonLoading": "Waa la soo rarayaa…",
   "commonClose": "Xir",
   "commonBack": "Dib u noqo",
-
   "errorGenericTitle": "Wax baa khaldamay",
   "errorGenericMessage": "Hadda lama soo rari karo. Fadlan hubi internetkaaga oo isku day mar kale.",
   "errorOfflineTitle": "Internet ma lihid",
   "errorOfflineMessage": "Waxaa la tusayaa xogta la kaydiyey. Qaar ka mid ah ficillada waxay u baahan yihiin internet.",
-
   "emptyGenericTitle": "Weli wax ma jiraan",
   "emptyGenericMessage": "Marka wax la muujin karo jiraan, halkan ayay ka soo muuqan doonaan.",
-
   "validationRequired": "Meeshan waa in la buuxiyaa",
   "validationEmail": "Geli email sax ah",
   "validationPhone": "Geli lambar taleefan oo sax ah",
   "validationPasswordLength": "Furaha sirta ahi waa inuu ka koobnaadaa ugu yaraan {min} xaraf",
   "showPassword": "Muuji furaha sirta",
   "hidePassword": "Qari furaha sirta",
-
   "statusApproved": "La oggolaaday",
   "statusPending": "Sugaya",
   "statusRejected": "La diiday",
@@ -40,7 +33,6 @@
   "statusAbsent": "Maqnaa",
   "statusLate": "Daahay",
   "statusExcused": "Fasax",
-
   "galleryTitle": "Qaybaha naqshadda",
   "galleryButtons": "Badhamada",
   "galleryInputs": "Meelaha qoraalka",
@@ -60,5 +52,26 @@
   "galleryNextPrayer": "Salaadda xigta",
   "galleryCardTitle": "Xalqadda habeenka Jimcaha",
   "galleryCardBody": "Hoolka weyn · 7:30 fiidnimo",
-  "galleryTintedBody": "Deeqdaadu waxay gacan ka geysataa dayactirka masjidka."
+  "galleryTintedBody": "Deeqdaadu waxay gacan ka geysataa dayactirka masjidka.",
+  "splashTagline": "Masjidkaaga, hal meel",
+  "languageTitle": "Dooro luqaddaada",
+  "languageSubtitle": "Waad beddeli kartaa goor dambe adigoo gelaya Dejinta.",
+  "onboardingSkip": "Ka bood",
+  "onboardingNext": "Xiga",
+  "onboardingGetStarted": "Bilow",
+  "onboarding1Title": "Salaad ha kaa dhaafin",
+  "onboarding1Body": "Waqtiyada salaadda iyo iqaamada oo sax ah, xusuusin iyo Qiblada masjidkaaga.",
+  "onboarding2Title": "Ku deeq kalsooni",
+  "onboarding2Body": "Taageer masjidkaaga oo arag sida deeqahaagu wax u taraan.",
+  "onboarding3Title": "Wax baro oo ku xirnow",
+  "onboarding3Body": "Casharrada Qur'aanka, munaasabadaha iyo ogeysiisyada hal meel.",
+  "onboardingPageLabel": "Bogga {current} ee {total}",
+  "welcomeGreeting": "Assalaamu calaykum",
+  "welcomeTitle": "Ku soo dhowoow Maamulka Masjidka",
+  "welcomeSubtitle": "Waqtiyada salaadda, deeqaha, casharrada iyo wararka bulshada ee masjidkaaga.",
+  "authLogin": "Gal",
+  "authCreateAccount": "Samee akoon",
+  "welcomeTerms": "Markaad sii wado, waxaad oggolaatay Shuruudaha Isticmaalka iyo Siyaasadda Asturnaanta.",
+  "comingSoonTitle": "Dhowaan",
+  "comingSoonMessage": "Shaashaddan waxaa la dhisi doonaa qaybta xigta."
 }

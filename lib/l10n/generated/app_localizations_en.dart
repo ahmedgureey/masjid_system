@@ -172,4 +172,75 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get galleryTintedBody => 'Your donation helps maintain the mosque.';
+
+  @override
+  String get splashTagline => 'Your mosque, in one place';
+
+  @override
+  String get languageTitle => 'Choose your language';
+
+  @override
+  String get languageSubtitle => 'You can change it later in Settings.';
+
+  @override
+  String get onboardingSkip => 'Skip';
+
+  @override
+  String get onboardingNext => 'Next';
+
+  @override
+  String get onboardingGetStarted => 'Get started';
+
+  @override
+  String get onboarding1Title => 'Never miss a prayer';
+
+  @override
+  String get onboarding1Body =>
+      'Accurate prayer and Iqamah times, reminders and Qibla for your mosque.';
+
+  @override
+  String get onboarding2Title => 'Give with trust';
+
+  @override
+  String get onboarding2Body =>
+      'Support your mosque and see how your donations help.';
+
+  @override
+  String get onboarding3Title => 'Learn and stay connected';
+
+  @override
+  String get onboarding3Body =>
+      'Qur\'an classes, events and announcements in one place.';
+
+  @override
+  String onboardingPageLabel(int current, int total) {
+    return 'Page $current of $total';
+  }
+
+  @override
+  String get welcomeGreeting => 'Assalamu alaikum';
+
+  @override
+  String get welcomeTitle => 'Welcome to Masjid Management App';
+
+  @override
+  String get welcomeSubtitle =>
+      'Prayer times, donations, classes and community news for your mosque.';
+
+  @override
+  String get authLogin => 'Log in';
+
+  @override
+  String get authCreateAccount => 'Create account';
+
+  @override
+  String get welcomeTerms =>
+      'By continuing, you agree to the Terms of Use and Privacy Policy.';
+
+  @override
+  String get comingSoonTitle => 'Coming soon';
+
+  @override
+  String get comingSoonMessage =>
+      'This screen will be built in the next module.';
 }
