@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:masjid_management/features/onboarding/screens/language_selection_screen.dart';
 import 'package:masjid_management/features/onboarding/screens/onboarding_screen.dart';
 import 'package:masjid_management/features/onboarding/screens/welcome_screen.dart';
+import 'package:masjid_management/routing/app_routes.dart';
 import 'package:material_ui/material_ui.dart';
 
 import 'helpers/test_app.dart';
@@ -27,6 +28,7 @@ void main() {
           textScale: textScale,
         );
         await passSplash(tester);
+        await goTo(tester, AppRoutes.languageSelection);
         expect(find.byType(LanguageSelectionScreen), findsOneWidget);
         expect(tester.takeException(), isNull);
 

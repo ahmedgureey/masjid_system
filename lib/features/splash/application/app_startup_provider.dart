@@ -2,18 +2,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/constants/app_constants.dart';
 import '../../../routing/app_routes.dart';
-import '../../../services/local_storage_service.dart';
 
 /// Runs app start-up work while the splash screen is visible and returns the
-/// route to open next:
-/// - first launch → language selection (start of onboarding)
-/// - onboarding already seen → welcome (login / create account)
+/// route to open next.
 ///
-/// Module 3 adds: signed-in user (dummy session) → home.
+/// Owner decision: the welcome screen ("Gal" / "Samee akoon") opens after
+/// the splash; login leads to the home dashboard.
 final appStartupProvider = FutureProvider<String>((ref) async {
-  final storage = ref.read(localStorageServiceProvider);
   await Future<void>.delayed(AppConstants.splashMinDuration);
-  return storage.isOnboardingCompleted
-      ? AppRoutes.welcome
-      : AppRoutes.languageSelection;
+  return AppRoutes.welcome;
 });

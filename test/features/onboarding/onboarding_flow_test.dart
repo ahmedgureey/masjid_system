@@ -1,8 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:masjid_management/features/authentication/screens/login_screen.dart';
+import 'package:masjid_management/features/authentication/screens/register_screen.dart';
 import 'package:masjid_management/features/onboarding/screens/language_selection_screen.dart';
 import 'package:masjid_management/features/onboarding/screens/onboarding_screen.dart';
 import 'package:masjid_management/features/onboarding/screens/welcome_screen.dart';
-import 'package:masjid_management/routing/placeholder_screen.dart';
+import 'package:masjid_management/routing/app_routes.dart';
 import 'package:material_ui/material_ui.dart';
 
 import '../../helpers/test_app.dart';
@@ -11,6 +13,7 @@ void main() {
   testWidgets('full first-launch flow in Somali', (tester) async {
     final prefs = await pumpFullApp(tester);
     await passSplash(tester);
+    await goTo(tester, AppRoutes.languageSelection);
     expect(find.byType(LanguageSelectionScreen), findsOneWidget);
     expect(find.text('Choose your language'), findsOneWidget);
 
@@ -45,6 +48,7 @@ void main() {
   testWidgets('swiping changes onboarding pages', (tester) async {
     await pumpFullApp(tester);
     await passSplash(tester);
+    await goTo(tester, AppRoutes.languageSelection);
     await tester.tap(find.text('Continue'));
     await tester.pumpAndSettle();
 
@@ -56,6 +60,7 @@ void main() {
   testWidgets('Skip finishes onboarding and opens welcome', (tester) async {
     final prefs = await pumpFullApp(tester);
     await passSplash(tester);
+    await goTo(tester, AppRoutes.languageSelection);
     await tester.tap(find.text('Continue'));
     await tester.pumpAndSettle();
 
@@ -70,6 +75,7 @@ void main() {
   ) async {
     await pumpFullApp(tester);
     await passSplash(tester);
+    await goTo(tester, AppRoutes.languageSelection);
     await tester.tap(find.text('Continue'));
     await tester.pumpAndSettle();
     expect(find.byType(OnboardingScreen), findsOneWidget);
@@ -84,6 +90,7 @@ void main() {
   ) async {
     await pumpFullApp(tester);
     await passSplash(tester);
+    await goTo(tester, AppRoutes.languageSelection);
 
     await tester.tap(find.text('العربية'));
     await tester.pumpAndSettle();
@@ -103,6 +110,7 @@ void main() {
       prefs: {onboardingCompletedKey: true, localeCodeKey: 'ar'},
     );
     await passSplash(tester);
+    await goTo(tester, AppRoutes.welcome);
 
     expect(find.byType(WelcomeScreen), findsOneWidget);
     expect(find.text('السلام عليكم'), findsOneWidget);
@@ -114,17 +122,18 @@ void main() {
     ) async {
       await pumpFullApp(tester, prefs: {onboardingCompletedKey: true});
       await passSplash(tester);
+      await goTo(tester, AppRoutes.welcome);
 
       await tester.tap(find.text('Log in'));
       await tester.pumpAndSettle();
-      expect(find.byType(PlaceholderScreen), findsOneWidget);
+      expect(find.byType(LoginScreen), findsOneWidget);
       await tester.tap(find.byType(BackButton));
       await tester.pumpAndSettle();
       expect(find.byType(WelcomeScreen), findsOneWidget);
 
       await tester.tap(find.text('Create account'));
       await tester.pumpAndSettle();
-      expect(find.byType(PlaceholderScreen), findsOneWidget);
+      expect(find.byType(RegisterScreen), findsOneWidget);
       await tester.tap(find.byType(BackButton));
       await tester.pumpAndSettle();
       expect(find.byType(WelcomeScreen), findsOneWidget);
@@ -138,7 +147,9 @@ void main() {
         prefs: {onboardingCompletedKey: true},
       );
       await passSplash(tester);
+      await goTo(tester, AppRoutes.welcome);
 
+      await tester.ensureVisible(find.text('Language: English'));
       await tester.tap(find.text('Language: English'));
       await tester.pumpAndSettle();
       expect(find.byType(BottomSheet), findsOneWidget);

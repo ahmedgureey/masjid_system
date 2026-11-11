@@ -4,6 +4,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app.dart';
+import 'core/utils/date_formatter.dart';
 import 'core/utils/font_licenses.dart';
 import 'services/local_storage_service.dart';
 
@@ -15,6 +16,7 @@ Future<void> main() async {
   // Loads intl date symbols (bundled, no network) so dates can be formatted
   // anywhere, not only below the Material localizations.
   await initializeDateFormatting();
+  AppDateFormatter.configure();
   final prefs = await SharedPreferences.getInstance();
   registerFontLicenses();
   runApp(

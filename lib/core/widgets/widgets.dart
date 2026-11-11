@@ -4,6 +4,8 @@ library;
 
 export 'app_button.dart';
 export 'app_card.dart';
+export 'app_checkbox_field.dart';
+export 'app_dialogs.dart';
 export 'app_loading.dart';
 export 'app_text_field.dart';
 export 'app_top_bar.dart';

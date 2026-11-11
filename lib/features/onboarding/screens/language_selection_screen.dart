@@ -5,10 +5,10 @@ import 'package:material_ui/material_ui.dart';
 import '../../../core/localization/l10n.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
+import '../../../core/widgets/language/language_options_list.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../../routing/app_routes.dart';
 import '../widgets/brand_header.dart';
-import '../widgets/language_options_list.dart';
 
 /// First-launch language choice (S-AUTH-02). Selecting a language switches
 /// the UI immediately, including right-to-left for Arabic.

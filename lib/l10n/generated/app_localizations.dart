@@ -543,6 +543,1176 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This screen will be built in the next module.'**
   String get comingSoonMessage;
+
+  /// No description provided for @loginTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back'**
+  String get loginTitle;
+
+  /// No description provided for @loginSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in to your account'**
+  String get loginSubtitle;
+
+  /// No description provided for @fieldEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get fieldEmail;
+
+  /// No description provided for @fieldEmailHint.
+  ///
+  /// In en, this message translates to:
+  /// **'name@example.com'**
+  String get fieldEmailHint;
+
+  /// No description provided for @fieldPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get fieldPassword;
+
+  /// No description provided for @rememberMe.
+  ///
+  /// In en, this message translates to:
+  /// **'Remember me'**
+  String get rememberMe;
+
+  /// No description provided for @forgotPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot password?'**
+  String get forgotPassword;
+
+  /// No description provided for @loginNoAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an account?'**
+  String get loginNoAccount;
+
+  /// No description provided for @registerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create your account'**
+  String get registerTitle;
+
+  /// No description provided for @registerSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Join your mosque community'**
+  String get registerSubtitle;
+
+  /// No description provided for @fieldFullName.
+  ///
+  /// In en, this message translates to:
+  /// **'Full name'**
+  String get fieldFullName;
+
+  /// No description provided for @fieldFullNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Ahmed Abdi Hassan'**
+  String get fieldFullNameHint;
+
+  /// No description provided for @fieldPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number'**
+  String get fieldPhone;
+
+  /// No description provided for @fieldOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'(optional)'**
+  String get fieldOptional;
+
+  /// No description provided for @fieldPhoneHint.
+  ///
+  /// In en, this message translates to:
+  /// **'+252 61 234 5678'**
+  String get fieldPhoneHint;
+
+  /// No description provided for @fieldConfirmPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm password'**
+  String get fieldConfirmPassword;
+
+  /// No description provided for @passwordHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'At least 8 characters'**
+  String get passwordHelper;
+
+  /// No description provided for @validationPasswordMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match'**
+  String get validationPasswordMismatch;
+
+  /// No description provided for @validationNameShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your full name'**
+  String get validationNameShort;
+
+  /// No description provided for @termsAgree.
+  ///
+  /// In en, this message translates to:
+  /// **'I agree to the Terms of Use and Privacy Policy'**
+  String get termsAgree;
+
+  /// No description provided for @validationTerms.
+  ///
+  /// In en, this message translates to:
+  /// **'You must accept the terms to continue'**
+  String get validationTerms;
+
+  /// No description provided for @registerHaveAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account?'**
+  String get registerHaveAccount;
+
+  /// No description provided for @mockTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Not available yet'**
+  String get mockTitle;
+
+  /// No description provided for @mockLoginMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Your details look correct, but signing in will only work after the app is connected to the server. Nothing was saved.'**
+  String get mockLoginMessage;
+
+  /// No description provided for @mockRegisterMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Your details look correct, but creating an account will only work after the app is connected to the server. Nothing was saved.'**
+  String get mockRegisterMessage;
+
+  /// No description provided for @mockResetMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Password reset emails will be sent once the app is connected to the server. Nothing was sent.'**
+  String get mockResetMessage;
+
+  /// No description provided for @forgotTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset your password'**
+  String get forgotTitle;
+
+  /// No description provided for @forgotSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the email you registered with. We\'ll send you a link to reset your password.'**
+  String get forgotSubtitle;
+
+  /// No description provided for @forgotSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send reset link'**
+  String get forgotSend;
+
+  /// No description provided for @forgotBackToLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to log in'**
+  String get forgotBackToLogin;
+
+  /// No description provided for @demoBannerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo mode'**
+  String get demoBannerTitle;
+
+  /// No description provided for @demoBannerMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'You are signed in with sample data. No real account was used and nothing is saved.'**
+  String get demoBannerMessage;
+
+  /// No description provided for @logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Log out'**
+  String get logout;
+
+  /// No description provided for @homeGreetingName.
+  ///
+  /// In en, this message translates to:
+  /// **'Assalamu alaikum, {name}'**
+  String homeGreetingName(String name);
+
+  /// No description provided for @homeMenuProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Mosque Profile'**
+  String get homeMenuProfile;
+
+  /// No description provided for @homeMenuPrayer.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer Times'**
+  String get homeMenuPrayer;
+
+  /// No description provided for @homeMenuCalendar.
+  ///
+  /// In en, this message translates to:
+  /// **'Mosque Calendar'**
+  String get homeMenuCalendar;
+
+  /// No description provided for @homeMenuNews.
+  ///
+  /// In en, this message translates to:
+  /// **'News & Articles'**
+  String get homeMenuNews;
+
+  /// No description provided for @homeMenuDonations.
+  ///
+  /// In en, this message translates to:
+  /// **'Donation Program'**
+  String get homeMenuDonations;
+
+  /// No description provided for @homeMenuContact.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Us'**
+  String get homeMenuContact;
+
+  /// No description provided for @coverPhotoPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Mosque photo not added yet'**
+  String get coverPhotoPending;
+
+  /// No description provided for @homeMenuTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Mosque services'**
+  String get homeMenuTitle;
+
+  /// No description provided for @profileTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Mosque Profile'**
+  String get profileTitle;
+
+  /// No description provided for @profileEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get profileEdit;
+
+  /// No description provided for @profileEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit mosque profile'**
+  String get profileEditTitle;
+
+  /// No description provided for @profileNoDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'No description added yet.'**
+  String get profileNoDescription;
+
+  /// No description provided for @profileNoData.
+  ///
+  /// In en, this message translates to:
+  /// **'No information added yet.'**
+  String get profileNoData;
+
+  /// No description provided for @profileAddInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Add information'**
+  String get profileAddInfo;
+
+  /// No description provided for @profileSectionBasic.
+  ///
+  /// In en, this message translates to:
+  /// **'Mosque details'**
+  String get profileSectionBasic;
+
+  /// No description provided for @profileSectionLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Mosque location'**
+  String get profileSectionLocation;
+
+  /// No description provided for @profileSectionContact.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact details'**
+  String get profileSectionContact;
+
+  /// No description provided for @profileSectionLeadership.
+  ///
+  /// In en, this message translates to:
+  /// **'Mosque leadership'**
+  String get profileSectionLeadership;
+
+  /// No description provided for @profileSectionServices.
+  ///
+  /// In en, this message translates to:
+  /// **'Mosque services'**
+  String get profileSectionServices;
+
+  /// No description provided for @profileSectionFacilities.
+  ///
+  /// In en, this message translates to:
+  /// **'Mosque facilities'**
+  String get profileSectionFacilities;
+
+  /// No description provided for @profileServicesPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Services will appear here as they are added to the app.'**
+  String get profileServicesPending;
+
+  /// No description provided for @profileLeadershipPrivacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Only names are shown. Personal contact details are never public.'**
+  String get profileLeadershipPrivacy;
+
+  /// No description provided for @profileAuthNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Editing is available because you are signed in (demo). Permissions are checked in the app only for now; the server will enforce them later.'**
+  String get profileAuthNotice;
+
+  /// No description provided for @fieldMosqueName.
+  ///
+  /// In en, this message translates to:
+  /// **'Mosque name'**
+  String get fieldMosqueName;
+
+  /// No description provided for @fieldDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Short description'**
+  String get fieldDescription;
+
+  /// No description provided for @fieldCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Mosque type'**
+  String get fieldCategory;
+
+  /// No description provided for @categoryJamia.
+  ///
+  /// In en, this message translates to:
+  /// **'Jāmiʿ (Friday mosque)'**
+  String get categoryJamia;
+
+  /// No description provided for @categoryMasjid.
+  ///
+  /// In en, this message translates to:
+  /// **'Mosque'**
+  String get categoryMasjid;
+
+  /// No description provided for @categoryMusalla.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer hall (muṣallā)'**
+  String get categoryMusalla;
+
+  /// No description provided for @fieldEstablished.
+  ///
+  /// In en, this message translates to:
+  /// **'Year established'**
+  String get fieldEstablished;
+
+  /// No description provided for @fieldRegistration.
+  ///
+  /// In en, this message translates to:
+  /// **'Registration number'**
+  String get fieldRegistration;
+
+  /// No description provided for @fieldCountry.
+  ///
+  /// In en, this message translates to:
+  /// **'Country'**
+  String get fieldCountry;
+
+  /// No description provided for @fieldCity.
+  ///
+  /// In en, this message translates to:
+  /// **'City'**
+  String get fieldCity;
+
+  /// No description provided for @fieldDistrict.
+  ///
+  /// In en, this message translates to:
+  /// **'District / neighbourhood'**
+  String get fieldDistrict;
+
+  /// No description provided for @fieldAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Full address'**
+  String get fieldAddress;
+
+  /// No description provided for @fieldLatitude.
+  ///
+  /// In en, this message translates to:
+  /// **'Latitude'**
+  String get fieldLatitude;
+
+  /// No description provided for @fieldLongitude.
+  ///
+  /// In en, this message translates to:
+  /// **'Longitude'**
+  String get fieldLongitude;
+
+  /// No description provided for @fieldCoordinates.
+  ///
+  /// In en, this message translates to:
+  /// **'GPS coordinates'**
+  String get fieldCoordinates;
+
+  /// No description provided for @fieldWebsite.
+  ///
+  /// In en, this message translates to:
+  /// **'Website'**
+  String get fieldWebsite;
+
+  /// No description provided for @fieldSocial.
+  ///
+  /// In en, this message translates to:
+  /// **'Social media'**
+  String get fieldSocial;
+
+  /// No description provided for @fieldImam.
+  ///
+  /// In en, this message translates to:
+  /// **'Imam'**
+  String get fieldImam;
+
+  /// No description provided for @fieldChairman.
+  ///
+  /// In en, this message translates to:
+  /// **'Chairman'**
+  String get fieldChairman;
+
+  /// No description provided for @fieldAdministrator.
+  ///
+  /// In en, this message translates to:
+  /// **'Administrator'**
+  String get fieldAdministrator;
+
+  /// No description provided for @fieldTreasurer.
+  ///
+  /// In en, this message translates to:
+  /// **'Treasurer'**
+  String get fieldTreasurer;
+
+  /// No description provided for @fieldLogo.
+  ///
+  /// In en, this message translates to:
+  /// **'Logo'**
+  String get fieldLogo;
+
+  /// No description provided for @logoUploadPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Uploading a logo will be possible once storage (Supabase) is connected.'**
+  String get logoUploadPending;
+
+  /// No description provided for @logoUpload.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload logo'**
+  String get logoUpload;
+
+  /// No description provided for @facilityWomen.
+  ///
+  /// In en, this message translates to:
+  /// **'Women\'s prayer area'**
+  String get facilityWomen;
+
+  /// No description provided for @facilityQuranRooms.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur\'an teaching rooms'**
+  String get facilityQuranRooms;
+
+  /// No description provided for @facilityAblution.
+  ///
+  /// In en, this message translates to:
+  /// **'Ablution facilities'**
+  String get facilityAblution;
+
+  /// No description provided for @facilityParking.
+  ///
+  /// In en, this message translates to:
+  /// **'Parking'**
+  String get facilityParking;
+
+  /// No description provided for @facilityAccessibility.
+  ///
+  /// In en, this message translates to:
+  /// **'Accessibility (wheelchair access)'**
+  String get facilityAccessibility;
+
+  /// No description provided for @facilitiesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tick only the facilities the mosque actually has.'**
+  String get facilitiesHint;
+
+  /// No description provided for @editLanguageNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Name and description are edited for the current language: {language}.'**
+  String editLanguageNote(String language);
+
+  /// No description provided for @profileSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get profileSave;
+
+  /// No description provided for @profileCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get profileCancel;
+
+  /// No description provided for @profileSavedLocal.
+  ///
+  /// In en, this message translates to:
+  /// **'Changes saved on this device only (temporary). They will be lost when the app is closed until the server is connected.'**
+  String get profileSavedLocal;
+
+  /// No description provided for @profileSaveError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not save the changes. Please try again.'**
+  String get profileSaveError;
+
+  /// No description provided for @discardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Discard changes?'**
+  String get discardTitle;
+
+  /// No description provided for @discardMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'You have unsaved changes. If you leave now, they will be lost.'**
+  String get discardMessage;
+
+  /// No description provided for @discardConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Discard'**
+  String get discardConfirm;
+
+  /// No description provided for @discardKeepEditing.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep editing'**
+  String get discardKeepEditing;
+
+  /// No description provided for @validationWebsite.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid website address (e.g. www.example.com)'**
+  String get validationWebsite;
+
+  /// No description provided for @validationYear.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid year between {min} and {max}'**
+  String validationYear(int min, int max);
+
+  /// No description provided for @validationLatitude.
+  ///
+  /// In en, this message translates to:
+  /// **'Latitude must be a number between -90 and 90'**
+  String get validationLatitude;
+
+  /// No description provided for @validationLongitude.
+  ///
+  /// In en, this message translates to:
+  /// **'Longitude must be a number between -180 and 180'**
+  String get validationLongitude;
+
+  /// No description provided for @prayerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer Times'**
+  String get prayerTitle;
+
+  /// No description provided for @prayerNextLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Next prayer'**
+  String get prayerNextLabel;
+
+  /// No description provided for @prayerFajr.
+  ///
+  /// In en, this message translates to:
+  /// **'Fajr'**
+  String get prayerFajr;
+
+  /// No description provided for @prayerDhuhr.
+  ///
+  /// In en, this message translates to:
+  /// **'Dhuhr'**
+  String get prayerDhuhr;
+
+  /// No description provided for @prayerAsr.
+  ///
+  /// In en, this message translates to:
+  /// **'Asr'**
+  String get prayerAsr;
+
+  /// No description provided for @prayerMaghrib.
+  ///
+  /// In en, this message translates to:
+  /// **'Maghrib'**
+  String get prayerMaghrib;
+
+  /// No description provided for @prayerIsha.
+  ///
+  /// In en, this message translates to:
+  /// **'Isha'**
+  String get prayerIsha;
+
+  /// No description provided for @prayerSunrise.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunrise'**
+  String get prayerSunrise;
+
+  /// No description provided for @prayerSunriseNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Not one of the five obligatory prayers'**
+  String get prayerSunriseNote;
+
+  /// No description provided for @prayerAdhan.
+  ///
+  /// In en, this message translates to:
+  /// **'Adhan'**
+  String get prayerAdhan;
+
+  /// No description provided for @prayerIqamah.
+  ///
+  /// In en, this message translates to:
+  /// **'Iqamah'**
+  String get prayerIqamah;
+
+  /// No description provided for @prayerIqamahNotSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not set'**
+  String get prayerIqamahNotSet;
+
+  /// No description provided for @prayerDailyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Five daily prayers'**
+  String get prayerDailyTitle;
+
+  /// No description provided for @prayerNextBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get prayerNextBadge;
+
+  /// No description provided for @prayerTomorrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Tomorrow'**
+  String get prayerTomorrow;
+
+  /// No description provided for @prayerCountdownLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Time remaining'**
+  String get prayerCountdownLabel;
+
+  /// No description provided for @prayerNoNext.
+  ///
+  /// In en, this message translates to:
+  /// **'The next prayer time is not available.'**
+  String get prayerNoNext;
+
+  /// No description provided for @prayerLocationMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'Mosque location not added yet'**
+  String get prayerLocationMissing;
+
+  /// No description provided for @prayerMockTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sample data — not real times'**
+  String get prayerMockTitle;
+
+  /// No description provided for @prayerMockMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'These times are sample (mock) values used to test the design. They are NOT the real prayer times of the mosque. Real times will be shown once the mosque location and calculation method are configured.'**
+  String get prayerMockMessage;
+
+  /// No description provided for @prayerEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No prayer schedule'**
+  String get prayerEmptyTitle;
+
+  /// No description provided for @prayerEmptyMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer times for this day have not been set yet.'**
+  String get prayerEmptyMessage;
+
+  /// No description provided for @prayerRefresh.
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh'**
+  String get prayerRefresh;
+
+  /// No description provided for @calendarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Mosque Calendar'**
+  String get calendarTitle;
+
+  /// No description provided for @calendarPrevMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous month'**
+  String get calendarPrevMonth;
+
+  /// No description provided for @calendarNextMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Next month'**
+  String get calendarNextMonth;
+
+  /// No description provided for @calendarToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get calendarToday;
+
+  /// No description provided for @calendarHijriApprox.
+  ///
+  /// In en, this message translates to:
+  /// **'≈ {date} (estimate)'**
+  String calendarHijriApprox(String date);
+
+  /// No description provided for @calendarHijriNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Hijri dates are calculated estimates and may differ by 1–2 days from the local moon-sighting announcement.'**
+  String get calendarHijriNote;
+
+  /// No description provided for @calendarOccasionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Islamic occasions this month'**
+  String get calendarOccasionsTitle;
+
+  /// No description provided for @occasionEstimated.
+  ///
+  /// In en, this message translates to:
+  /// **'Estimate'**
+  String get occasionEstimated;
+
+  /// No description provided for @occasionConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirmed'**
+  String get occasionConfirmed;
+
+  /// No description provided for @occasionRamadanStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start of Ramadan'**
+  String get occasionRamadanStart;
+
+  /// No description provided for @occasionEidFitr.
+  ///
+  /// In en, this message translates to:
+  /// **'Eid al-Fitr'**
+  String get occasionEidFitr;
+
+  /// No description provided for @occasionEidAdha.
+  ///
+  /// In en, this message translates to:
+  /// **'Eid al-Adha'**
+  String get occasionEidAdha;
+
+  /// No description provided for @occasionArafah.
+  ///
+  /// In en, this message translates to:
+  /// **'Day of Arafah'**
+  String get occasionArafah;
+
+  /// No description provided for @occasionIslamicNewYear.
+  ///
+  /// In en, this message translates to:
+  /// **'Islamic New Year'**
+  String get occasionIslamicNewYear;
+
+  /// No description provided for @occasionAshura.
+  ///
+  /// In en, this message translates to:
+  /// **'Ashura'**
+  String get occasionAshura;
+
+  /// No description provided for @eventsUpcomingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming events'**
+  String get eventsUpcomingTitle;
+
+  /// No description provided for @eventsAllTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'All events'**
+  String get eventsAllTitle;
+
+  /// No description provided for @eventsPastTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Past events'**
+  String get eventsPastTitle;
+
+  /// No description provided for @eventsOnDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Events on {date}'**
+  String eventsOnDate(String date);
+
+  /// No description provided for @eventsClearDate.
+  ///
+  /// In en, this message translates to:
+  /// **'All dates'**
+  String get eventsClearDate;
+
+  /// No description provided for @eventFilterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get eventFilterAll;
+
+  /// No description provided for @eventFilterUpcoming.
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming'**
+  String get eventFilterUpcoming;
+
+  /// No description provided for @eventFilterPast.
+  ///
+  /// In en, this message translates to:
+  /// **'Past'**
+  String get eventFilterPast;
+
+  /// No description provided for @eventFilterOccasions.
+  ///
+  /// In en, this message translates to:
+  /// **'Islamic occasions'**
+  String get eventFilterOccasions;
+
+  /// No description provided for @eventCatQuran.
+  ///
+  /// In en, this message translates to:
+  /// **'Quran classes'**
+  String get eventCatQuran;
+
+  /// No description provided for @eventCatLectures.
+  ///
+  /// In en, this message translates to:
+  /// **'Lectures'**
+  String get eventCatLectures;
+
+  /// No description provided for @eventCatLessons.
+  ///
+  /// In en, this message translates to:
+  /// **'Religious lessons'**
+  String get eventCatLessons;
+
+  /// No description provided for @eventCatCommunity.
+  ///
+  /// In en, this message translates to:
+  /// **'Community meetings'**
+  String get eventCatCommunity;
+
+  /// No description provided for @eventCatChildren.
+  ///
+  /// In en, this message translates to:
+  /// **'Children’s programmes'**
+  String get eventCatChildren;
+
+  /// No description provided for @eventCatYouth.
+  ///
+  /// In en, this message translates to:
+  /// **'Youth programmes'**
+  String get eventCatYouth;
+
+  /// No description provided for @eventCatRamadan.
+  ///
+  /// In en, this message translates to:
+  /// **'Ramadan programmes'**
+  String get eventCatRamadan;
+
+  /// No description provided for @eventCatEid.
+  ///
+  /// In en, this message translates to:
+  /// **'Eid celebrations'**
+  String get eventCatEid;
+
+  /// No description provided for @eventCatOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other mosque events'**
+  String get eventCatOther;
+
+  /// No description provided for @eventStatusScheduled.
+  ///
+  /// In en, this message translates to:
+  /// **'Scheduled'**
+  String get eventStatusScheduled;
+
+  /// No description provided for @eventStatusPostponed.
+  ///
+  /// In en, this message translates to:
+  /// **'Postponed'**
+  String get eventStatusPostponed;
+
+  /// No description provided for @eventStatusCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled'**
+  String get eventStatusCancelled;
+
+  /// No description provided for @eventTimingUpcoming.
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming'**
+  String get eventTimingUpcoming;
+
+  /// No description provided for @eventTimingOngoing.
+  ///
+  /// In en, this message translates to:
+  /// **'Happening now'**
+  String get eventTimingOngoing;
+
+  /// No description provided for @eventTimingEnded.
+  ///
+  /// In en, this message translates to:
+  /// **'Ended'**
+  String get eventTimingEnded;
+
+  /// No description provided for @eventsEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No events'**
+  String get eventsEmptyTitle;
+
+  /// No description provided for @eventsEmptyMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'No events match this selection.'**
+  String get eventsEmptyMessage;
+
+  /// No description provided for @eventsMockTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sample events — not real'**
+  String get eventsMockTitle;
+
+  /// No description provided for @eventsMockMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'These events are sample (mock) data for testing the design. They are not real events of the mosque.'**
+  String get eventsMockMessage;
+
+  /// No description provided for @eventsAuthNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'You can add and edit events because you signed in (demo). Permission is only checked inside the app for now; the server will enforce it later.'**
+  String get eventsAuthNotice;
+
+  /// No description provided for @eventAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add event'**
+  String get eventAdd;
+
+  /// No description provided for @eventDetailsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Event details'**
+  String get eventDetailsTitle;
+
+  /// No description provided for @eventDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get eventDate;
+
+  /// No description provided for @eventTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Time'**
+  String get eventTime;
+
+  /// No description provided for @eventLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get eventLocation;
+
+  /// No description provided for @eventOrganizer.
+  ///
+  /// In en, this message translates to:
+  /// **'Organizer'**
+  String get eventOrganizer;
+
+  /// No description provided for @eventCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get eventCategory;
+
+  /// No description provided for @eventDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get eventDescription;
+
+  /// No description provided for @eventRegistrationRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Registration required'**
+  String get eventRegistrationRequired;
+
+  /// No description provided for @eventNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'This event was not found.'**
+  String get eventNotFound;
+
+  /// No description provided for @eventReminder.
+  ///
+  /// In en, this message translates to:
+  /// **'Remind me'**
+  String get eventReminder;
+
+  /// No description provided for @eventReminderUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders are not available yet. They will be added in a later phase.'**
+  String get eventReminderUnavailable;
+
+  /// No description provided for @eventFormNewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New event'**
+  String get eventFormNewTitle;
+
+  /// No description provided for @eventFormEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit event'**
+  String get eventFormEditTitle;
+
+  /// No description provided for @eventFieldTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Event title'**
+  String get eventFieldTitle;
+
+  /// No description provided for @eventFieldStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start time'**
+  String get eventFieldStart;
+
+  /// No description provided for @eventFieldEnd.
+  ///
+  /// In en, this message translates to:
+  /// **'End time'**
+  String get eventFieldEnd;
+
+  /// No description provided for @eventClearEnd.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear end time'**
+  String get eventClearEnd;
+
+  /// No description provided for @eventFieldStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get eventFieldStatus;
+
+  /// No description provided for @eventFieldImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Image (optional)'**
+  String get eventFieldImage;
+
+  /// No description provided for @eventImageUpload.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload image'**
+  String get eventImageUpload;
+
+  /// No description provided for @eventImagePending.
+  ///
+  /// In en, this message translates to:
+  /// **'Image upload will work once storage (server) is connected.'**
+  String get eventImagePending;
+
+  /// No description provided for @eventFieldRegistrationDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Registration details'**
+  String get eventFieldRegistrationDetails;
+
+  /// No description provided for @eventValidationEndBeforeStart.
+  ///
+  /// In en, this message translates to:
+  /// **'The end time must be after the start time.'**
+  String get eventValidationEndBeforeStart;
+
+  /// No description provided for @eventValidationPastDate.
+  ///
+  /// In en, this message translates to:
+  /// **'The date cannot be in the past.'**
+  String get eventValidationPastDate;
+
+  /// No description provided for @eventValidationChoose.
+  ///
+  /// In en, this message translates to:
+  /// **'Please choose an option'**
+  String get eventValidationChoose;
+
+  /// No description provided for @eventSavedLocal.
+  ///
+  /// In en, this message translates to:
+  /// **'The event was saved on this device only (temporary). It will be lost when the app closes, until the server is connected.'**
+  String get eventSavedLocal;
+
+  /// No description provided for @eventSaveError.
+  ///
+  /// In en, this message translates to:
+  /// **'The event could not be saved. Please try again.'**
+  String get eventSaveError;
 }
 
 class _AppLocalizationsDelegate

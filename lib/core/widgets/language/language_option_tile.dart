@@ -1,7 +1,7 @@
 import 'package:material_ui/material_ui.dart';
 
-import '../../../core/theme/app_colors.dart';
-import '../../../core/theme/app_spacing.dart';
+import '../../theme/app_colors.dart';
+import '../../theme/app_spacing.dart';
 
 /// Selectable language card (radio style). Selected: green-50 background,
 /// 2 dp green border and filled radio.

@@ -71,6 +71,7 @@ flutter:
     - assets/fonts/OFL-inter.txt
     - assets/fonts/OFL-notosansarabic.txt
     - assets/fonts/OFL-amiri.txt
+    - assets/fonts/OFL-amiriquran.txt
     # Uncomment when the first images / icons are added (Phase 5+):
     # - assets/images/
     # - assets/icons/
@@ -106,3 +107,7 @@ flutter:
           weight: 400
         - asset: assets/fonts/Amiri-Bold.ttf
           weight: 700
+    # Qur'anic verses (full harakat and Qur'anic marks).
+    - family: AmiriQuran
+      fonts:
+        - asset: assets/fonts/AmiriQuran-Regular.ttf

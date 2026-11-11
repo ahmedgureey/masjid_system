@@ -101,10 +101,22 @@ abstract final class AppTypography {
     FontWeight.w600,
   ).copyWith(fontFeatures: tabularFigures);
 
-  /// Qur'anic / decorative Arabic text (Amiri). Always RTL.
+  /// Decorative Arabic text such as the Bismillah (Amiri). Always RTL.
   static const TextStyle quranic = TextStyle(
     fontFamily: quranicFontFamily,
     fontSize: 22,
+    height: 2.0,
+    color: AppColors.darkText,
+  );
+
+  static const String quranVerseFontFamily = 'AmiriQuran';
+
+  /// Qur'anic verses (Amiri Quran): full harakāt and Qur'anic marks, tall
+  /// line height so diacritics are never clipped. Always RTL.
+  static const TextStyle quranVerse = TextStyle(
+    fontFamily: quranVerseFontFamily,
+    fontFamilyFallback: [quranicFontFamily, arabicFontFamily],
+    fontSize: 26,
     height: 2.0,
     color: AppColors.darkText,
   );

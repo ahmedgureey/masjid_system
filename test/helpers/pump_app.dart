@@ -1,8 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:masjid_management/core/localization/app_locales.dart';
 import 'package:masjid_management/core/localization/locale_provider.dart';
 import 'package:masjid_management/core/theme/app_theme.dart';
+import 'package:masjid_management/core/utils/clock_provider.dart';
+import 'package:masjid_management/core/utils/date_formatter.dart';
 import 'package:masjid_management/services/local_storage_service.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -38,6 +41,9 @@ extension PumpApp on WidgetTester {
       addTearDown(platformDispatcher.clearTextScaleFactorTestValue);
     }
 
+    // Same as main.dart: load intl date symbols.
+    await initializeDateFormatting();
+    AppDateFormatter.configure();
     SharedPreferences.setMockInitialValues({});
     final prefs = await SharedPreferences.getInstance();
 
@@ -45,6 +51,9 @@ extension PumpApp on WidgetTester {
       ProviderScope(
         overrides: [
           sharedPreferencesProvider.overrideWithValue(prefs),
+          clockProvider.overrideWith(
+            (ref) => Stream.value(DateTime(2026, 11, 11, 14, 32, 5)),
+          ),
           localeProvider.overrideWith(() => _FixedLocaleController(locale)),
         ],
         child: Consumer(

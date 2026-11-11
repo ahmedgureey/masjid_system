@@ -8,6 +8,7 @@ void registerFontLicenses() {
     ('Inter', 'assets/fonts/OFL-inter.txt'),
     ('Noto Sans Arabic', 'assets/fonts/OFL-notosansarabic.txt'),
     ('Amiri', 'assets/fonts/OFL-amiri.txt'),
+    ('Amiri Quran', 'assets/fonts/OFL-amiriquran.txt'),
   ];
 
   LicenseRegistry.addLicense(() async* {

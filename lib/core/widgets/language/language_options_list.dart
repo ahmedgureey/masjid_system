@@ -1,10 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_ui/material_ui.dart';
 
-import '../../../core/localization/app_locales.dart';
-import '../../../core/localization/l10n.dart';
-import '../../../core/localization/locale_provider.dart';
-import '../../../core/theme/app_spacing.dart';
+import '../../localization/app_locales.dart';
+import '../../localization/l10n.dart';
+import '../../localization/locale_provider.dart';
+import '../../theme/app_spacing.dart';
 import 'language_option_tile.dart';
 
 /// The three language options bound to [localeProvider]. Selecting one

@@ -39,7 +39,12 @@ class HeroCard extends StatelessWidget {
                 type: MaterialType.transparency,
                 child: InkWell(
                   onTap: onTap,
-                  child: Padding(padding: padding, child: child),
+                  // Full card width (a Stack would otherwise shrink-wrap the
+                  // content and break centred layouts).
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: Padding(padding: padding, child: child),
+                  ),
                 ),
               ),
             ],
