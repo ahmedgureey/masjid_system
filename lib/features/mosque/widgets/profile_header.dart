@@ -40,14 +40,7 @@ class ProfileHeader extends StatelessWidget {
               color: AppColors.white,
               shape: BoxShape.circle,
             ),
-            child: ClipOval(
-              child: logoUrl != null
-                  ? Image.network(logoUrl!, fit: BoxFit.cover)
-                  : const ColoredBox(
-                      color: AppColors.green800,
-                      child: Center(child: BrandMark(size: 64)),
-                    ),
-            ),
+            child: ClipOval(child: _logo()),
           ),
           const SizedBox(height: AppSpacing.space3),
           Text(
@@ -80,6 +73,24 @@ class ProfileHeader extends StatelessWidget {
           ],
         ],
       ),
+    );
+  }
+
+  /// The mosque logo must never disappear: an unreachable [logoUrl] falls
+  /// back to the brand mark instead of a broken-image icon.
+  Widget _logo() {
+    const mark = ColoredBox(
+      color: AppColors.green800,
+      child: Center(child: BrandMark(size: 64)),
+    );
+    final url = logoUrl;
+    if (url == null) return mark;
+    return Image.network(
+      url,
+      fit: BoxFit.cover,
+      errorBuilder: (_, _, _) => mark,
+      loadingBuilder: (context, child, progress) =>
+          progress == null ? child : mark,
     );
   }
 }

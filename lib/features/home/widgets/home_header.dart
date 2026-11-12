@@ -183,20 +183,30 @@ class _Cover extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const radius = BorderRadius.vertical(bottom: Radius.circular(28));
+    // Shown when there is no cover photo, while one loads, and if loading
+    // fails — the carousel text must stay readable in every one of those
+    // cases, so the fallback is never blank.
+    final branded = DecoratedBox(
+      decoration: BoxDecoration(
+        gradient: context.semanticColors.splashGradient,
+      ),
+      child: const IslamicPattern(),
+    );
     return ClipRRect(
       borderRadius: radius,
       child: Stack(
         fit: StackFit.expand,
         children: [
           if (coverUrl != null)
-            Image.network(coverUrl!, fit: BoxFit.cover)
+            Image.network(
+              coverUrl!,
+              fit: BoxFit.cover,
+              errorBuilder: (_, _, _) => branded,
+              loadingBuilder: (context, child, progress) =>
+                  progress == null ? child : branded,
+            )
           else
-            DecoratedBox(
-              decoration: BoxDecoration(
-                gradient: context.semanticColors.splashGradient,
-              ),
-              child: const IslamicPattern(),
-            ),
+            branded,
           // Soft overhead light, and — over a photo — the scrim that keeps
           // the carousel text readable on any image.
           DecoratedBox(
@@ -303,16 +313,27 @@ class _Logo extends StatelessWidget {
           ),
         ],
       ),
-      child: ClipOval(
-        child: logoUrl != null
-            ? Image.network(logoUrl!, fit: BoxFit.cover)
-            : DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: context.semanticColors.splashGradient,
-                ),
-                child: Center(child: BrandMark(size: size * 0.74)),
-              ),
+      child: ClipOval(child: _logo(context)),
+    );
+  }
+
+  /// The mosque logo must never disappear: an unreachable [logoUrl] falls
+  /// back to the brand mark instead of a broken-image icon.
+  Widget _logo(BuildContext context) {
+    final mark = DecoratedBox(
+      decoration: BoxDecoration(
+        gradient: context.semanticColors.splashGradient,
       ),
+      child: Center(child: BrandMark(size: size * 0.74)),
+    );
+    final url = logoUrl;
+    if (url == null) return mark;
+    return Image.network(
+      url,
+      fit: BoxFit.cover,
+      errorBuilder: (_, _, _) => mark,
+      loadingBuilder: (context, child, progress) =>
+          progress == null ? child : mark,
     );
   }
 }

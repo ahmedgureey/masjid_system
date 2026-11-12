@@ -173,8 +173,16 @@ abstract final class ProjectValidation {
     if (budget(v, currency) != null) return null;
     final text = normalizeAmountText(v)!;
     final parts = text.split('.');
-    final fraction = parts.length > 1 ? parts[1].padRight(2, '0') : '00';
-    return Money(int.parse(parts[0]) * 100 + int.parse(fraction), currency);
+    // `budget` checks the shape, not the magnitude: a number too large for an
+    // int still reaches here, so parse defensively like DonationValidation
+    // does and report it as unparseable rather than throwing.
+    final major = int.tryParse(parts[0]);
+    if (major == null) return null;
+    final fraction = parts.length > 1
+        ? int.tryParse(parts[1].padRight(currency.decimals, '0'))
+        : 0;
+    if (fraction == null) return null;
+    return Money(major * currency.minorPerMajor + fraction, currency);
   }
 
   static ProjectFieldError? dates(DateTime? start, DateTime? end) {

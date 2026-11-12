@@ -11,9 +11,10 @@ import '../models/mosque_service_slide.dart';
 ///
 /// Shows one mosque service at a time over the green header. Rotation is
 /// paused while the user touches the carousel, while the screen is covered by
-/// another route ([TickerMode]), and whenever the platform asks for reduced
-/// motion — the last case also keeps widget tests deterministic, because the
-/// test harness relies on `pumpAndSettle`.
+/// another route ([TickerMode]), while the app itself is in the background,
+/// and whenever the platform asks for reduced motion — the last case also
+/// keeps widget tests deterministic, because the test harness relies on
+/// `pumpAndSettle`.
 class MosqueServicesCarousel extends StatefulWidget {
   const MosqueServicesCarousel({
     super.key,
@@ -47,10 +48,12 @@ class _MosqueServicesCarouselState extends State<MosqueServicesCarousel> {
   static const int _virtualLoops = 1000;
 
   late final PageController _controller;
+  AppLifecycleListener? _lifecycle;
   Timer? _timer;
   int _index = 0;
   bool _reduceMotion = false;
   bool _tickerEnabled = true;
+  bool _appResumed = true;
 
   int get _count => widget.slides.length;
 
@@ -58,6 +61,16 @@ class _MosqueServicesCarouselState extends State<MosqueServicesCarousel> {
   void initState() {
     super.initState();
     _controller = PageController(initialPage: _count * _virtualLoops);
+    // Nothing is visible while the app is backgrounded, so stop the timer
+    // rather than animate to slides nobody sees.
+    _lifecycle = AppLifecycleListener(
+      onStateChange: (state) {
+        final resumed = state == AppLifecycleState.resumed;
+        if (resumed == _appResumed) return;
+        _appResumed = resumed;
+        _syncTimer();
+      },
+    );
   }
 
   @override
@@ -81,13 +94,16 @@ class _MosqueServicesCarouselState extends State<MosqueServicesCarousel> {
   void dispose() {
     _timer?.cancel();
     _timer = null;
+    _lifecycle?.dispose();
+    _lifecycle = null;
     _controller.dispose();
     super.dispose();
   }
 
   /// Single place that decides whether the timer should be running.
   void _syncTimer() {
-    final shouldRun = _tickerEnabled && !_reduceMotion && _count > 1;
+    final shouldRun =
+        _tickerEnabled && _appResumed && !_reduceMotion && _count > 1;
     if (shouldRun) {
       _start();
     } else {
