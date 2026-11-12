@@ -1,6 +1,6 @@
 {
   "@@locale": "en",
-  "appName": "Masjid Management App",
+  "appName": "Masjid System",
   "@appName": {
     "description": "Full application name."
   },
@@ -80,7 +80,7 @@
   "onboarding3Body": "Qur'an classes, events and announcements in one place.",
   "onboardingPageLabel": "Page {current} of {total}",
   "welcomeGreeting": "Assalamu alaikum",
-  "welcomeTitle": "Welcome to Masjid Management App",
+  "welcomeTitle": "Welcome to Masjid System",
   "welcomeSubtitle": "Prayer times, donations, classes and community news for your mosque.",
   "authLogin": "Log in",
   "authCreateAccount": "Create account",
@@ -123,6 +123,31 @@
   "mockLoginMessage": "Your details look correct, but signing in will only work after the app is connected to the server. Nothing was saved.",
   "mockRegisterMessage": "Your details look correct, but creating an account will only work after the app is connected to the server. Nothing was saved.",
   "mockResetMessage": "Password reset emails will be sent once the app is connected to the server. Nothing was sent.",
+  "authInvalidTitle": "Incorrect email or password",
+  "@authInvalidTitle": {
+    "description": "Shown when sign-in is refused. One message for both wrong email and wrong password, so it cannot be used to discover which addresses are registered."
+  },
+  "authInvalidMessage": "Check both and try again.",
+  "authEmailExistsTitle": "That email is already registered",
+  "authEmailExistsMessage": "Sign in instead, or use \"Forgot password\" if you cannot remember it.",
+  "authConfirmEmailTitle": "Confirm your email",
+  "authConfirmEmailMessage": "We sent you a confirmation link. Open it, then sign in.",
+  "authTooManyTitle": "Too many attempts",
+  "authTooManyMessage": "Wait a few minutes before trying again.",
+  "authOfflineTitle": "No connection",
+  "authOfflineMessage": "The app could not reach the server. Check your connection and try again.",
+  "authResetSentTitle": "Check your email",
+  "@authResetSentTitle": {
+    "description": "Password reset confirmation. Worded so it does not reveal whether the address has an account."
+  },
+  "authResetSentMessage": "If that address has an account, a reset link is on its way.",
+  "authEmailSendFailedTitle": "We could not send the email",
+  "@authEmailSendFailedTitle": {
+    "description": "The backend accepted the request but its mail service failed. The user did nothing wrong."
+  },
+  "authEmailSendFailedMessage": "The server could not send your confirmation email, so the account was not completed. This is a server setting, not a problem with your details.",
+  "authServerErrorTitle": "The server refused the request",
+  "authServerErrorMessage": "Your details look correct, but the server did not accept them. Please try again shortly.",
   "forgotTitle": "Reset your password",
   "forgotSubtitle": "Enter the email you registered with. We'll send you a link to reset your password.",
   "forgotSend": "Send reset link",
@@ -209,12 +234,34 @@
   "editLanguageNote": "Name and description are edited for the current language: {language}.",
   "profileSave": "Save",
   "profileCancel": "Cancel",
-  "profileSavedLocal": "Changes saved on this device only (temporary). They will be lost when the app is closed until the server is connected.",
+  "profileSavedLocal": "Changes saved on this device. They stay until you change or delete them, but they are not yet shared with the mosque's server or with other devices.",
   "profileSaveError": "Could not save the changes. Please try again.",
   "discardTitle": "Discard changes?",
   "discardMessage": "You have unsaved changes. If you leave now, they will be lost.",
   "discardConfirm": "Discard",
   "discardKeepEditing": "Keep editing",
+  "commonDelete": "Delete",
+  "deleteEventTitle": "Delete this event?",
+  "deleteArticleTitle": "Delete this article?",
+  "deleteProjectTitle": "Delete this project?",
+  "deleteCampaignTitle": "Delete this campaign?",
+  "deleteMessage": "This removes it from this device. It cannot be undone.",
+  "@deleteMessage": {
+    "description": "Shown in every delete confirmation. Says 'this device' on purpose: the data is stored locally, not on a server."
+  },
+  "deleteDone": "Deleted",
+  "deleteFailed": "Could not delete it. Please try again.",
+  "deleteSamplesAction": "Remove the sample data",
+  "deleteSamplesTitle": "Remove all sample data?",
+  "deleteDonationTitle": "Delete this donation record?",
+  "deleteExpenseTitle": "Delete this expense record?",
+  "deleteCountedMessage": "This record counts in the mosque's totals. Deleting it removes the record and its audit trail for good. Voiding keeps the trail and takes the amount out of the totals.",
+  "@deleteCountedMessage": {
+    "description": "Replaces deleteMessage when deleting a donation or expense that counts in the reports, so the gentler void option is offered at the moment of choosing."
+  },
+  "@deleteSamplesTitle": {
+    "description": "Clears every TUSAALE campaign, donation and expense at once."
+  },
   "validationWebsite": "Enter a valid website address (e.g. www.example.com)",
   "validationYear": "Enter a valid year between {min} and {max}",
   "validationLatitude": "Latitude must be a number between -90 and 90",
@@ -329,7 +376,7 @@
   "eventValidationEndBeforeStart": "The end time must be after the start time.",
   "eventValidationPastDate": "The date cannot be in the past.",
   "eventValidationChoose": "Please choose an option",
-  "eventSavedLocal": "The event was saved on this device only (temporary). It will be lost when the app closes, until the server is connected.",
+  "eventSavedLocal": "The event was saved on this device. It stays until you change or delete it, but it is not yet shared with the mosque's server or with other devices.",
   "eventSaveError": "The event could not be saved. Please try again.",
   "@calendarHijriApprox": {
     "placeholders": {
@@ -367,7 +414,7 @@
   "newsStatusArchived": "Archived",
   "newsStatusScheduled": "Scheduled",
   "newsFieldFeatured": "Show as the featured article",
-  "newsSavedLocal": "Article saved on this device only.",
+  "newsSavedLocal": "Article saved on this device.",
   "newsSaveError": "The article could not be saved. Please try again.",
   "newsSearchHint": "Search articles",
   "newsClearSearch": "Clear search",
@@ -535,7 +582,7 @@
   "donReceiptUnavailable": "No receipt available",
   "donReceiptUnavailableMessage": "Receipts exist only for donations verified by the mosque. Demo, pending, failed and voided donations have no receipt.",
   "donReceiptExportPending": "PDF download and sharing of receipts will be added later.",
-  "donStaffNotice": "Staff tools (demo). Access is only checked inside the app for now; the server will enforce Treasurer / Admin permissions later. Changes are kept on this device only and are lost when the app closes.",
+  "donStaffNotice": "Staff tools (demo). Access is only checked inside the app for now; the server will enforce Treasurer / Admin permissions later. Changes are saved on this device only and are not shared with anyone else.",
   "donRecordOffline": "Record offline donation",
   "donExpensesTitle": "Expenses",
   "donReportsTitle": "Financial reports",
@@ -557,7 +604,7 @@
   "donVoidExplain": "Financial records are never deleted. Voiding excludes the record from totals and keeps it in the audit trail.",
   "donVoidReason": "Reason",
   "donAudit": "Audit trail",
-  "donAuditNote": "Kept in memory only in this demo. The server will keep a permanent, insert-only audit log.",
+  "donAuditNote": "Kept on this device in this demo. The server will keep a permanent, insert-only audit log.",
   "donAuditDemo": "Demo submission",
   "donAuditRecorded": "Recorded",
   "donAuditConfirmed": "Confirmed",
@@ -701,7 +748,7 @@
   "aboutTitle": "About",
   "aboutVersion": "Version {version}",
   "aboutDescriptionTitle": "About the app",
-  "aboutDescription1": "Masjid Management App is a mobile application designed to simplify mosque management and give the community easy access to important information.",
+  "aboutDescription1": "Masjid System is a mobile application designed to simplify mosque management and give the community easy access to important information.",
   "aboutDescription2": "The app aims to bring mosque management services together, so that important information and tasks are available in one place.",
   "aboutFeaturesTitle": "Main features",
   "aboutFeaturesNote": "\"Available (sample data)\" means the screen works with clearly labelled sample data until the server is connected. \"Coming soon\" features are not built yet.",

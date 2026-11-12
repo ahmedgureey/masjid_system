@@ -532,6 +532,27 @@ class _StaffDonationDetailsScreenState
     );
   }
 
+  /// Removes the record for good, after a warning that names the gentler
+  /// option. A record that counts in the totals gets the stronger wording;
+  /// a demo, pending or already-voided one does not need it.
+  Future<void> _delete(Donation d) async {
+    final l10n = context.l10n;
+    final navigator = Navigator.of(context);
+    final ok = await confirmDelete(
+      context,
+      title: l10n.deleteDonationTitle,
+      message: d.countsAsConfirmed ? l10n.deleteCountedMessage : null,
+    );
+    if (!ok || !mounted) return;
+
+    await _run(() => ref.read(donationsProvider.notifier).delete(d.id));
+    // _run reports its own failure; only leave if the record really went.
+    if (!mounted) return;
+    final remaining = ref.read(donationsProvider).value ?? const <Donation>[];
+    final gone = !remaining.any((x) => x.id == d.id);
+    if (gone && navigator.canPop()) navigator.pop();
+  }
+
   Future<void> _void(Donation d) async {
     final reason = await showVoidReasonDialog(context);
     if (reason == null || !mounted) return;
@@ -665,6 +686,17 @@ class _StaffDonationDetailsScreenState
                         context.pushIfCurrent(AppRoutes.receipt(d.id)),
                   ),
                 ],
+                // Last, and below voiding: of the two destructive actions
+                // this is the one with no way back, so it should not be the
+                // one the thumb finds first.
+                const SizedBox(height: AppSpacing.space2),
+                AppButton.destructive(
+                  key: const Key('staffDeleteDonation'),
+                  label: l10n.commonDelete,
+                  icon: Icons.delete_outline_rounded,
+                  expand: true,
+                  onPressed: _busy ? null : () => _delete(d),
+                ),
                 const SizedBox(height: AppSpacing.space4),
                 _AuditList(entries: d.audit, lang: lang),
               ],

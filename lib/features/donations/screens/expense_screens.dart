@@ -431,6 +431,29 @@ class _ExpenseDetailsScreenState extends ConsumerState<ExpenseDetailsScreen> {
 
   DateTime get _now => ref.read(clockProvider).value ?? DateTime.now();
 
+  /// Removes the record for good, after a warning that names the gentler
+  /// option. An approved, non-voided expense counts in the reports, so that
+  /// one gets the stronger wording.
+  Future<void> _delete(MosqueExpense e) async {
+    final l10n = context.l10n;
+    final navigator = Navigator.of(context);
+    final ok = await confirmDelete(
+      context,
+      title: l10n.deleteExpenseTitle,
+      message: e.countsInReports ? l10n.deleteCountedMessage : null,
+    );
+    if (!ok || !mounted) return;
+
+    await _run(() => ref.read(expensesProvider.notifier).delete(e.id));
+    // _run reports its own failure; only leave if the record really went.
+    if (!mounted) return;
+    final remaining =
+        ref.read(expensesProvider).value ?? const <MosqueExpense>[];
+    if (!remaining.any((x) => x.id == e.id) && navigator.canPop()) {
+      navigator.pop();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -561,6 +584,16 @@ class _ExpenseDetailsScreenState extends ConsumerState<ExpenseDetailsScreen> {
                           },
                   ),
                 ],
+                // Last, and below voiding: of the two destructive actions
+                // this is the one with no way back.
+                const SizedBox(height: AppSpacing.space2),
+                AppButton.destructive(
+                  key: const Key('expenseDelete'),
+                  label: l10n.commonDelete,
+                  icon: Icons.delete_outline_rounded,
+                  expand: true,
+                  onPressed: _busy ? null : () => _delete(e),
+                ),
                 const SizedBox(height: AppSpacing.space4),
                 AuditTrailCard(entries: e.audit, lang: lang),
               ],

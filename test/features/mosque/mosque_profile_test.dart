@@ -244,7 +244,9 @@ void main() {
 
       await tester.pumpAndSettle();
       expect(find.byType(MosqueProfileScreen), findsOneWidget);
-      expect(find.textContaining('qalabkan oo kaliya'), findsOneWidget);
+      // The notice still has to say the change is local; the wording changed
+      // when saves started surviving a restart.
+      expect(find.textContaining('kaydiyey qalabkan'), findsOneWidget);
 
       expect(find.text('Masjid bulsho.'), findsOneWidget);
       expect(find.text('Hargeysa'), findsOneWidget);

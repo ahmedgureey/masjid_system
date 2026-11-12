@@ -50,7 +50,7 @@ class ProjectDetailsScreen extends ConsumerWidget {
               icon: const Icon(Icons.share_outlined),
               onPressed: () => _share(context, ref, project),
             ),
-          if (project != null && canManage)
+          if (project != null && canManage) ...[
             IconButton(
               key: const Key('projectEdit'),
               tooltip: l10n.profileEdit,
@@ -58,6 +58,13 @@ class ProjectDetailsScreen extends ConsumerWidget {
               onPressed: () =>
                   context.pushIfCurrent(AppRoutes.editProject(project.id)),
             ),
+            IconButton(
+              key: const Key('projectDelete'),
+              tooltip: l10n.commonDelete,
+              icon: const Icon(Icons.delete_outline_rounded),
+              onPressed: () => _delete(context, ref, project),
+            ),
+          ],
         ],
       ),
       body: SafeArea(
@@ -81,6 +88,31 @@ class ProjectDetailsScreen extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  /// Confirms, deletes, then leaves: staying on the details of a project
+  /// that no longer exists would only show the "not found" empty state.
+  Future<void> _delete(
+    BuildContext context,
+    WidgetRef ref,
+    MosqueProject project,
+  ) async {
+    final l10n = context.l10n;
+    final messenger = ScaffoldMessenger.of(context);
+    final navigator = Navigator.of(context);
+
+    if (!await confirmDelete(context, title: l10n.deleteProjectTitle)) return;
+
+    try {
+      await ref.read(projectsProvider.notifier).delete(project.id);
+    } on Object {
+      // The project is still there, so stay on the page and say so rather
+      // than popping back to a list that still shows it.
+      messenger.showSnackBar(SnackBar(content: Text(l10n.deleteFailed)));
+      return;
+    }
+    if (navigator.canPop()) navigator.pop();
+    messenger.showSnackBar(SnackBar(content: Text(l10n.deleteDone)));
   }
 
   Future<void> _share(

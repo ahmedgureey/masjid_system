@@ -8,6 +8,7 @@ import '../../../core/utils/validators.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../../routing/app_routes.dart';
 import '../../../routing/navigation_guard.dart';
+import '../application/auth_result_message.dart';
 import '../application/auth_service.dart';
 import '../application/demo_session_provider.dart';
 import '../widgets/auth_header.dart';
@@ -29,7 +30,15 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  bool _rememberMe = false;
+  /// Ticked by default, matching registration, which has always kept the
+  /// session.
+  ///
+  /// Off by default meant that closing the app signed the user out, and
+  /// since every add, edit and delete control is hidden from visitors, the
+  /// app came back looking read-only — as though the data they had entered
+  /// was gone, when it was only the session. Unticking still works for a
+  /// shared device.
+  bool _rememberMe = true;
   bool _submitting = false;
 
   @override
@@ -56,21 +65,30 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     setState(() => _submitting = false);
 
     final l10n = context.l10n;
-    switch (result) {
-      case AuthResult.success:
-        final email = _emailController.text.trim();
-        ref
-            .read(demoSessionProvider.notifier)
-            .signIn(displayName: email.split('@').first, email: email);
-        context.go(AppRoutes.home);
-      case AuthResult.backendUnavailable:
-        await showInfoDialog(
-          context,
-          title: l10n.mockTitle,
-          message: l10n.mockLoginMessage,
-          icon: Icons.cloud_off_rounded,
-        );
+    if (result == AuthResult.success) {
+      final email = _emailController.text.trim();
+      ref
+          .read(demoSessionProvider.notifier)
+          .signIn(
+            displayName: email.split('@').first,
+            email: email,
+            remember: _rememberMe,
+          );
+      context.go(AppRoutes.home);
+      return;
     }
+    // Any other outcome is a failure: say which one, and stay on the form.
+    final m = authMessageFor(
+      result,
+      l10n,
+      unavailableMessage: l10n.mockLoginMessage,
+    );
+    await showInfoDialog(
+      context,
+      title: m.title,
+      message: m.message,
+      icon: m.icon,
+    );
   }
 
   @override
@@ -124,10 +142,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         onFieldSubmitted: (_) => _submit(),
                       ),
                       const SizedBox(height: AppSpacing.space2),
-                      // Local UI state only — nothing is remembered until a
-                      // real session exists (Supabase phase).
                       AppCheckboxField(
                         label: Text(l10n.rememberMe),
+                        initialValue: _rememberMe,
                         onChanged: (value) => _rememberMe = value,
                       ),
                       Align(

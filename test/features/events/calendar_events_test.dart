@@ -442,7 +442,9 @@ void main() {
         tester.widget<Text>(find.byKey(const Key('eventDetailsTitle'))).data,
         'Casharka cusub',
       );
-      expect(find.textContaining('qalabkan oo kaliya'), findsOneWidget);
+      // The notice still has to say the save is local; the wording changed
+      // when saves started surviving a restart.
+      expect(find.textContaining('kaydiyey qalabkan'), findsOneWidget);
 
       await tester.tap(find.byType(BackButton));
       await tester.pumpAndSettle();

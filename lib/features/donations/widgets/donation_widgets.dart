@@ -19,12 +19,18 @@ class DonationNotice extends StatelessWidget {
     required this.text,
     this.title,
     this.variant = AppCardVariant.gold,
+    this.action,
   });
 
   final IconData icon;
   final String? title;
   final String text;
   final AppCardVariant variant;
+
+  /// Optional control under the text, for a notice the user can act on —
+  /// the sample-data warning offers to clear the samples, so the way out is
+  /// where the warning is rather than hidden in a menu.
+  final Widget? action;
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +57,13 @@ class DonationNotice extends StatelessWidget {
                     style: textTheme.titleSmall?.copyWith(color: color),
                   ),
                 Text(text, style: textTheme.bodySmall?.copyWith(color: color)),
+                if (action != null) ...[
+                  const SizedBox(height: AppSpacing.space2),
+                  Align(
+                    alignment: AlignmentDirectional.centerStart,
+                    child: action,
+                  ),
+                ],
               ],
             ),
           ),

@@ -1,10 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../models/localized_text.dart';
+import '../../../services/local_collection_store.dart';
 import '../../mosque/data/mosque_repository.dart';
 import '../application/news_permissions.dart';
 import '../models/article.dart';
 import '../models/article_category.dart';
+import 'article_json.dart';
 
 /// Source of articles and categories.
 ///
@@ -26,36 +28,87 @@ abstract interface class ArticlesRepository {
   /// copy.
   Future<Article> saveArticle(Article article);
 
+  /// Removes the article with [id]. Removing one that is already gone is
+  /// not an error: two taps on a delete button should not surface a failure.
+  Future<void> deleteArticle(String id);
+
   /// Active categories in display order.
   Future<List<ArticleCategory>> getCategories();
 }
 
-/// MOCK — in-memory sample data, clearly marked "TUSAALE" (example) and
-/// [Article.isSample]. The samples are NOT real news of the mosque and
-/// contain no Qur'an verses, hadith, rulings or quotations. Sample dates are
-/// relative to [seedDate].
+/// Articles held on the device.
+///
+/// With a [store], the sample articles are written once on the very first
+/// run and are ordinary rows from then on: the user can edit them, delete
+/// them and add their own, and all of it survives closing the app. Deleting
+/// every sample does not bring it back — the store seeds on "never written",
+/// not on "empty".
+///
+/// Without a [store] it is purely in-memory, which is what the widget tests
+/// want: they pass [articles] and assert on what they passed.
+///
+/// The samples are clearly marked "TUSAALE" (example) and [Article.isSample].
+/// They are NOT real news of the mosque and contain no Qur'an verses, hadith,
+/// rulings or quotations. Sample dates are relative to [seedDate].
 class LocalArticlesRepository implements ArticlesRepository {
   LocalArticlesRepository({
-    required DateTime seedDate,
+    required this.seedDate,
     DateTime Function()? now,
+    this.store,
     this.latency = const Duration(milliseconds: 500),
     List<Article>? articles,
     List<ArticleCategory>? categories,
   }) : _now = now ?? DateTime.now,
-       _articles = articles ?? sampleArticles(seedDate),
+       // Copied: the caller's list must not be mutated by saves and deletes.
+       _articles = articles == null ? null : List<Article>.of(articles),
        _categories = categories ?? defaultCategories;
 
   final DateTime Function() _now;
   final Duration latency;
-  final List<Article> _articles;
+
+  /// What the sample dates are built around.
+  final DateTime seedDate;
+
+  /// Null in tests that work purely in memory.
+  final LocalCollectionStore? store;
+
+  static const String collection = 'articles';
+
+  /// Null until first loaded, so a store-backed repository does not read the
+  /// device in its constructor.
+  List<Article>? _articles;
   final List<ArticleCategory> _categories;
+
+  /// The working list, loaded from the store on first use.
+  Future<List<Article>> _loaded() async {
+    final cached = _articles;
+    if (cached != null) return cached;
+
+    final store = this.store;
+    final loaded = store == null
+        ? sampleArticles(seedDate)
+        : ArticleJson.listFrom(
+            await store.readOrSeed(
+              collection,
+              () => ArticleJson.listTo(sampleArticles(seedDate)),
+            ),
+          );
+    return _articles = loaded;
+  }
+
+  /// Writes the working list back. A no-op without a store.
+  Future<void> _flush() async {
+    final store = this.store;
+    if (store == null) return;
+    await store.write(collection, ArticleJson.listTo(_articles ?? const []));
+  }
 
   @override
   Future<List<Article>> getPublishedArticles({required String mosqueId}) async {
     if (latency > Duration.zero) await Future<void>.delayed(latency);
     final now = _now();
     return [
-      for (final a in _articles)
+      for (final a in await _loaded())
         if (a.mosqueId == mosqueId && a.isPubliclyVisibleAt(now)) a,
     ];
   }
@@ -64,7 +117,7 @@ class LocalArticlesRepository implements ArticlesRepository {
   Future<List<Article>> getAllArticles({required String mosqueId}) async {
     if (latency > Duration.zero) await Future<void>.delayed(latency);
     return [
-      for (final a in _articles)
+      for (final a in await _loaded())
         if (a.mosqueId == mosqueId) a,
     ];
   }
@@ -72,13 +125,23 @@ class LocalArticlesRepository implements ArticlesRepository {
   @override
   Future<Article> saveArticle(Article article) async {
     if (latency > Duration.zero) await Future<void>.delayed(latency);
-    final index = _articles.indexWhere((a) => a.id == article.id);
+    final articles = await _loaded();
+    final index = articles.indexWhere((a) => a.id == article.id);
     if (index >= 0) {
-      _articles[index] = article;
+      articles[index] = article;
     } else {
-      _articles.add(article);
+      articles.add(article);
     }
+    await _flush();
     return article;
+  }
+
+  @override
+  Future<void> deleteArticle(String id) async {
+    if (latency > Duration.zero) await Future<void>.delayed(latency);
+    final articles = await _loaded();
+    articles.removeWhere((a) => a.id == id);
+    await _flush();
   }
 
   @override
@@ -367,7 +430,10 @@ class LocalArticlesRepository implements ArticlesRepository {
 }
 
 final articlesRepositoryProvider = Provider<ArticlesRepository>(
-  (ref) => LocalArticlesRepository(seedDate: DateTime.now()),
+  (ref) => LocalArticlesRepository(
+    seedDate: DateTime.now(),
+    store: ref.watch(localCollectionStoreProvider),
+  ),
 );
 
 /// Articles of the current mosque: the published ones for visitors, and
@@ -403,6 +469,12 @@ class ArticlesController extends AsyncNotifier<List<Article>> {
     }
     state = AsyncData(current);
     return saved;
+  }
+
+  /// Deletes through the repository; throws on failure (state unchanged).
+  Future<void> delete(String id) async {
+    await ref.read(articlesRepositoryProvider).deleteArticle(id);
+    state = AsyncData([...?state.value]..removeWhere((a) => a.id == id));
   }
 }
 

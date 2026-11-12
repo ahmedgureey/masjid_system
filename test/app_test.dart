@@ -11,7 +11,7 @@ void main() {
 
     // Splash is shown first, with the translated app name and Bismillah.
     expect(find.byType(SplashScreen), findsOneWidget);
-    expect(find.text('Masjid Management App'), findsOneWidget);
+    expect(find.text('Masjid System'), findsOneWidget);
     expect(find.text(AppConstants.bismillah), findsOneWidget);
 
     await passSplash(tester);

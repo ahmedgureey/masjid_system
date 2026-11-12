@@ -10,7 +10,7 @@ class AppLocalizationsSo extends AppLocalizations {
   AppLocalizationsSo([String locale = 'so']) : super(locale);
 
   @override
-  String get appName => 'Maamulka Masaajidka';
+  String get appName => 'Nidaamka Masaajidka';
 
   @override
   String get languageEnglish => 'English';
@@ -223,7 +223,7 @@ class AppLocalizationsSo extends AppLocalizations {
   String get welcomeGreeting => 'Assalaamu calaykum';
 
   @override
-  String get welcomeTitle => 'Ku soo dhowow Maamulka Masaajidka';
+  String get welcomeTitle => 'Ku soo dhowow Nidaamka Masaajidka';
 
   @override
   String get welcomeSubtitle =>
@@ -328,6 +328,61 @@ class AppLocalizationsSo extends AppLocalizations {
   @override
   String get mockResetMessage =>
       'Email-ka dib u dejinta password-ka waxaa la diri doonaa marka app-ka lagu xiro server-ka. Waxba lama dirin.';
+
+  @override
+  String get authInvalidTitle => 'Email-ka ama password-ka waa khalad';
+
+  @override
+  String get authInvalidMessage => 'Labadaba hubi oo mar kale isku day.';
+
+  @override
+  String get authEmailExistsTitle => 'Email-kaas horey ayaa loo diiwaangeliyay';
+
+  @override
+  String get authEmailExistsMessage =>
+      'Halkii aad akoon samayn lahayd gal, ama isticmaal \"Password-ka ma xasuusatid?\".';
+
+  @override
+  String get authConfirmEmailTitle => 'Xaqiiji email-kaaga';
+
+  @override
+  String get authConfirmEmailMessage =>
+      'Waxaan kuu dirnay link xaqiijin ah. Fur, kadibna gal.';
+
+  @override
+  String get authTooManyTitle => 'Isku dayo aad u badan';
+
+  @override
+  String get authTooManyMessage =>
+      'Dhowr daqiiqo sug ka hor intaadan mar kale isku dayin.';
+
+  @override
+  String get authOfflineTitle => 'Xidhiidh ma jiro';
+
+  @override
+  String get authOfflineMessage =>
+      'App-ku ma gaadhi karin server-ka. Hubi xidhiidhkaaga oo mar kale isku day.';
+
+  @override
+  String get authResetSentTitle => 'Hubi email-kaaga';
+
+  @override
+  String get authResetSentMessage =>
+      'Haddii cinwaankaasi akoon leeyahay, link dib-u-dejin ah ayaa soo socda.';
+
+  @override
+  String get authEmailSendFailedTitle => 'Email-ka lama diri karin';
+
+  @override
+  String get authEmailSendFailedMessage =>
+      'Server-ku ma diri karin email-ka xaqiijinta, markaa akoonka lama dhammaystirin. Tani waa dejin server, maaha dhibaato xogtaada ah.';
+
+  @override
+  String get authServerErrorTitle => 'Server-ku wuu diiday codsiga';
+
+  @override
+  String get authServerErrorMessage =>
+      'Xogtaadu way sax u egtahay, laakiin server-ku ma aqbalin. Fadlan wax yar kadib isku day.';
 
   @override
   String get forgotTitle => 'Dib u deji password-ka';
@@ -575,7 +630,7 @@ class AppLocalizationsSo extends AppLocalizations {
 
   @override
   String get profileSavedLocal =>
-      'Isbeddellada waxaa lagu kaydiyey qalabkan oo kaliya (ku-meel-gaar). Way lumi doonaan marka app-ka la xiro ilaa server-ka la xiro.';
+      'Isbeddellada waxaa lagu kaydiyey qalabkan. Way sii jiri doonaan ilaa aad beddesho ama tirtirto, laakiin weli lama wadaagin server-ka masaajidka ama qalab kale.';
 
   @override
   String get profileSaveError =>
@@ -593,6 +648,47 @@ class AppLocalizationsSo extends AppLocalizations {
 
   @override
   String get discardKeepEditing => 'Sii wad wax ka beddelka';
+
+  @override
+  String get commonDelete => 'Tirtir';
+
+  @override
+  String get deleteEventTitle => 'Ma tirtiraysaa dhacdadan?';
+
+  @override
+  String get deleteArticleTitle => 'Ma tirtiraysaa maqaalkan?';
+
+  @override
+  String get deleteProjectTitle => 'Ma tirtiraysaa mashruucan?';
+
+  @override
+  String get deleteCampaignTitle => 'Ma tirtiraysaa ololahan?';
+
+  @override
+  String get deleteMessage =>
+      'Tani waxay ka saaraysaa qalabkan. Dib looma celin karo.';
+
+  @override
+  String get deleteDone => 'Waa la tirtiray';
+
+  @override
+  String get deleteFailed => 'Lama tirtiri karin. Fadlan mar kale isku day.';
+
+  @override
+  String get deleteSamplesAction => 'Ka saar xogta tusaalaha';
+
+  @override
+  String get deleteSamplesTitle => 'Ma saaraysaa dhammaan xogta tusaalaha?';
+
+  @override
+  String get deleteDonationTitle => 'Ma tirtiraysaa diiwaankan deeqda?';
+
+  @override
+  String get deleteExpenseTitle => 'Ma tirtiraysaa diiwaankan kharashka?';
+
+  @override
+  String get deleteCountedMessage =>
+      'Diiwaankan waxaa lagu xisaabiyaa wadarta masaajidka. Tirtiriddu waxay si joogto ah u saaraysaa diiwaanka iyo raadraaca hawlihiisa. ‘Buri’ wuxuu hayaa raadraaca, qadarkana wuxuu ka saaraa wadarta.';
 
   @override
   String get validationWebsite =>
@@ -906,7 +1002,7 @@ class AppLocalizationsSo extends AppLocalizations {
 
   @override
   String get eventSavedLocal =>
-      'Dhacdada waxaa lagu kaydiyey qalabkan oo kaliya (ku-meel-gaar). Way lumi doontaa marka app-ka la xiro ilaa server-ka la xiro.';
+      'Dhacdada waxaa lagu kaydiyey qalabkan. Way sii jiri doontaa ilaa aad beddesho ama tirtirto, laakiin weli lama wadaagin server-ka masaajidka ama qalab kale.';
 
   @override
   String get eventSaveError =>
@@ -1444,7 +1540,7 @@ class AppLocalizationsSo extends AppLocalizations {
 
   @override
   String get donStaffNotice =>
-      'Qalabka shaqaalaha (tijaabo). Oggolaanshaha hadda app-ka gudihiisa oo keliya ayaa lagu hubiyaa; server-ka ayaa mar dambe xaqiijin doona doorka Hayaha Khasnadda / Maamulaha. Isbeddelladu waxay ku jiraan qalabkan oo keliya, wayna lumayaan marka app-ka la xiro.';
+      'Qalabka shaqaalaha (tijaabo). Oggolaanshaha hadda app-ka gudihiisa oo keliya ayaa lagu hubiyaa; server-ka ayaa mar dambe xaqiijin doona doorka Hayaha Khasnadda / Maamulaha. Isbeddelladu waxaa lagu kaydiyaa qalabkan oo keliya, lamana wadaago cid kale.';
 
   @override
   String get donRecordOffline => 'Diiwaangeli deeq offline ah';
@@ -1523,7 +1619,7 @@ class AppLocalizationsSo extends AppLocalizations {
 
   @override
   String get donAuditNote =>
-      'Tijaabadan dhexdeeda waxay ku jirtaa xusuusta oo keliya. Server-ka ayaa hayn doona diiwaan joogto ah oo aan wax laga tirtiri karin.';
+      'Tijaabadan dhexdeeda waxaa lagu kaydiyaa qalabkan. Server-ka ayaa hayn doona diiwaan joogto ah oo aan wax laga tirtiri karin.';
 
   @override
   String get donAuditDemo => 'Codsi tijaabo ah';
@@ -1785,7 +1881,7 @@ class AppLocalizationsSo extends AppLocalizations {
 
   @override
   String get aboutDescription1 =>
-      'Masjid Management App waa mobile application loogu talagalay in lagu fududeeyo maamulka masaajidda iyo helitaanka macluumaadka muhiimka ah ee jamaacada.';
+      'Nidaamka Masaajidka waa mobile application loogu talagalay in lagu fududeeyo maamulka masaajidda iyo helitaanka macluumaadka muhiimka ah ee jamaacada.';
 
   @override
   String get aboutDescription2 =>

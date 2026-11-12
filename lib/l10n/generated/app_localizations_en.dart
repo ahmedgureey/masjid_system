@@ -10,7 +10,7 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appName => 'Masjid Management App';
+  String get appName => 'Masjid System';
 
   @override
   String get languageEnglish => 'English';
@@ -221,7 +221,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get welcomeGreeting => 'Assalamu alaikum';
 
   @override
-  String get welcomeTitle => 'Welcome to Masjid Management App';
+  String get welcomeTitle => 'Welcome to Masjid System';
 
   @override
   String get welcomeSubtitle =>
@@ -324,6 +324,60 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get mockResetMessage =>
       'Password reset emails will be sent once the app is connected to the server. Nothing was sent.';
+
+  @override
+  String get authInvalidTitle => 'Incorrect email or password';
+
+  @override
+  String get authInvalidMessage => 'Check both and try again.';
+
+  @override
+  String get authEmailExistsTitle => 'That email is already registered';
+
+  @override
+  String get authEmailExistsMessage =>
+      'Sign in instead, or use \"Forgot password\" if you cannot remember it.';
+
+  @override
+  String get authConfirmEmailTitle => 'Confirm your email';
+
+  @override
+  String get authConfirmEmailMessage =>
+      'We sent you a confirmation link. Open it, then sign in.';
+
+  @override
+  String get authTooManyTitle => 'Too many attempts';
+
+  @override
+  String get authTooManyMessage => 'Wait a few minutes before trying again.';
+
+  @override
+  String get authOfflineTitle => 'No connection';
+
+  @override
+  String get authOfflineMessage =>
+      'The app could not reach the server. Check your connection and try again.';
+
+  @override
+  String get authResetSentTitle => 'Check your email';
+
+  @override
+  String get authResetSentMessage =>
+      'If that address has an account, a reset link is on its way.';
+
+  @override
+  String get authEmailSendFailedTitle => 'We could not send the email';
+
+  @override
+  String get authEmailSendFailedMessage =>
+      'The server could not send your confirmation email, so the account was not completed. This is a server setting, not a problem with your details.';
+
+  @override
+  String get authServerErrorTitle => 'The server refused the request';
+
+  @override
+  String get authServerErrorMessage =>
+      'Your details look correct, but the server did not accept them. Please try again shortly.';
 
   @override
   String get forgotTitle => 'Reset your password';
@@ -570,7 +624,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profileSavedLocal =>
-      'Changes saved on this device only (temporary). They will be lost when the app is closed until the server is connected.';
+      'Changes saved on this device. They stay until you change or delete them, but they are not yet shared with the mosque\'s server or with other devices.';
 
   @override
   String get profileSaveError =>
@@ -588,6 +642,47 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get discardKeepEditing => 'Keep editing';
+
+  @override
+  String get commonDelete => 'Delete';
+
+  @override
+  String get deleteEventTitle => 'Delete this event?';
+
+  @override
+  String get deleteArticleTitle => 'Delete this article?';
+
+  @override
+  String get deleteProjectTitle => 'Delete this project?';
+
+  @override
+  String get deleteCampaignTitle => 'Delete this campaign?';
+
+  @override
+  String get deleteMessage =>
+      'This removes it from this device. It cannot be undone.';
+
+  @override
+  String get deleteDone => 'Deleted';
+
+  @override
+  String get deleteFailed => 'Could not delete it. Please try again.';
+
+  @override
+  String get deleteSamplesAction => 'Remove the sample data';
+
+  @override
+  String get deleteSamplesTitle => 'Remove all sample data?';
+
+  @override
+  String get deleteDonationTitle => 'Delete this donation record?';
+
+  @override
+  String get deleteExpenseTitle => 'Delete this expense record?';
+
+  @override
+  String get deleteCountedMessage =>
+      'This record counts in the mosque\'s totals. Deleting it removes the record and its audit trail for good. Voiding keeps the trail and takes the amount out of the totals.';
 
   @override
   String get validationWebsite =>
@@ -899,7 +994,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get eventSavedLocal =>
-      'The event was saved on this device only (temporary). It will be lost when the app closes, until the server is connected.';
+      'The event was saved on this device. It stays until you change or delete it, but it is not yet shared with the mosque\'s server or with other devices.';
 
   @override
   String get eventSaveError =>
@@ -964,7 +1059,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get newsFieldFeatured => 'Show as the featured article';
 
   @override
-  String get newsSavedLocal => 'Article saved on this device only.';
+  String get newsSavedLocal => 'Article saved on this device.';
 
   @override
   String get newsSaveError =>
@@ -1432,7 +1527,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get donStaffNotice =>
-      'Staff tools (demo). Access is only checked inside the app for now; the server will enforce Treasurer / Admin permissions later. Changes are kept on this device only and are lost when the app closes.';
+      'Staff tools (demo). Access is only checked inside the app for now; the server will enforce Treasurer / Admin permissions later. Changes are saved on this device only and are not shared with anyone else.';
 
   @override
   String get donRecordOffline => 'Record offline donation';
@@ -1510,7 +1605,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get donAuditNote =>
-      'Kept in memory only in this demo. The server will keep a permanent, insert-only audit log.';
+      'Kept on this device in this demo. The server will keep a permanent, insert-only audit log.';
 
   @override
   String get donAuditDemo => 'Demo submission';
@@ -1772,7 +1867,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get aboutDescription1 =>
-      'Masjid Management App is a mobile application designed to simplify mosque management and give the community easy access to important information.';
+      'Masjid System is a mobile application designed to simplify mosque management and give the community easy access to important information.';
 
   @override
   String get aboutDescription2 =>

@@ -14,7 +14,7 @@ class BrandMark extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: 'Masjid Management App logo',
+      label: 'Masjid System logo',
       image: true,
       child: Container(
         width: size,

@@ -9,6 +9,7 @@ import '../../../core/utils/validators.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../../routing/app_routes.dart';
 import '../../../routing/navigation_guard.dart';
+import '../application/auth_result_message.dart';
 import '../application/auth_service.dart';
 import '../application/demo_session_provider.dart';
 import '../widgets/auth_header.dart';
@@ -67,24 +68,30 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
     setState(() => _submitting = false);
 
     final l10n = context.l10n;
-    switch (result) {
-      case AuthResult.success:
-        ref
-            .read(demoSessionProvider.notifier)
-            .signIn(
-              displayName: _nameController.text.trim(),
-              email: _emailController.text.trim(),
-              phone: _phoneController.text.trim(),
-            );
-        context.go(AppRoutes.home);
-      case AuthResult.backendUnavailable:
-        await showInfoDialog(
-          context,
-          title: l10n.mockTitle,
-          message: l10n.mockRegisterMessage,
-          icon: Icons.cloud_off_rounded,
-        );
+    if (result == AuthResult.success) {
+      ref
+          .read(demoSessionProvider.notifier)
+          .signIn(
+            displayName: _nameController.text.trim(),
+            email: _emailController.text.trim(),
+            phone: _phoneController.text.trim(),
+          );
+      context.go(AppRoutes.home);
+      return;
     }
+    // Includes emailNotConfirmed, which is not a failure to register but is
+    // not a sign-in either: the user must open the link first.
+    final m = authMessageFor(
+      result,
+      l10n,
+      unavailableMessage: l10n.mockRegisterMessage,
+    );
+    await showInfoDialog(
+      context,
+      title: m.title,
+      message: m.message,
+      icon: m.icon,
+    );
   }
 
   @override

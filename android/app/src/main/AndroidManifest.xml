@@ -1,6 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- The app talks to its Supabase backend over HTTPS for sign-in, mosque
+         data and donations. Without this the release build has no network at
+         all: every request fails before it leaves the device, and the app can
+         only report that something went wrong. The debug and profile manifests
+         declare it separately for the Flutter tool, which is why this is easy
+         to miss until an installed release build is tried. -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
-        android:label="Masjid Management App"
+        android:label="Masjid System"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

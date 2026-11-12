@@ -79,7 +79,13 @@ Future<void> _openPrayer(
     textScale: scale,
     clock: clock,
     overrides: [
-      if (repo != null) prayerTimesRepositoryProvider.overrideWithValue(repo),
+      // These tests are about how the screen renders a schedule, so they
+      // run against the fixed mock values. The app itself now calculates
+      // real times; those are covered by
+      // test/features/prayer_times/calculated_prayer_times_test.dart.
+      prayerTimesRepositoryProvider.overrideWithValue(
+        repo ?? const MockPrayerTimesRepository(),
+      ),
       if (mosqueRepo != null)
         mosqueRepositoryProvider.overrideWithValue(mosqueRepo),
     ],

@@ -50,3 +50,9 @@ app.*.map.json
 # Locally served APK for phone testing (not source).
 web/masjid.apk
 masjid_management*.apk
+
+# Secrets must never be committed. The MCP config reads the Supabase
+# access token from the environment, but guard the local override too.
+.mcp.local.json
+.env
+.env.*

@@ -1,5 +1,5 @@
 name: masjid_management
-description: "Masjid Management App - manage prayer times, donations, finance, Quran classes, events and announcements for mosques."
+description: "Masjid System - manage prayer times, donations, finance, Quran classes, events and announcements for mosques."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -43,6 +43,8 @@ dependencies:
   cupertino_ui: ^1.1.6
   shared_preferences: ^2.5.6
   share_plus: ^13.3.1
+  supabase_flutter: ^2.18.3
+  adhan: ^2.0.0+1
 
 dev_dependencies:
   flutter_test:

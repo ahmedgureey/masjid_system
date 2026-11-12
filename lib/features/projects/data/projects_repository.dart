@@ -1,9 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../services/local_collection_store.dart';
 import '../../authentication/application/demo_session_provider.dart';
 import '../../donations/models/money.dart';
 import '../../mosque/data/mosque_repository.dart';
 import '../models/project_models.dart';
+import 'project_json.dart';
 
 /// Source of projects and their progress updates.
 ///
@@ -27,31 +29,107 @@ abstract interface class ProjectsRepository {
     required String editor,
     required DateTime now,
   });
+
+  /// Removes the project with [id] and every update belonging to it.
+  /// Leaving the updates behind would keep them in storage for ever with no
+  /// screen that can reach them. Removing a project that is already gone is
+  /// not an error.
+  Future<void> deleteProject(String id);
+
+  /// Removes a single progress update. Removing one that is already gone is
+  /// not an error.
+  Future<void> deleteUpdate(String id);
 }
 
+/// Projects and their progress updates, held on the device.
+///
+/// With a [store], the samples are written once on the very first run and
+/// are ordinary rows from then on: the user can edit them, delete them and
+/// add their own, and all of it survives closing the app. Deleting every
+/// sample does not bring it back — the store seeds on "never written", not
+/// on "empty".
+///
+/// Without a [store] it is purely in-memory, which is what the widget tests
+/// want: they pass [projects] / [updates] and assert on what they passed.
 class LocalProjectsRepository implements ProjectsRepository {
   LocalProjectsRepository({
-    required DateTime seedDate,
+    required this.seedDate,
+    this.store,
     this.latency = const Duration(milliseconds: 400),
     List<MosqueProject>? projects,
     List<ProjectUpdate>? updates,
-  }) : _projects = projects ?? sampleProjects(seedDate),
-       _updates = updates ?? sampleUpdates(seedDate);
+  }) : // Copied: the lists passed in must not be mutated by saves or deletes.
+       _projects = projects == null ? null : List<MosqueProject>.of(projects),
+       _updates = updates == null ? null : List<ProjectUpdate>.of(updates);
 
   final Duration latency;
-  final List<MosqueProject> _projects;
-  final List<ProjectUpdate> _updates;
+
+  /// What the sample dates are built around.
+  final DateTime seedDate;
+
+  /// Null in tests that work purely in memory.
+  final LocalCollectionStore? store;
+
+  static const String projectsCollection = 'projects';
+  static const String updatesCollection = 'project_updates';
+
+  /// Null until first loaded, so a store-backed repository does not read the
+  /// device in its constructor.
+  List<MosqueProject>? _projects;
+  List<ProjectUpdate>? _updates;
   int _sequence = 0;
 
   Future<void> _wait() async {
     if (latency > Duration.zero) await Future<void>.delayed(latency);
   }
 
+  Future<List<MosqueProject>> _loadedProjects() async {
+    final cached = _projects;
+    if (cached != null) return cached;
+    final store = this.store;
+    return _projects = store == null
+        ? sampleProjects(seedDate)
+        : ProjectJson.listFrom(
+            await store.readOrSeed(
+              projectsCollection,
+              () => ProjectJson.listTo(sampleProjects(seedDate)),
+            ),
+          );
+  }
+
+  Future<List<ProjectUpdate>> _loadedUpdates() async {
+    final cached = _updates;
+    if (cached != null) return cached;
+    final store = this.store;
+    return _updates = store == null
+        ? sampleUpdates(seedDate)
+        : ProjectJson.updatesFrom(
+            await store.readOrSeed(
+              updatesCollection,
+              () => ProjectJson.updatesTo(sampleUpdates(seedDate)),
+            ),
+          );
+  }
+
+  /// Writes both lists back. A no-op without a store.
+  Future<void> _flush() async {
+    final store = this.store;
+    if (store == null) return;
+    await store.write(
+      projectsCollection,
+      ProjectJson.listTo(_projects ?? const []),
+    );
+    await store.write(
+      updatesCollection,
+      ProjectJson.updatesTo(_updates ?? const []),
+    );
+  }
+
   @override
   Future<List<MosqueProject>> getProjects({required String mosqueId}) async {
     await _wait();
     return [
-      for (final p in _projects)
+      for (final p in await _loadedProjects())
         if (p.mosqueId == mosqueId) p,
     ];
   }
@@ -59,24 +137,44 @@ class LocalProjectsRepository implements ProjectsRepository {
   @override
   Future<MosqueProject> saveProject(MosqueProject project) async {
     await _wait();
-    final i = _projects.indexWhere((p) => p.id == project.id);
+    final projects = await _loadedProjects();
+    final i = projects.indexWhere((p) => p.id == project.id);
     if (i >= 0) {
-      _projects[i] = project;
+      projects[i] = project;
     } else {
-      _projects.add(project);
+      projects.add(project);
     }
+    await _flush();
     return project;
+  }
+
+  @override
+  Future<void> deleteProject(String id) async {
+    await _wait();
+    final projects = await _loadedProjects();
+    final updates = await _loadedUpdates();
+    projects.removeWhere((p) => p.id == id);
+    updates.removeWhere((u) => u.projectId == id);
+    await _flush();
+  }
+
+  @override
+  Future<void> deleteUpdate(String id) async {
+    await _wait();
+    final updates = await _loadedUpdates();
+    updates.removeWhere((u) => u.id == id);
+    await _flush();
   }
 
   @override
   Future<List<ProjectUpdate>> getUpdates({required String mosqueId}) async {
     await _wait();
     final ids = {
-      for (final p in _projects)
+      for (final p in await _loadedProjects())
         if (p.mosqueId == mosqueId) p.id,
     };
     return [
-      for (final u in _updates)
+      for (final u in await _loadedUpdates())
         if (ids.contains(u.projectId)) u,
     ];
   }
@@ -88,7 +186,8 @@ class LocalProjectsRepository implements ProjectsRepository {
     required DateTime now,
   }) async {
     await _wait();
-    final i = _updates.indexWhere((u) => u.id == update.id);
+    final updates = await _loadedUpdates();
+    final i = updates.indexWhere((u) => u.id == update.id);
     if (i < 0) {
       final created = ProjectUpdate(
         id: update.id.isEmpty ? 'upd-local-${++_sequence}' : update.id,
@@ -101,10 +200,11 @@ class LocalProjectsRepository implements ProjectsRepository {
         author: update.author,
         isPublished: update.isPublished,
       );
-      _updates.add(created);
+      updates.add(created);
+      await _flush();
       return created;
     }
-    final old = _updates[i];
+    final old = updates[i];
     final textChanged =
         old.title != update.title || old.description != update.description;
     final saved = ProjectUpdate(
@@ -130,7 +230,8 @@ class LocalProjectsRepository implements ProjectsRepository {
       imageUrls: old.imageUrls,
       isSample: old.isSample,
     );
-    _updates[i] = saved;
+    updates[i] = saved;
+    await _flush();
     return saved;
   }
 
@@ -338,7 +439,10 @@ class LocalProjectsRepository implements ProjectsRepository {
 }
 
 final projectsRepositoryProvider = Provider<ProjectsRepository>(
-  (ref) => LocalProjectsRepository(seedDate: DateTime.now()),
+  (ref) => LocalProjectsRepository(
+    seedDate: DateTime.now(),
+    store: ref.watch(localCollectionStoreProvider),
+  ),
 );
 
 Future<String> _mosqueId(Ref ref) async =>
@@ -369,6 +473,18 @@ class ProjectsController extends AsyncNotifier<List<MosqueProject>> {
     }
     state = AsyncData(list);
     return saved;
+  }
+
+  /// Deletes through the repository; throws on failure (state unchanged).
+  ///
+  /// The repository also drops that project's updates, so the updates list
+  /// is invalidated rather than patched: it is derived from the projects
+  /// that still exist, and recomputing it is cheaper than keeping two lists
+  /// in step by hand.
+  Future<void> delete(String id) async {
+    await ref.read(projectsRepositoryProvider).deleteProject(id);
+    state = AsyncData([...?state.value]..removeWhere((p) => p.id == id));
+    ref.invalidate(projectUpdatesProvider);
   }
 }
 

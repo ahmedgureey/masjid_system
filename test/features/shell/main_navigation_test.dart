@@ -199,11 +199,14 @@ void main() {
       await _tab(tester, 'ABOUT');
       expect(
         tester.widget<Text>(find.byKey(const Key('aboutAppName'))).data,
-        'Masjid Management App',
+        // This heading uses AppConstants.appName, which is not localized —
+        // unlike the description below it. Pre-existing; noted so the two
+        // expectations here do not look like a mistake.
+        'Masjid System',
       );
       expect(find.text('Nooca 1.0.0'), findsOneWidget);
       expect(
-        find.textContaining('Masjid Management App waa mobile'),
+        find.textContaining('Nidaamka Masaajidka waa mobile'),
         findsOneWidget,
       );
       expect(find.text('Duruusta Qur\'aanka'), findsOneWidget);

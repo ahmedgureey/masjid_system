@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../mosque/data/mosque_repository.dart';
 import '../models/prayer_schedule.dart';
+import 'calculated_prayer_times_repository.dart';
 
 /// Source of daily prayer times.
 ///
@@ -54,9 +56,25 @@ class MockPrayerTimesRepository implements PrayerTimesRepository {
   }
 }
 
-final prayerTimesRepositoryProvider = Provider<PrayerTimesRepository>(
-  (ref) => const MockPrayerTimesRepository(),
-);
+/// Real, calculated times — from the mosque's own coordinates once they are
+/// filled in on its profile, and from Mogadishu until then.
+///
+/// [MockPrayerTimesRepository] is kept, unused by the app, because the
+/// widget tests pin their expectations to its fixed values; a test that
+/// calculated the times would be asserting the calculation against itself.
+final prayerTimesRepositoryProvider = Provider<PrayerTimesRepository>((ref) {
+  final mosque = ref.watch(mosqueProvider).value;
+  // Both or neither: a latitude without a longitude cannot place anything,
+  // and silently pairing one of them with Mogadishu's other half would put
+  // the mosque in the sea.
+  if (mosque != null && mosque.hasCoordinates) {
+    return CalculatedPrayerTimesRepository(
+      latitude: mosque.latitude!,
+      longitude: mosque.longitude!,
+    );
+  }
+  return const CalculatedPrayerTimesRepository();
+});
 
 /// Schedule for one day. The key is normalised to midnight by callers
 /// ([dateOnly]) so the screen asks for a new day automatically after

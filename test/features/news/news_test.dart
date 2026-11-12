@@ -71,6 +71,9 @@ class _FakeRepo implements ArticlesRepository {
   Future<Article> saveArticle(Article article) => inner.saveArticle(article);
 
   @override
+  Future<void> deleteArticle(String id) => inner.deleteArticle(id);
+
+  @override
   Future<List<ArticleCategory>> getCategories() => inner.getCategories();
 }
 

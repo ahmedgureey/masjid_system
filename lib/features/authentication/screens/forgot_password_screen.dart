@@ -6,6 +6,7 @@ import '../../../core/localization/l10n.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/utils/validators.dart';
 import '../../../core/widgets/widgets.dart';
+import '../application/auth_result_message.dart';
 import '../application/auth_service.dart';
 import '../widgets/auth_header.dart';
 
@@ -42,15 +43,27 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
     if (!mounted) return;
     setState(() => _submitting = false);
 
-    if (result == AuthResult.backendUnavailable) {
-      final l10n = context.l10n;
+    final l10n = context.l10n;
+    if (result == AuthResult.success) {
       await showInfoDialog(
         context,
-        title: l10n.mockTitle,
-        message: l10n.mockResetMessage,
-        icon: Icons.cloud_off_rounded,
+        title: l10n.authResetSentTitle,
+        message: l10n.authResetSentMessage,
+        icon: Icons.mark_email_read_outlined,
       );
+      return;
     }
+    final m = authMessageFor(
+      result,
+      l10n,
+      unavailableMessage: l10n.mockResetMessage,
+    );
+    await showInfoDialog(
+      context,
+      title: m.title,
+      message: m.message,
+      icon: m.icon,
+    );
   }
 
   @override

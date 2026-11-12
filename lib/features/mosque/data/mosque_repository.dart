@@ -1,7 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/config/supabase_config.dart';
 import '../../../models/localized_text.dart';
 import '../models/mosque.dart';
+import 'supabase_mosque_repository.dart';
 
 /// Source of the mosque's public information.
 ///
@@ -44,8 +46,12 @@ class LocalMosqueRepository implements MosqueRepository {
   }
 }
 
+/// Postgres when a backend key was supplied at build time, otherwise the
+/// in-memory sample data. One switch, so a build with no key still runs.
 final mosqueRepositoryProvider = Provider<MosqueRepository>(
-  (ref) => LocalMosqueRepository(),
+  (ref) => SupabaseConfig.isConfigured
+      ? SupabaseMosqueRepository()
+      : LocalMosqueRepository(),
 );
 
 /// The mosque as currently known by the app; [MosqueController.save]

@@ -25,6 +25,23 @@ class DonationsScreen extends ConsumerWidget {
     await ref.read(campaignsProvider.future);
   }
 
+  /// Clears the whole "TUSAALE" set after confirming. Real donations and
+  /// expenses are untouched: those are voided, never deleted.
+  Future<void> _clearSamples(BuildContext context, WidgetRef ref) async {
+    final l10n = context.l10n;
+    final messenger = ScaffoldMessenger.of(context);
+
+    if (!await confirmDelete(context, title: l10n.deleteSamplesTitle)) return;
+
+    try {
+      await ref.read(donationsProvider.notifier).clearSampleData();
+    } on Object {
+      messenger.showSnackBar(SnackBar(content: Text(l10n.deleteFailed)));
+      return;
+    }
+    messenger.showSnackBar(SnackBar(content: Text(l10n.deleteDone)));
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
@@ -74,6 +91,21 @@ class DonationsScreen extends ConsumerWidget {
                       icon: Icons.science_outlined,
                       title: l10n.donSampleTitle,
                       text: l10n.donSampleMessage,
+                      // Only an administrator may clear it, and the way out
+                      // sits in the warning itself. Real donations and
+                      // expenses are voided, never deleted, so this touches
+                      // the sample set alone.
+                      action: canManage
+                          ? TextButton.icon(
+                              key: const Key('clearSampleData'),
+                              onPressed: () => _clearSamples(context, ref),
+                              icon: const Icon(
+                                Icons.delete_sweep_outlined,
+                                size: 18,
+                              ),
+                              label: Text(l10n.deleteSamplesAction),
+                            )
+                          : null,
                     ),
                   ],
                   const SizedBox(height: AppSpacing.space4),

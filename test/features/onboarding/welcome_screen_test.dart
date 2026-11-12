@@ -31,8 +31,8 @@ void main() {
     testWidgets('header shows greeting and title in Somali', (tester) async {
       await _openWelcome(tester);
       expect(find.text('Assalaamu calaykum'), findsOneWidget);
-      expect(find.text('Maamulka Masaajidka'), findsOneWidget);
-      expect(find.text('Ku soo dhowow Maamulka Masaajidka'), findsOneWidget);
+      expect(find.text('Nidaamka Masaajidka'), findsOneWidget);
+      expect(find.text('Ku soo dhowow Nidaamka Masaajidka'), findsOneWidget);
       expect(
         find.text(
           'Waqtiyada salaadda, deeqaha, casharrada iyo wararka bulshada ee '

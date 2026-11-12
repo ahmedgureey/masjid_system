@@ -103,7 +103,7 @@ abstract class AppLocalizations {
   /// Full application name.
   ///
   /// In en, this message translates to:
-  /// **'Masjid Management App'**
+  /// **'Masjid System'**
   String get appName;
 
   /// No description provided for @languageEnglish.
@@ -505,7 +505,7 @@ abstract class AppLocalizations {
   /// No description provided for @welcomeTitle.
   ///
   /// In en, this message translates to:
-  /// **'Welcome to Masjid Management App'**
+  /// **'Welcome to Masjid System'**
   String get welcomeTitle;
 
   /// No description provided for @welcomeSubtitle.
@@ -699,6 +699,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Password reset emails will be sent once the app is connected to the server. Nothing was sent.'**
   String get mockResetMessage;
+
+  /// Shown when sign-in is refused. One message for both wrong email and wrong password, so it cannot be used to discover which addresses are registered.
+  ///
+  /// In en, this message translates to:
+  /// **'Incorrect email or password'**
+  String get authInvalidTitle;
+
+  /// No description provided for @authInvalidMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Check both and try again.'**
+  String get authInvalidMessage;
+
+  /// No description provided for @authEmailExistsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'That email is already registered'**
+  String get authEmailExistsTitle;
+
+  /// No description provided for @authEmailExistsMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in instead, or use \"Forgot password\" if you cannot remember it.'**
+  String get authEmailExistsMessage;
+
+  /// No description provided for @authConfirmEmailTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm your email'**
+  String get authConfirmEmailTitle;
+
+  /// No description provided for @authConfirmEmailMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'We sent you a confirmation link. Open it, then sign in.'**
+  String get authConfirmEmailMessage;
+
+  /// No description provided for @authTooManyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many attempts'**
+  String get authTooManyTitle;
+
+  /// No description provided for @authTooManyMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Wait a few minutes before trying again.'**
+  String get authTooManyMessage;
+
+  /// No description provided for @authOfflineTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No connection'**
+  String get authOfflineTitle;
+
+  /// No description provided for @authOfflineMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'The app could not reach the server. Check your connection and try again.'**
+  String get authOfflineMessage;
+
+  /// Password reset confirmation. Worded so it does not reveal whether the address has an account.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your email'**
+  String get authResetSentTitle;
+
+  /// No description provided for @authResetSentMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'If that address has an account, a reset link is on its way.'**
+  String get authResetSentMessage;
+
+  /// The backend accepted the request but its mail service failed. The user did nothing wrong.
+  ///
+  /// In en, this message translates to:
+  /// **'We could not send the email'**
+  String get authEmailSendFailedTitle;
+
+  /// No description provided for @authEmailSendFailedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'The server could not send your confirmation email, so the account was not completed. This is a server setting, not a problem with your details.'**
+  String get authEmailSendFailedMessage;
+
+  /// No description provided for @authServerErrorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The server refused the request'**
+  String get authServerErrorTitle;
+
+  /// No description provided for @authServerErrorMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Your details look correct, but the server did not accept them. Please try again shortly.'**
+  String get authServerErrorMessage;
 
   /// No description provided for @forgotTitle.
   ///
@@ -1159,7 +1255,7 @@ abstract class AppLocalizations {
   /// No description provided for @profileSavedLocal.
   ///
   /// In en, this message translates to:
-  /// **'Changes saved on this device only (temporary). They will be lost when the app is closed until the server is connected.'**
+  /// **'Changes saved on this device. They stay until you change or delete them, but they are not yet shared with the mosque\'s server or with other devices.'**
   String get profileSavedLocal;
 
   /// No description provided for @profileSaveError.
@@ -1191,6 +1287,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Keep editing'**
   String get discardKeepEditing;
+
+  /// No description provided for @commonDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get commonDelete;
+
+  /// No description provided for @deleteEventTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this event?'**
+  String get deleteEventTitle;
+
+  /// No description provided for @deleteArticleTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this article?'**
+  String get deleteArticleTitle;
+
+  /// No description provided for @deleteProjectTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this project?'**
+  String get deleteProjectTitle;
+
+  /// No description provided for @deleteCampaignTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this campaign?'**
+  String get deleteCampaignTitle;
+
+  /// Shown in every delete confirmation. Says 'this device' on purpose: the data is stored locally, not on a server.
+  ///
+  /// In en, this message translates to:
+  /// **'This removes it from this device. It cannot be undone.'**
+  String get deleteMessage;
+
+  /// No description provided for @deleteDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Deleted'**
+  String get deleteDone;
+
+  /// No description provided for @deleteFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not delete it. Please try again.'**
+  String get deleteFailed;
+
+  /// No description provided for @deleteSamplesAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove the sample data'**
+  String get deleteSamplesAction;
+
+  /// Clears every TUSAALE campaign, donation and expense at once.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove all sample data?'**
+  String get deleteSamplesTitle;
+
+  /// No description provided for @deleteDonationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this donation record?'**
+  String get deleteDonationTitle;
+
+  /// No description provided for @deleteExpenseTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this expense record?'**
+  String get deleteExpenseTitle;
+
+  /// Replaces deleteMessage when deleting a donation or expense that counts in the reports, so the gentler void option is offered at the moment of choosing.
+  ///
+  /// In en, this message translates to:
+  /// **'This record counts in the mosque\'s totals. Deleting it removes the record and its audit trail for good. Voiding keeps the trail and takes the amount out of the totals.'**
+  String get deleteCountedMessage;
 
   /// No description provided for @validationWebsite.
   ///
@@ -1777,7 +1951,7 @@ abstract class AppLocalizations {
   /// No description provided for @eventSavedLocal.
   ///
   /// In en, this message translates to:
-  /// **'The event was saved on this device only (temporary). It will be lost when the app closes, until the server is connected.'**
+  /// **'The event was saved on this device. It stays until you change or delete it, but it is not yet shared with the mosque\'s server or with other devices.'**
   String get eventSavedLocal;
 
   /// No description provided for @eventSaveError.
@@ -1903,7 +2077,7 @@ abstract class AppLocalizations {
   /// No description provided for @newsSavedLocal.
   ///
   /// In en, this message translates to:
-  /// **'Article saved on this device only.'**
+  /// **'Article saved on this device.'**
   String get newsSavedLocal;
 
   /// No description provided for @newsSaveError.
@@ -2743,7 +2917,7 @@ abstract class AppLocalizations {
   /// No description provided for @donStaffNotice.
   ///
   /// In en, this message translates to:
-  /// **'Staff tools (demo). Access is only checked inside the app for now; the server will enforce Treasurer / Admin permissions later. Changes are kept on this device only and are lost when the app closes.'**
+  /// **'Staff tools (demo). Access is only checked inside the app for now; the server will enforce Treasurer / Admin permissions later. Changes are saved on this device only and are not shared with anyone else.'**
   String get donStaffNotice;
 
   /// No description provided for @donRecordOffline.
@@ -2875,7 +3049,7 @@ abstract class AppLocalizations {
   /// No description provided for @donAuditNote.
   ///
   /// In en, this message translates to:
-  /// **'Kept in memory only in this demo. The server will keep a permanent, insert-only audit log.'**
+  /// **'Kept on this device in this demo. The server will keep a permanent, insert-only audit log.'**
   String get donAuditNote;
 
   /// No description provided for @donAuditDemo.
@@ -3367,7 +3541,7 @@ abstract class AppLocalizations {
   /// No description provided for @aboutDescription1.
   ///
   /// In en, this message translates to:
-  /// **'Masjid Management App is a mobile application designed to simplify mosque management and give the community easy access to important information.'**
+  /// **'Masjid System is a mobile application designed to simplify mosque management and give the community easy access to important information.'**
   String get aboutDescription1;
 
   /// No description provided for @aboutDescription2.

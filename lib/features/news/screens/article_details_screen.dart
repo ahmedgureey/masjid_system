@@ -42,7 +42,7 @@ class ArticleDetailsScreen extends ConsumerWidget {
       appBar: AppTopBar(
         actions: [
           if (article != null) ...[
-            if (ref.watch(canManageNewsProvider))
+            if (ref.watch(canManageNewsProvider)) ...[
               IconButton(
                 key: const Key('articleEditButton'),
                 tooltip: l10n.profileEdit,
@@ -50,6 +50,13 @@ class ArticleDetailsScreen extends ConsumerWidget {
                 onPressed: () =>
                     context.pushIfCurrent(AppRoutes.editArticle(article.id)),
               ),
+              IconButton(
+                key: const Key('articleDeleteButton'),
+                tooltip: l10n.commonDelete,
+                icon: const Icon(Icons.delete_outline_rounded),
+                onPressed: () => _delete(context, ref, article),
+              ),
+            ],
             BookmarkButton(articleId: article.id),
             ShareArticleButton(article: article, lang: lang),
           ],
@@ -73,6 +80,31 @@ class ArticleDetailsScreen extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  /// Confirms, deletes, then leaves: staying on the details of an article
+  /// that no longer exists would only show the "not found" empty state.
+  Future<void> _delete(
+    BuildContext context,
+    WidgetRef ref,
+    Article article,
+  ) async {
+    final l10n = context.l10n;
+    final messenger = ScaffoldMessenger.of(context);
+    final navigator = Navigator.of(context);
+
+    if (!await confirmDelete(context, title: l10n.deleteArticleTitle)) return;
+
+    try {
+      await ref.read(articlesProvider.notifier).delete(article.id);
+    } on Object {
+      // The article is still there, so stay on the page and say so rather
+      // than popping back to a list that still shows it.
+      messenger.showSnackBar(SnackBar(content: Text(l10n.deleteFailed)));
+      return;
+    }
+    if (navigator.canPop()) navigator.pop();
+    messenger.showSnackBar(SnackBar(content: Text(l10n.deleteDone)));
   }
 }
 

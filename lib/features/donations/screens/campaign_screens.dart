@@ -11,6 +11,7 @@ import '../../../routing/app_routes.dart';
 import '../../../routing/navigation_guard.dart';
 import '../../mosque/data/mosque_repository.dart';
 import '../application/finance_calculations.dart';
+import '../application/finance_services.dart';
 import '../data/donations_repository.dart';
 import '../models/donation_labels.dart';
 import '../models/donation_models.dart';
@@ -155,6 +156,33 @@ class CampaignDetailsScreen extends ConsumerWidget {
 
   final String campaignId;
 
+  /// Confirms, deletes, then leaves.
+  ///
+  /// Only the campaign goes: the donations that named it are kept, because
+  /// a record of money received must not vanish because the campaign it
+  /// funded was tidied away. They are voided if they were wrong.
+  Future<void> _delete(BuildContext context, WidgetRef ref) async {
+    final l10n = context.l10n;
+    final messenger = ScaffoldMessenger.of(context);
+    final navigator = Navigator.of(context);
+
+    if (!await confirmDelete(context, title: l10n.deleteCampaignTitle)) {
+      return;
+    }
+
+    try {
+      // campaignsProvider is a FutureProvider with no controller of its own,
+      // so the repository is called directly and the list re-read.
+      await ref.read(donationsRepositoryProvider).deleteCampaign(campaignId);
+      ref.invalidate(campaignsProvider);
+    } on Object {
+      messenger.showSnackBar(SnackBar(content: Text(l10n.deleteFailed)));
+      return;
+    }
+    if (navigator.canPop()) navigator.pop();
+    messenger.showSnackBar(SnackBar(content: Text(l10n.deleteDone)));
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
@@ -162,8 +190,21 @@ class CampaignDetailsScreen extends ConsumerWidget {
     final textTheme = Theme.of(context).textTheme;
     final mosque = ref.watch(mosqueProvider).value;
 
+    final canManage = ref.watch(canManageFinanceProvider);
+
     return Scaffold(
-      appBar: AppTopBar(title: l10n.donCampaignDetails),
+      appBar: AppTopBar(
+        title: l10n.donCampaignDetails,
+        actions: [
+          if (canManage)
+            IconButton(
+              key: const Key('campaignDelete'),
+              tooltip: l10n.commonDelete,
+              icon: const Icon(Icons.delete_outline_rounded),
+              onPressed: () => _delete(context, ref),
+            ),
+        ],
+      ),
       body: SafeArea(
         top: false,
         child: FinanceAsync<List<DonationCampaign>, List<Donation>>(

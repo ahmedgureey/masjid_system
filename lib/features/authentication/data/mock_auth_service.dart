@@ -38,4 +38,15 @@ class MockAuthService implements AuthService {
   @override
   Future<AuthResult> sendPasswordReset({required String email}) =>
       _respond(AuthResult.backendUnavailable);
+
+  @override
+  Future<void> signOut() async {
+    // Nothing to end: the mock never created a backend session.
+  }
+
+  @override
+  bool get hasBackendSession => false;
+
+  @override
+  Stream<bool> get backendSessionChanges => const Stream<bool>.empty();
 }

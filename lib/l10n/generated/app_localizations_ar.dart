@@ -10,7 +10,7 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
-  String get appName => 'إدارة المسجد';
+  String get appName => 'نظام المسجد';
 
   @override
   String get languageEnglish => 'English';
@@ -219,7 +219,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get welcomeGreeting => 'السلام عليكم';
 
   @override
-  String get welcomeTitle => 'مرحبًا بك في إدارة المسجد';
+  String get welcomeTitle => 'مرحبًا بك في نظام المسجد';
 
   @override
   String get welcomeSubtitle =>
@@ -321,6 +321,60 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get mockResetMessage =>
       'سيتم إرسال رسائل إعادة تعيين كلمة المرور بعد ربط التطبيق بالخادم. لم يتم إرسال أي شيء.';
+
+  @override
+  String get authInvalidTitle => 'البريد الإلكتروني أو كلمة المرور غير صحيحة';
+
+  @override
+  String get authInvalidMessage => 'تحقق من كليهما وحاول مرة أخرى.';
+
+  @override
+  String get authEmailExistsTitle => 'هذا البريد مسجل بالفعل';
+
+  @override
+  String get authEmailExistsMessage =>
+      'سجّل الدخول بدلاً من ذلك، أو استخدم «نسيت كلمة المرور».';
+
+  @override
+  String get authConfirmEmailTitle => 'أكّد بريدك الإلكتروني';
+
+  @override
+  String get authConfirmEmailMessage =>
+      'أرسلنا لك رابط تأكيد. افتحه ثم سجّل الدخول.';
+
+  @override
+  String get authTooManyTitle => 'محاولات كثيرة جدًا';
+
+  @override
+  String get authTooManyMessage => 'انتظر بضع دقائق قبل المحاولة مرة أخرى.';
+
+  @override
+  String get authOfflineTitle => 'لا يوجد اتصال';
+
+  @override
+  String get authOfflineMessage =>
+      'تعذّر على التطبيق الوصول إلى الخادم. تحقق من اتصالك وحاول مرة أخرى.';
+
+  @override
+  String get authResetSentTitle => 'تحقق من بريدك الإلكتروني';
+
+  @override
+  String get authResetSentMessage =>
+      'إذا كان لهذا العنوان حساب، فسيصلك رابط إعادة التعيين.';
+
+  @override
+  String get authEmailSendFailedTitle => 'تعذّر إرسال البريد';
+
+  @override
+  String get authEmailSendFailedMessage =>
+      'لم يتمكن الخادم من إرسال بريد التأكيد، فلم يكتمل إنشاء الحساب. هذا إعداد في الخادم وليس مشكلة في بياناتك.';
+
+  @override
+  String get authServerErrorTitle => 'رفض الخادم الطلب';
+
+  @override
+  String get authServerErrorMessage =>
+      'بياناتك تبدو صحيحة، لكن الخادم لم يقبلها. حاول مرة أخرى بعد قليل.';
 
   @override
   String get forgotTitle => 'إعادة تعيين كلمة المرور';
@@ -562,7 +616,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get profileSavedLocal =>
-      'حُفظت التغييرات على هذا الجهاز فقط (مؤقتًا). ستُفقد عند إغلاق التطبيق حتى يتم ربط الخادم.';
+      'حُفظت التغييرات على هذا الجهاز. ستبقى حتى تغيّرها أو تحذفها، لكنها لم تُشارَك بعد مع خادم المسجد أو مع أجهزة أخرى.';
 
   @override
   String get profileSaveError => 'تعذّر حفظ التغييرات. يرجى المحاولة مرة أخرى.';
@@ -579,6 +633,47 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get discardKeepEditing => 'متابعة التعديل';
+
+  @override
+  String get commonDelete => 'حذف';
+
+  @override
+  String get deleteEventTitle => 'هل تريد حذف هذه الفعالية؟';
+
+  @override
+  String get deleteArticleTitle => 'هل تريد حذف هذا المقال؟';
+
+  @override
+  String get deleteProjectTitle => 'هل تريد حذف هذا المشروع؟';
+
+  @override
+  String get deleteCampaignTitle => 'هل تريد حذف هذه الحملة؟';
+
+  @override
+  String get deleteMessage =>
+      'سيؤدي هذا إلى إزالته من هذا الجهاز. لا يمكن التراجع عن ذلك.';
+
+  @override
+  String get deleteDone => 'تم الحذف';
+
+  @override
+  String get deleteFailed => 'تعذّر الحذف. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get deleteSamplesAction => 'إزالة البيانات التجريبية';
+
+  @override
+  String get deleteSamplesTitle => 'هل تريد إزالة كل البيانات التجريبية؟';
+
+  @override
+  String get deleteDonationTitle => 'هل تريد حذف سجل التبرع هذا؟';
+
+  @override
+  String get deleteExpenseTitle => 'هل تريد حذف سجل المصروف هذا؟';
+
+  @override
+  String get deleteCountedMessage =>
+      'يُحتسب هذا السجل ضمن إجماليات المسجد. الحذف يزيل السجل وسجل تدقيقه نهائيًا. أما الإلغاء فيحتفظ بالسجل ويستبعد المبلغ من الإجماليات.';
 
   @override
   String get validationWebsite =>
@@ -886,7 +981,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get eventSavedLocal =>
-      'حُفظت الفعالية على هذا الجهاز فقط (مؤقتًا) وستُفقد عند إغلاق التطبيق إلى أن يتم ربط الخادم.';
+      'حُفظت الفعالية على هذا الجهاز. ستبقى حتى تغيّرها أو تحذفها، لكنها لم تُشارك بعد مع خادم المسجد أو مع أجهزة أخرى.';
 
   @override
   String get eventSaveError => 'تعذّر حفظ الفعالية. يرجى المحاولة مرة أخرى.';
@@ -1412,7 +1507,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get donStaffNotice =>
-      'أدوات الموظفين (تجريبية). يتم التحقق من الصلاحية داخل التطبيق فقط حاليًا، وسيفرض الخادم صلاحيات أمين الصندوق / المسؤول لاحقًا. التغييرات محفوظة على هذا الجهاز فقط وتُفقد عند إغلاق التطبيق.';
+      'أدوات الموظفين (تجريبية). يتم التحقق من الصلاحية داخل التطبيق فقط حاليًا، وسيفرض الخادم صلاحيات أمين الصندوق / المسؤول لاحقًا. التغييرات محفوظة على هذا الجهاز فقط ولا تُشارك مع أحد.';
 
   @override
   String get donRecordOffline => 'تسجيل تبرع خارج التطبيق';
@@ -1490,7 +1585,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get donAuditNote =>
-      'محفوظ في الذاكرة فقط في هذا النموذج. سيحتفظ الخادم بسجل تدقيق دائم لا يمكن حذفه.';
+      'محفوظ على هذا الجهاز في هذا النموذج. سيحتفظ الخادم بسجل تدقيق دائم لا يمكن حذفه.';
 
   @override
   String get donAuditDemo => 'إرسال تجريبي';
@@ -1747,7 +1842,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get aboutDescription1 =>
-      'تطبيق إدارة المساجد تطبيق جوال صُمم لتسهيل إدارة المساجد ووصول الجماعة إلى المعلومات المهمة.';
+      'نظام المسجد تطبيق جوال صُمم لتسهيل إدارة المساجد ووصول الجماعة إلى المعلومات المهمة.';
 
   @override
   String get aboutDescription2 =>

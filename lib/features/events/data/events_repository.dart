@@ -1,7 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/utils/calendar_utils.dart';
+import '../../../services/local_collection_store.dart';
 import '../models/mosque_event.dart';
+import 'event_json.dart';
 
 /// Source of mosque events.
 ///
@@ -14,37 +16,98 @@ abstract interface class EventsRepository {
 
   /// Inserts or updates [event] (matched by id) and returns the stored copy.
   Future<MosqueEvent> saveEvent(MosqueEvent event);
+
+  /// Removes the event with [id]. Removing one that is already gone is not an
+  /// error: two taps on a delete button should not surface a failure.
+  Future<void> deleteEvent(String id);
 }
 
-/// MOCK — in-memory sample events, clearly marked "TUSAALE" (example) and
-/// flagged [MosqueEvent.isSample]. They are NOT real events of the mosque.
+/// Events held on the device.
 ///
-/// Dates are relative to [seedDate] (today in the app, a fixed date in
-/// tests) so the calendar always has something to show. Saved changes live
-/// in memory and are lost when the app closes.
+/// With a [store], the sample events are written once on the very first run
+/// and are ordinary rows from then on: the user can edit them, delete them,
+/// and add their own, and all of it survives closing the app. Deleting every
+/// sample does not bring them back — [LocalCollectionStore.readOrSeed] seeds
+/// on "never written", not on "empty".
+///
+/// Without a [store] it is purely in-memory, which is what the widget tests
+/// want: they pass [initial] and assert on what they passed.
+///
+/// Sample dates are relative to [seedDate] (today in the app, a fixed date in
+/// tests) so the calendar has something to show on first run. They are fixed
+/// at that moment, so samples left in place age — which is the point: they
+/// are there to be replaced.
 class LocalEventsRepository implements EventsRepository {
   LocalEventsRepository({
-    required DateTime seedDate,
+    required this.seedDate,
+    this.store,
     this.latency = const Duration(milliseconds: 600),
     List<MosqueEvent>? initial,
-  }) : _events = initial ?? sampleEvents(seedDate);
+  }) : // Copied: the caller's list must not be mutated by saves and deletes.
+       _events = initial == null ? null : List<MosqueEvent>.of(initial);
 
   final Duration latency;
-  final List<MosqueEvent> _events;
+
+  /// What the sample dates are built around.
+  final DateTime seedDate;
+
+  /// Null in tests that work purely in memory.
+  final LocalCollectionStore? store;
+
+  static const String collection = 'events';
+
+  /// Null until first loaded, so a store-backed repository does not read the
+  /// device in its constructor.
+  List<MosqueEvent>? _events;
+
+  /// The working list, loaded from the store on first use.
+  Future<List<MosqueEvent>> _loaded() async {
+    final cached = _events;
+    if (cached != null) return cached;
+
+    final store = this.store;
+    final loaded = store == null
+        ? sampleEvents(seedDate)
+        : EventJson.listFrom(
+            await store.readOrSeed(
+              collection,
+              () => EventJson.listTo(sampleEvents(seedDate)),
+            ),
+          );
+    return _events = loaded;
+  }
+
+  /// Writes the working list back. A no-op without a store.
+  Future<void> _flush() async {
+    final store = this.store;
+    if (store == null) return;
+    await store.write(collection, EventJson.listTo(_events ?? const []));
+  }
 
   @override
-  Future<List<MosqueEvent>> getEvents() async => List.unmodifiable(_events);
+  Future<List<MosqueEvent>> getEvents() async =>
+      List.unmodifiable(await _loaded());
 
   @override
   Future<MosqueEvent> saveEvent(MosqueEvent event) async {
     if (latency > Duration.zero) await Future<void>.delayed(latency);
-    final index = _events.indexWhere((e) => e.id == event.id);
+    final events = await _loaded();
+    final index = events.indexWhere((e) => e.id == event.id);
     if (index >= 0) {
-      _events[index] = event;
+      events[index] = event;
     } else {
-      _events.add(event);
+      events.add(event);
     }
+    await _flush();
     return event;
+  }
+
+  @override
+  Future<void> deleteEvent(String id) async {
+    if (latency > Duration.zero) await Future<void>.delayed(latency);
+    final events = await _loaded();
+    events.removeWhere((e) => e.id == id);
+    await _flush();
   }
 
   static const String _sampleNote =
@@ -147,7 +210,10 @@ class LocalEventsRepository implements EventsRepository {
 }
 
 final eventsRepositoryProvider = Provider<EventsRepository>(
-  (ref) => LocalEventsRepository(seedDate: DateTime.now()),
+  (ref) => LocalEventsRepository(
+    seedDate: DateTime.now(),
+    store: ref.watch(localCollectionStoreProvider),
+  ),
 );
 
 /// All events known to the app; [EventsController.save] updates the list
@@ -175,4 +241,11 @@ class EventsController extends AsyncNotifier<List<MosqueEvent>> {
     state = AsyncData(current);
     return saved;
   }
+
+  /// Deletes through the repository; throws on failure (state unchanged).
+  Future<void> delete(String id) async {
+    await ref.read(eventsRepositoryProvider).deleteEvent(id);
+    state = AsyncData([...?state.value]..removeWhere((e) => e.id == id));
+  }
 }
+

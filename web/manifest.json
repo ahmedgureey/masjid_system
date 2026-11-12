@@ -1,6 +1,6 @@
 {
-    "name": "masjid_system",
-    "short_name": "masjid_system",
+    "name": "Masjid System",
+    "short_name": "Masjid System",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

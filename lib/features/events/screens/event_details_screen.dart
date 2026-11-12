@@ -35,13 +35,20 @@ class EventDetailsScreen extends ConsumerWidget {
       appBar: AppTopBar(
         title: l10n.eventDetailsTitle,
         actions: [
-          if (canManage && event != null)
+          if (canManage && event != null) ...[
             IconButton(
               tooltip: l10n.profileEdit,
               icon: const Icon(Icons.edit_rounded),
               onPressed: () =>
                   context.pushIfCurrent(AppRoutes.editEvent(event.id)),
             ),
+            IconButton(
+              key: const Key('eventDelete'),
+              tooltip: l10n.commonDelete,
+              icon: const Icon(Icons.delete_outline_rounded),
+              onPressed: () => _delete(context, ref, event),
+            ),
+          ],
         ],
       ),
       body: SafeArea(
@@ -59,6 +66,31 @@ class EventDetailsScreen extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  /// Confirms, deletes, then leaves: staying on the details of an event that
+  /// no longer exists would only show the "not found" empty state.
+  Future<void> _delete(
+    BuildContext context,
+    WidgetRef ref,
+    MosqueEvent event,
+  ) async {
+    final l10n = context.l10n;
+    final messenger = ScaffoldMessenger.of(context);
+    final navigator = Navigator.of(context);
+
+    if (!await confirmDelete(context, title: l10n.deleteEventTitle)) return;
+
+    try {
+      await ref.read(eventsProvider.notifier).delete(event.id);
+    } on Object {
+      // The event is still there, so stay on the page and say so rather than
+      // popping back to a list that still shows it.
+      messenger.showSnackBar(SnackBar(content: Text(l10n.deleteFailed)));
+      return;
+    }
+    if (navigator.canPop()) navigator.pop();
+    messenger.showSnackBar(SnackBar(content: Text(l10n.deleteDone)));
   }
 }
 

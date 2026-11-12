@@ -60,6 +60,12 @@ class _FailingProjects implements ProjectsRepository {
     required String editor,
     required DateTime now,
   }) => inner.saveUpdate(update, editor: editor, now: now);
+
+  @override
+  Future<void> deleteProject(String id) => inner.deleteProject(id);
+
+  @override
+  Future<void> deleteUpdate(String id) => inner.deleteUpdate(id);
 }
 
 Future<ProviderContainer> _open(

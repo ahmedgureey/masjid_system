@@ -135,6 +135,11 @@ void main() {
     testWidgets('"I xasuuso" checkbox toggles', (tester) async {
       await _openLogin(tester);
       Checkbox box() => tester.widget<Checkbox>(find.byType(Checkbox));
+      // Ticked by default: a session that does not survive closing the app
+      // leaves the user looking at a read-only copy of their own data.
+      expect(box().value, isTrue);
+      await tester.tap(find.text('I xasuuso'));
+      await tester.pump();
       expect(box().value, isFalse);
       await tester.tap(find.text('I xasuuso'));
       await tester.pump();
@@ -351,6 +356,8 @@ void main() {
       await goTo(tester, AppRoutes.login);
       await tester.enterText(_field('Email-ka'), 'ahmed@example.com');
       await tester.enterText(_field('Password-ka'), 'secret123');
+      // "Remember me" is what asks for the session to be kept, and it is
+      // ticked by default — so this signs in without touching it.
       await _tapSubmit(tester, _login);
       expect(find.byType(HomeScreen), findsOneWidget);
 
