@@ -46,3 +46,7 @@ app.*.map.json
 
 # Widget Preview related
 .widget_preview/
+
+# Locally served APK for phone testing (not source).
+web/masjid.apk
+masjid_management*.apk
