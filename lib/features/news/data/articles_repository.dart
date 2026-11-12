@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../models/localized_text.dart';
 import '../../mosque/data/mosque_repository.dart';
+import '../application/news_permissions.dart';
 import '../models/article.dart';
 import '../models/article_category.dart';
 
@@ -15,6 +16,15 @@ abstract interface class ArticlesRepository {
   /// Publicly visible articles of [mosqueId] (never drafts, archived or
   /// scheduled articles, never another mosque's).
   Future<List<Article>> getPublishedArticles({required String mosqueId});
+
+  /// Every article of [mosqueId], drafts, scheduled and archived ones
+  /// included. For administrators only — the public list stays
+  /// [getPublishedArticles].
+  Future<List<Article>> getAllArticles({required String mosqueId});
+
+  /// Inserts or updates [article] (matched by id) and returns the stored
+  /// copy.
+  Future<Article> saveArticle(Article article);
 
   /// Active categories in display order.
   Future<List<ArticleCategory>> getCategories();
@@ -48,6 +58,27 @@ class LocalArticlesRepository implements ArticlesRepository {
       for (final a in _articles)
         if (a.mosqueId == mosqueId && a.isPubliclyVisibleAt(now)) a,
     ];
+  }
+
+  @override
+  Future<List<Article>> getAllArticles({required String mosqueId}) async {
+    if (latency > Duration.zero) await Future<void>.delayed(latency);
+    return [
+      for (final a in _articles)
+        if (a.mosqueId == mosqueId) a,
+    ];
+  }
+
+  @override
+  Future<Article> saveArticle(Article article) async {
+    if (latency > Duration.zero) await Future<void>.delayed(latency);
+    final index = _articles.indexWhere((a) => a.id == article.id);
+    if (index >= 0) {
+      _articles[index] = article;
+    } else {
+      _articles.add(article);
+    }
+    return article;
   }
 
   @override
@@ -339,13 +370,41 @@ final articlesRepositoryProvider = Provider<ArticlesRepository>(
   (ref) => LocalArticlesRepository(seedDate: DateTime.now()),
 );
 
-/// Published articles of the current mosque.
-final articlesProvider = FutureProvider<List<Article>>((ref) async {
-  final mosque = await ref.watch(mosqueProvider.future);
-  return ref
-      .watch(articlesRepositoryProvider)
-      .getPublishedArticles(mosqueId: mosque.id);
-});
+/// Articles of the current mosque: the published ones for visitors, and
+/// every article — drafts and scheduled included — for an administrator, so
+/// they can find what they have written. The Projects feature behaves the
+/// same way.
+final articlesProvider =
+    AsyncNotifierProvider<ArticlesController, List<Article>>(
+      ArticlesController.new,
+    );
+
+class ArticlesController extends AsyncNotifier<List<Article>> {
+  @override
+  Future<List<Article>> build() async {
+    final mosque = await ref.watch(mosqueProvider.future);
+    final repository = ref.watch(articlesRepositoryProvider);
+    return ref.watch(canManageNewsProvider)
+        ? repository.getAllArticles(mosqueId: mosque.id)
+        : repository.getPublishedArticles(mosqueId: mosque.id);
+  }
+
+  /// Saves through the repository; throws on failure (state unchanged).
+  Future<Article> save(Article article) async {
+    final saved = await ref
+        .read(articlesRepositoryProvider)
+        .saveArticle(article);
+    final current = [...?state.value];
+    final index = current.indexWhere((a) => a.id == saved.id);
+    if (index >= 0) {
+      current[index] = saved;
+    } else {
+      current.add(saved);
+    }
+    state = AsyncData(current);
+    return saved;
+  }
+}
 
 final articleCategoriesProvider = FutureProvider<List<ArticleCategory>>(
   (ref) => ref.watch(articlesRepositoryProvider).getCategories(),

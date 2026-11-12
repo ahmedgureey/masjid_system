@@ -6,6 +6,7 @@ import 'package:masjid_management/features/home/screens/home_screen.dart';
 import 'package:masjid_management/features/onboarding/screens/welcome_screen.dart';
 import 'package:masjid_management/routing/app_routes.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../helpers/test_app.dart';
 
@@ -318,5 +319,70 @@ void main() {
         },
       );
     }
+  });
+
+  group('Demo session survives a restart', () {
+    // Prefs keys written by LocalStorageService.
+    const nameKey = 'demo_session_name';
+    const emailKey = 'demo_session_email';
+
+    /// A restart with a session already on the device.
+    Future<SharedPreferences> openSignedIn(WidgetTester tester) async {
+      final prefs = await pumpFullApp(
+        tester,
+        prefs: {
+          onboardingCompletedKey: true,
+          localeCodeKey: 'so',
+          nameKey: 'ahmed',
+          emailKey: 'ahmed@example.com',
+        },
+      );
+      await passSplash(tester);
+      await goTo(tester, AppRoutes.home);
+      return prefs;
+    }
+
+    testWidgets('signing in is saved, but never the password', (tester) async {
+      final prefs = await pumpFullApp(
+        tester,
+        prefs: {onboardingCompletedKey: true, localeCodeKey: 'so'},
+      );
+      await passSplash(tester);
+      await goTo(tester, AppRoutes.login);
+      await tester.enterText(_field('Email-ka'), 'ahmed@example.com');
+      await tester.enterText(_field('Password-ka'), 'secret123');
+      await _tapSubmit(tester, _login);
+      expect(find.byType(HomeScreen), findsOneWidget);
+
+      expect(prefs.getString(nameKey), 'ahmed');
+      expect(prefs.getString(emailKey), 'ahmed@example.com');
+      // Nothing stored on the device may contain the password.
+      expect(
+        prefs.getKeys().any(
+          (k) => prefs.get(k).toString().contains('secret123'),
+        ),
+        isFalse,
+      );
+    });
+
+    testWidgets('a saved session is restored on the next start', (
+      tester,
+    ) async {
+      await openSignedIn(tester);
+      expect(find.byType(HomeScreen), findsOneWidget);
+      // Admin UI is back without signing in again.
+      expect(find.text('Habka tijaabada'), findsOneWidget);
+    });
+
+    testWidgets('signing out clears it from the device', (tester) async {
+      final prefs = await openSignedIn(tester);
+      await tester.ensureVisible(find.text('Ka bax'));
+      await tester.tap(find.text('Ka bax'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Habka tijaabada'), findsNothing);
+      expect(prefs.getString(nameKey), isNull);
+      expect(prefs.getString(emailKey), isNull);
+    });
   });
 }

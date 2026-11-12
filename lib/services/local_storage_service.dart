@@ -43,4 +43,40 @@ class LocalStorageService {
 
   Future<void> setThemeMode(String mode) =>
       _prefs.setString(_themeModeKey, mode);
+
+  // ---------------------------------------------------------------------------
+  // Demo session
+  //
+  // Who is signed in while there is no backend, so a page reload does not sign
+  // the user out. Only the display name, email and phone the user typed — the
+  // password is never written here, and this is not an auth token. The real
+  // Supabase session will use secure storage instead.
+  // ---------------------------------------------------------------------------
+  static const String _demoNameKey = 'demo_session_name';
+  static const String _demoEmailKey = 'demo_session_email';
+  static const String _demoPhoneKey = 'demo_session_phone';
+
+  /// Display name of the signed-in demo user, or null when signed out.
+  String? get demoSessionName => _prefs.getString(_demoNameKey);
+  String? get demoSessionEmail => _prefs.getString(_demoEmailKey);
+  String? get demoSessionPhone => _prefs.getString(_demoPhoneKey);
+
+  Future<void> saveDemoSession({
+    required String displayName,
+    String? email,
+    String? phone,
+  }) async {
+    await _prefs.setString(_demoNameKey, displayName);
+    await _setOrRemove(_demoEmailKey, email);
+    await _setOrRemove(_demoPhoneKey, phone);
+  }
+
+  Future<void> clearDemoSession() async {
+    await _prefs.remove(_demoNameKey);
+    await _prefs.remove(_demoEmailKey);
+    await _prefs.remove(_demoPhoneKey);
+  }
+
+  Future<void> _setOrRemove(String key, String? value) =>
+      value == null ? _prefs.remove(key) : _prefs.setString(key, value);
 }

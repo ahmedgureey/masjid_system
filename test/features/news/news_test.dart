@@ -57,6 +57,20 @@ class _FakeRepo implements ArticlesRepository {
   }
 
   @override
+  Future<List<Article>> getAllArticles({required String mosqueId}) async {
+    calls++;
+    if (delay > Duration.zero) await Future<void>.delayed(delay);
+    if (failures > 0) {
+      failures--;
+      throw Exception('network');
+    }
+    return inner.getAllArticles(mosqueId: mosqueId);
+  }
+
+  @override
+  Future<Article> saveArticle(Article article) => inner.saveArticle(article);
+
+  @override
   Future<List<ArticleCategory>> getCategories() => inner.getCategories();
 }
 

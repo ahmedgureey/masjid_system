@@ -9,6 +9,7 @@ import '../../../core/widgets/widgets.dart';
 import '../../../routing/app_routes.dart';
 import '../../../routing/navigation_guard.dart';
 import '../application/article_query.dart';
+import '../application/news_permissions.dart';
 import '../data/articles_repository.dart';
 import '../models/article.dart';
 import '../models/article_category.dart';
@@ -53,8 +54,17 @@ class _NewsScreenState extends ConsumerState<NewsScreen> {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final articlesAsync = ref.watch(articlesProvider);
+    final canManage = ref.watch(canManageNewsProvider);
 
     return Scaffold(
+      floatingActionButton: canManage
+          ? FloatingActionButton.extended(
+              key: const Key('newsAddButton'),
+              onPressed: () => context.pushIfCurrent(AppRoutes.newArticle),
+              icon: const Icon(Icons.add_rounded),
+              label: Text(l10n.newsAdd),
+            )
+          : null,
       appBar: AppTopBar(
         title: l10n.newsTitle,
         actions: [
@@ -89,14 +99,40 @@ class _NewsScreenState extends ConsumerState<NewsScreen> {
         ref.watch(articleCategoriesProvider).value ?? const <ArticleCategory>[];
     final byId = {for (final c in categories) c.id: c};
 
+    final now = DateTime.now();
+
     Widget card(Article a) => Padding(
       padding: const EdgeInsets.only(bottom: AppSpacing.space3),
-      child: ArticleCard(
-        key: ValueKey('article-${a.id}'),
-        article: a,
-        category: byId[a.categoryId],
-        lang: lang,
-        onTap: () => _open(a),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Only an administrator ever sees these, and only they need to
+          // tell an unpublished article apart from a live one.
+          if (!a.isPubliclyVisibleAt(now)) ...[
+            StatusChip(
+              key: ValueKey('articleStatus-${a.id}'),
+              label: switch (a.status) {
+                ArticleStatus.draft => l10n.newsStatusDraft,
+                ArticleStatus.archived => l10n.newsStatusArchived,
+                ArticleStatus.published => l10n.newsStatusScheduled,
+              },
+              type: a.status == ArticleStatus.published
+                  ? StatusType.info
+                  : StatusType.warning,
+              icon: a.status == ArticleStatus.published
+                  ? Icons.schedule_rounded
+                  : Icons.edit_note_rounded,
+            ),
+            const SizedBox(height: AppSpacing.space2),
+          ],
+          ArticleCard(
+            key: ValueKey('article-${a.id}'),
+            article: a,
+            category: byId[a.categoryId],
+            lang: lang,
+            onTap: () => _open(a),
+          ),
+        ],
       ),
     );
 

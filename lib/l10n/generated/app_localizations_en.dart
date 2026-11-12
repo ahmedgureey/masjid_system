@@ -343,7 +343,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get demoBannerMessage =>
-      'You are signed in with sample data. No real account was used and nothing is saved.';
+      'You are signed in with sample data. No real account was used and nothing is sent to a server; only your sign-in is kept on this device.';
 
   @override
   String get logout => 'Log out';
@@ -907,6 +907,68 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get newsTitle => 'News & Articles';
+
+  @override
+  String get newsAdd => 'Add article';
+
+  @override
+  String get newsFormNewTitle => 'New article';
+
+  @override
+  String get newsFormEditTitle => 'Edit article';
+
+  @override
+  String get newsFieldTitle => 'Title';
+
+  @override
+  String get newsFieldSummary => 'Summary';
+
+  @override
+  String get newsFieldCategory => 'Category';
+
+  @override
+  String get newsValidationCategory => 'Choose a category';
+
+  @override
+  String get newsFieldBody => 'Article text';
+
+  @override
+  String get newsBodyHint => 'Leave a blank line between paragraphs.';
+
+  @override
+  String get newsBodyRichNotice =>
+      'This article also contains headings, images or quotations. The full editor is not built yet, so its text is kept exactly as it is.';
+
+  @override
+  String get newsFieldCover => 'Cover image link';
+
+  @override
+  String get newsFieldAuthor => 'Author name';
+
+  @override
+  String get newsFieldStatus => 'Status';
+
+  @override
+  String get newsStatusDraft => 'Draft';
+
+  @override
+  String get newsStatusPublished => 'Published';
+
+  @override
+  String get newsStatusArchived => 'Archived';
+
+  @override
+  String get newsStatusScheduled => 'Scheduled';
+
+  @override
+  String get newsFieldFeatured => 'Show as the featured article';
+
+  @override
+  String get newsSavedLocal => 'Article saved on this device only.';
+
+  @override
+  String get newsSaveError =>
+      'The article could not be saved. Please try again.';
 
   @override
   String get newsSearchHint => 'Search articles';

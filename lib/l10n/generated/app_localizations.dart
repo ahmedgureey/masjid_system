@@ -733,7 +733,7 @@ abstract class AppLocalizations {
   /// No description provided for @demoBannerMessage.
   ///
   /// In en, this message translates to:
-  /// **'You are signed in with sample data. No real account was used and nothing is saved.'**
+  /// **'You are signed in with sample data. No real account was used and nothing is sent to a server; only your sign-in is kept on this device.'**
   String get demoBannerMessage;
 
   /// No description provided for @logout.
@@ -1791,6 +1791,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'News & Articles'**
   String get newsTitle;
+
+  /// News authoring: the add/edit article form, its fields and publication states.
+  ///
+  /// In en, this message translates to:
+  /// **'Add article'**
+  String get newsAdd;
+
+  /// No description provided for @newsFormNewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New article'**
+  String get newsFormNewTitle;
+
+  /// No description provided for @newsFormEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit article'**
+  String get newsFormEditTitle;
+
+  /// No description provided for @newsFieldTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get newsFieldTitle;
+
+  /// No description provided for @newsFieldSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Summary'**
+  String get newsFieldSummary;
+
+  /// No description provided for @newsFieldCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get newsFieldCategory;
+
+  /// No description provided for @newsValidationCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a category'**
+  String get newsValidationCategory;
+
+  /// No description provided for @newsFieldBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Article text'**
+  String get newsFieldBody;
+
+  /// No description provided for @newsBodyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave a blank line between paragraphs.'**
+  String get newsBodyHint;
+
+  /// No description provided for @newsBodyRichNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'This article also contains headings, images or quotations. The full editor is not built yet, so its text is kept exactly as it is.'**
+  String get newsBodyRichNotice;
+
+  /// No description provided for @newsFieldCover.
+  ///
+  /// In en, this message translates to:
+  /// **'Cover image link'**
+  String get newsFieldCover;
+
+  /// No description provided for @newsFieldAuthor.
+  ///
+  /// In en, this message translates to:
+  /// **'Author name'**
+  String get newsFieldAuthor;
+
+  /// No description provided for @newsFieldStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get newsFieldStatus;
+
+  /// No description provided for @newsStatusDraft.
+  ///
+  /// In en, this message translates to:
+  /// **'Draft'**
+  String get newsStatusDraft;
+
+  /// No description provided for @newsStatusPublished.
+  ///
+  /// In en, this message translates to:
+  /// **'Published'**
+  String get newsStatusPublished;
+
+  /// No description provided for @newsStatusArchived.
+  ///
+  /// In en, this message translates to:
+  /// **'Archived'**
+  String get newsStatusArchived;
+
+  /// No description provided for @newsStatusScheduled.
+  ///
+  /// In en, this message translates to:
+  /// **'Scheduled'**
+  String get newsStatusScheduled;
+
+  /// No description provided for @newsFieldFeatured.
+  ///
+  /// In en, this message translates to:
+  /// **'Show as the featured article'**
+  String get newsFieldFeatured;
+
+  /// No description provided for @newsSavedLocal.
+  ///
+  /// In en, this message translates to:
+  /// **'Article saved on this device only.'**
+  String get newsSavedLocal;
+
+  /// No description provided for @newsSaveError.
+  ///
+  /// In en, this message translates to:
+  /// **'The article could not be saved. Please try again.'**
+  String get newsSaveError;
 
   /// No description provided for @newsSearchHint.
   ///

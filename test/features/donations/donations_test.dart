@@ -164,8 +164,8 @@ void main() {
   });
 
   group('Demo user id', () {
-    test('uses the email (not the display name) so users stay apart', () {
-      final c = ProviderContainer();
+    test('uses the email (not the display name) so users stay apart', () async {
+      final c = await testContainer();
       addTearDown(c.dispose);
       expect(c.read(donorUserIdProvider), isNull);
       c

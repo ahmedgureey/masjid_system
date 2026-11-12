@@ -23,7 +23,9 @@ import '../features/home/screens/home_screen.dart';
 import '../features/mosque/application/mosque_permissions.dart';
 import '../features/mosque/screens/edit_mosque_profile_screen.dart';
 import '../features/mosque/screens/mosque_profile_screen.dart';
+import '../features/news/application/news_permissions.dart';
 import '../features/news/screens/article_details_screen.dart';
+import '../features/news/screens/edit_article_screen.dart';
 import '../features/news/screens/news_screen.dart';
 import '../features/news/screens/saved_articles_screen.dart';
 import '../features/notifications/screens/notifications_screen.dart';
@@ -185,15 +187,30 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         path: AppRoutes.news,
         builder: (context, state) => const NewsScreen(),
       ),
-      // `saved` is declared before `:articleId` so it is not read as an id.
+      // `saved` and `new` are declared before `:articleId` so they are not
+      // read as ids.
       GoRoute(
         path: AppRoutes.savedArticles,
         builder: (context, state) => const SavedArticlesScreen(),
       ),
       GoRoute(
+        path: AppRoutes.newArticle,
+        redirect: (context, state) =>
+            ref.read(canManageNewsProvider) ? null : AppRoutes.news,
+        builder: (context, state) => const EditArticleScreen(),
+      ),
+      GoRoute(
         path: AppRoutes.articlePattern,
         builder: (context, state) =>
             ArticleDetailsScreen(articleId: state.pathParameters['articleId']!),
+      ),
+      GoRoute(
+        path: AppRoutes.editArticlePattern,
+        redirect: (context, state) => ref.read(canManageNewsProvider)
+            ? null
+            : AppRoutes.article(state.pathParameters['articleId']!),
+        builder: (context, state) =>
+            EditArticleScreen(articleId: state.pathParameters['articleId']!),
       ),
       // Donations (demo data; no payment is processed).
       GoRoute(

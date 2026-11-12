@@ -65,6 +65,23 @@ Future<void> passSplash(WidgetTester tester) async {
   await tester.pumpAndSettle();
 }
 
+/// A container for unit tests that read providers without pumping a widget.
+/// Seeds in-memory [SharedPreferences], which providers that persist state
+/// (the demo session, theme, locale) need in order to build.
+Future<ProviderContainer> testContainer({
+  Map<String, Object> prefs = const {},
+  List<Override> overrides = const [],
+}) async {
+  SharedPreferences.setMockInitialValues(prefs);
+  final instance = await SharedPreferences.getInstance();
+  return ProviderContainer(
+    overrides: [
+      sharedPreferencesProvider.overrideWithValue(instance),
+      ...overrides,
+    ],
+  );
+}
+
 /// Navigates the running app to [location] (e.g. screens that are not part
 /// of the default start-up flow, such as `/language`).
 Future<void> goTo(WidgetTester tester, String location) async {

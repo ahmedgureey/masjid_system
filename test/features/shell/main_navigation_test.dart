@@ -39,8 +39,8 @@ int _selected(WidgetTester tester) =>
     tester.widget<NavigationBar>(find.byType(NavigationBar)).selectedIndex;
 
 void main() {
-  test('demo session keeps typed email and phone (trimmed)', () {
-    final container = ProviderContainer();
+  test('demo session keeps typed email and phone (trimmed)', () async {
+    final container = await testContainer();
     addTearDown(container.dispose);
     container
         .read(demoSessionProvider.notifier)

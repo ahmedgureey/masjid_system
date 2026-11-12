@@ -1,10 +1,15 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../services/local_storage_service.dart';
 
 /// DEMO — the signed-in state while no backend exists.
 ///
-/// Held in memory only: nothing about the user (and never the password) is
-/// saved, and closing the app signs the user out. Replaced by the real
-/// Supabase session later.
+/// The display name, email and phone the user typed are kept on the device so
+/// a reload does not sign them out; the password is never saved. This is not
+/// an auth token and proves nothing to a server. Replaced by the real Supabase
+/// session later.
 class DemoSession {
   const DemoSession({required this.displayName, this.email, this.phone});
 
@@ -31,17 +36,39 @@ final demoSessionProvider =
     );
 
 class DemoSessionController extends Notifier<DemoSession?> {
+  LocalStorageService get _storage => ref.read(localStorageServiceProvider);
+
   @override
-  DemoSession? build() => null;
+  DemoSession? build() {
+    final name = _storage.demoSessionName;
+    if (name == null || name.trim().isEmpty) return null;
+    return DemoSession(
+      displayName: name,
+      email: _storage.demoSessionEmail,
+      phone: _storage.demoSessionPhone,
+    );
+  }
 
   void signIn({required String displayName, String? email, String? phone}) {
     String? clean(String? v) => v == null || v.trim().isEmpty ? null : v.trim();
-    state = DemoSession(
+    final session = DemoSession(
       displayName: displayName,
       email: clean(email),
       phone: clean(phone),
     );
+    state = session;
+    // The UI must not wait on the disk write.
+    unawaited(
+      _storage.saveDemoSession(
+        displayName: session.displayName,
+        email: session.email,
+        phone: session.phone,
+      ),
+    );
   }
 
-  void signOut() => state = null;
+  void signOut() {
+    state = null;
+    unawaited(_storage.clearDemoSession());
+  }
 }

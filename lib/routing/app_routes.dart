@@ -38,8 +38,12 @@ abstract final class AppRoutes {
       '/calendar/events/${Uri.encodeComponent(id)}/edit';
   static const String news = '/news';
   static const String savedArticles = '/news/saved';
+  static const String newArticle = '/news/new';
   static const String articlePattern = '/news/:articleId';
+  static const String editArticlePattern = '/news/:articleId/edit';
   static String article(String id) => '/news/${Uri.encodeComponent(id)}';
+  static String editArticle(String id) =>
+      '/news/${Uri.encodeComponent(id)}/edit';
   static const String donations = '/donations';
   static const String donationCampaigns = '/donations/campaigns';
   static const String campaignPattern = '/donations/campaigns/:id';

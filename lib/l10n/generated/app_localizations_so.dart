@@ -347,7 +347,7 @@ class AppLocalizationsSo extends AppLocalizations {
 
   @override
   String get demoBannerMessage =>
-      'Waxaad gashay adigoo isticmaalaya xog tusaale ah. Akoon dhab ah lama isticmaalin, waxna lama kaydin.';
+      'Waxaad gashay adigoo isticmaalaya xog tusaale ah. Akoon dhab ah lama isticmaalin, waxna server looma dirin; kaliya saxiixaaga ayaa qalabkan lagu hayaa.';
 
   @override
   String get logout => 'Ka bax';
@@ -914,6 +914,69 @@ class AppLocalizationsSo extends AppLocalizations {
 
   @override
   String get newsTitle => 'Wararka & Maqaallada';
+
+  @override
+  String get newsAdd => 'Ku dar maqaal';
+
+  @override
+  String get newsFormNewTitle => 'Maqaal cusub';
+
+  @override
+  String get newsFormEditTitle => 'Wax ka beddel maqaalka';
+
+  @override
+  String get newsFieldTitle => 'Cinwaanka';
+
+  @override
+  String get newsFieldSummary => 'Soo koobid';
+
+  @override
+  String get newsFieldCategory => 'Qaybta';
+
+  @override
+  String get newsValidationCategory => 'Dooro qayb';
+
+  @override
+  String get newsFieldBody => 'Qoraalka maqaalka';
+
+  @override
+  String get newsBodyHint => 'Sadar madhan ku kala dhex dhig faqradaha.';
+
+  @override
+  String get newsBodyRichNotice =>
+      'Maqaalkan wuxuu sidoo kale leeyahay madax, sawirro ama soo-xigashooyin. Tifaftiraha buuxa weli lama dhisin, markaa qoraalkiisa sidiisii ayaa loo hayaa.';
+
+  @override
+  String get newsFieldCover => 'Linkiga sawirka hore';
+
+  @override
+  String get newsFieldAuthor => 'Magaca qoraaga';
+
+  @override
+  String get newsFieldStatus => 'Xaaladda';
+
+  @override
+  String get newsStatusDraft => 'Qabyo';
+
+  @override
+  String get newsStatusPublished => 'La daabacay';
+
+  @override
+  String get newsStatusArchived => 'La kaydiyay';
+
+  @override
+  String get newsStatusScheduled => 'La qorsheeyay';
+
+  @override
+  String get newsFieldFeatured => 'U muuji maqaalka muhiimka ah';
+
+  @override
+  String get newsSavedLocal =>
+      'Maqaalka waxaa lagu kaydiyay qalabkan oo kaliya.';
+
+  @override
+  String get newsSaveError =>
+      'Maqaalka lama kaydin karin. Fadlan isku day mar kale.';
 
   @override
   String get newsSearchHint => 'Raadi maqaallada';

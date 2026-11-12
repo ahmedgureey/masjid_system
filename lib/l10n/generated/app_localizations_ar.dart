@@ -340,7 +340,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get demoBannerMessage =>
-      'لقد سجلت الدخول ببيانات تجريبية. لم يُستخدم حساب حقيقي ولم يتم حفظ أي شيء.';
+      'لقد سجلت الدخول ببيانات تجريبية. لم يُستخدم حساب حقيقي ولم يُرسل أي شيء إلى خادم؛ يُحفظ تسجيل دخولك على هذا الجهاز فقط.';
 
   @override
   String get logout => 'تسجيل الخروج';
@@ -893,6 +893,67 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get newsTitle => 'الأخبار والمقالات';
+
+  @override
+  String get newsAdd => 'إضافة مقال';
+
+  @override
+  String get newsFormNewTitle => 'مقال جديد';
+
+  @override
+  String get newsFormEditTitle => 'تعديل المقال';
+
+  @override
+  String get newsFieldTitle => 'العنوان';
+
+  @override
+  String get newsFieldSummary => 'الملخص';
+
+  @override
+  String get newsFieldCategory => 'التصنيف';
+
+  @override
+  String get newsValidationCategory => 'اختر تصنيفًا';
+
+  @override
+  String get newsFieldBody => 'نص المقال';
+
+  @override
+  String get newsBodyHint => 'اترك سطرًا فارغًا بين الفقرات.';
+
+  @override
+  String get newsBodyRichNotice =>
+      'يحتوي هذا المقال أيضًا على عناوين أو صور أو اقتباسات. المحرر الكامل غير جاهز بعد، لذلك يُحفظ نصه كما هو.';
+
+  @override
+  String get newsFieldCover => 'رابط صورة الغلاف';
+
+  @override
+  String get newsFieldAuthor => 'اسم الكاتب';
+
+  @override
+  String get newsFieldStatus => 'الحالة';
+
+  @override
+  String get newsStatusDraft => 'مسودة';
+
+  @override
+  String get newsStatusPublished => 'منشور';
+
+  @override
+  String get newsStatusArchived => 'مؤرشف';
+
+  @override
+  String get newsStatusScheduled => 'مجدول';
+
+  @override
+  String get newsFieldFeatured => 'عرضه كمقال مميز';
+
+  @override
+  String get newsSavedLocal => 'تم حفظ المقال على هذا الجهاز فقط.';
+
+  @override
+  String get newsSaveError => 'تعذّر حفظ المقال. حاول مرة أخرى.';
 
   @override
   String get newsSearchHint => 'ابحث في المقالات';

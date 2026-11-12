@@ -11,6 +11,7 @@ import '../../../routing/app_routes.dart';
 import '../../../routing/navigation_guard.dart';
 import '../../mosque/data/mosque_repository.dart';
 import '../application/article_query.dart';
+import '../application/news_permissions.dart';
 import '../data/articles_repository.dart';
 import '../models/article.dart';
 import '../models/article_category.dart';
@@ -41,6 +42,14 @@ class ArticleDetailsScreen extends ConsumerWidget {
       appBar: AppTopBar(
         actions: [
           if (article != null) ...[
+            if (ref.watch(canManageNewsProvider))
+              IconButton(
+                key: const Key('articleEditButton'),
+                tooltip: l10n.profileEdit,
+                icon: const Icon(Icons.edit_rounded),
+                onPressed: () =>
+                    context.pushIfCurrent(AppRoutes.editArticle(article.id)),
+              ),
             BookmarkButton(articleId: article.id),
             ShareArticleButton(article: article, lang: lang),
           ],
