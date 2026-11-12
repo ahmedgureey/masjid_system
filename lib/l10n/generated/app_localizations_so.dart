@@ -382,6 +382,47 @@ class AppLocalizationsSo extends AppLocalizations {
   String get homeMenuTitle => 'Adeegyada Masaajidka';
 
   @override
+  String get heroSalahTitle => 'Salaadda & Waqtiyadeeda';
+
+  @override
+  String get heroSalahSubtitle => 'Ku xidhnow salaadaha maalinlaha ah.';
+
+  @override
+  String get heroQuranTitle => 'Quraanka & Waxbarashada Islaamka';
+
+  @override
+  String get heroQuranSubtitle =>
+      'Baro Quraanka Kariimka ah iyo cilmiga Islaamka.';
+
+  @override
+  String get heroProjectsTitle => 'Mashaariicda Masaajidka';
+
+  @override
+  String get heroProjectsSubtitle =>
+      'Baro mashaariicdayada iyo hindisayaasha bulshada.';
+
+  @override
+  String get heroDonationsTitle => 'Deeqaha & Sadaqada';
+
+  @override
+  String get heroDonationsSubtitle =>
+      'Taageer masaajidkaaga oo caawi kuwa baahan.';
+
+  @override
+  String get heroEventsTitle => 'Munaasabadaha Islaamka';
+
+  @override
+  String get heroEventsSubtitle =>
+      'La soco munaasabadaha iyo howlaha masaajidka.';
+
+  @override
+  String get heroCommunityTitle => 'Adeegyada Bulshada';
+
+  @override
+  String get heroCommunitySubtitle =>
+      'Waxaan u adeegnaa bulshadayada iimaan iyo midnimo.';
+
+  @override
   String get profileTitle => 'Macluumaadka Masaajidka';
 
   @override

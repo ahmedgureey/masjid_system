@@ -796,6 +796,78 @@ abstract class AppLocalizations {
   /// **'Mosque services'**
   String get homeMenuTitle;
 
+  /// Dashboard hero carousel: slide titles and subtitles naming the services the mosque offers.
+  ///
+  /// In en, this message translates to:
+  /// **'Salah & Prayer Times'**
+  String get heroSalahTitle;
+
+  /// No description provided for @heroSalahSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Stay connected with daily prayers.'**
+  String get heroSalahSubtitle;
+
+  /// No description provided for @heroQuranTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quran & Islamic Education'**
+  String get heroQuranTitle;
+
+  /// No description provided for @heroQuranSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn the Holy Quran and Islamic teachings.'**
+  String get heroQuranSubtitle;
+
+  /// No description provided for @heroProjectsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Mosque Projects'**
+  String get heroProjectsTitle;
+
+  /// No description provided for @heroProjectsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover our projects and community initiatives.'**
+  String get heroProjectsSubtitle;
+
+  /// No description provided for @heroDonationsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Donations & Charity'**
+  String get heroDonationsTitle;
+
+  /// No description provided for @heroDonationsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Support your mosque and help those in need.'**
+  String get heroDonationsSubtitle;
+
+  /// No description provided for @heroEventsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Islamic Events'**
+  String get heroEventsTitle;
+
+  /// No description provided for @heroEventsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Stay informed about mosque events and activities.'**
+  String get heroEventsSubtitle;
+
+  /// No description provided for @heroCommunityTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Community Services'**
+  String get heroCommunityTitle;
+
+  /// No description provided for @heroCommunitySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Serving our community through faith and unity.'**
+  String get heroCommunitySubtitle;
+
   /// No description provided for @profileTitle.
   ///
   /// In en, this message translates to:

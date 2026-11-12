@@ -7,9 +7,11 @@ import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../core/widgets/brand_mark.dart';
 import '../../../core/widgets/islamic_pattern.dart';
+import '../models/mosque_service_slide.dart';
+import 'mosque_services_carousel.dart';
 
-/// Home header: cover photo, overlapping circular logo, mosque name,
-/// optional subtitle, and live date and time.
+/// Home header: green hero band with the rotating services carousel, the
+/// overlapping circular logo, the mosque name and the live date and time.
 class HomeHeader extends StatelessWidget {
   const HomeHeader({
     super.key,
@@ -19,6 +21,7 @@ class HomeHeader extends StatelessWidget {
     required this.isDarkMode,
     required this.onToggleTheme,
     required this.onNotificationsTap,
+    required this.onServiceTap,
     this.subtitle,
     this.coverUrl,
     this.logoUrl,
@@ -27,6 +30,10 @@ class HomeHeader extends StatelessWidget {
   final bool isDarkMode;
   final VoidCallback onToggleTheme;
   final VoidCallback onNotificationsTap;
+
+  /// Opens the route behind a tapped carousel slide.
+  final ValueChanged<String> onServiceTap;
+
   final String name;
   final String? subtitle;
   final String dateText;
@@ -34,13 +41,18 @@ class HomeHeader extends StatelessWidget {
   final String? coverUrl;
   final String? logoUrl;
 
-  static const double coverHeight = 190;
   static const double logoSize = 96;
+
+  /// Share of the screen height the hero band takes, within sane bounds so it
+  /// neither swallows a small phone nor floats on a tall one.
+  static double coverHeightFor(BuildContext context) =>
+      (MediaQuery.sizeOf(context).height * 0.30).clamp(220.0, 290.0);
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final topInset = MediaQuery.paddingOf(context).top;
+    final coverHeight = coverHeightFor(context);
 
     return Column(
       children: [
@@ -55,8 +67,32 @@ class HomeHeader extends StatelessWidget {
                 height: coverHeight + topInset,
                 child: _Cover(coverUrl: coverUrl),
               ),
+              // Leaves room for the logo, which overlaps the bottom edge.
+              Positioned(
+                top: topInset,
+                left: 0,
+                right: 0,
+                bottom: logoSize + AppSpacing.space2,
+                child: MosqueServicesCarousel(
+                  slides: mosqueServiceSlides,
+                  onSlideTap: (slide) => onServiceTap(slide.route),
+                ),
+              ),
+              if (coverUrl == null)
+                PositionedDirectional(
+                  start: AppSpacing.space4,
+                  end: 112,
+                  top: topInset + AppSpacing.space4,
+                  child: const _CoverPendingChip(),
+                ),
               // Same corner and size as the former language button:
-              // notifications bell + light/dark toggle.
+              // notifications bell + light/dark toggle. Above the carousel so
+              // they stay tappable and visible on every slide.
+              PositionedDirectional(
+                top: topInset + AppSpacing.space2,
+                end: AppSpacing.space2,
+                child: const _HeaderActionsScrim(),
+              ),
               PositionedDirectional(
                 top: topInset + AppSpacing.space2,
                 end: AppSpacing.space2,
@@ -137,6 +173,8 @@ class HomeHeader extends StatelessWidget {
   }
 }
 
+/// Hero background: the mosque's cover photo when it has one, otherwise the
+/// branded green gradient with the Islamic star pattern.
 class _Cover extends StatelessWidget {
   const _Cover({required this.coverUrl});
 
@@ -145,68 +183,97 @@ class _Cover extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const radius = BorderRadius.vertical(bottom: Radius.circular(28));
-    if (coverUrl != null) {
-      return ClipRRect(
-        borderRadius: radius,
-        child: Image.network(coverUrl!, fit: BoxFit.cover),
-      );
-    }
-    // No photo uploaded yet: branded placeholder, clearly labelled.
     return ClipRRect(
       borderRadius: radius,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          gradient: context.semanticColors.splashGradient,
-        ),
-        child: Stack(
-          children: [
-            const Positioned.fill(child: IslamicPattern()),
-            Center(
-              child: Icon(
-                Icons.mosque_rounded,
-                size: 96,
-                color: AppColors.white.withValues(alpha: 0.12),
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          if (coverUrl != null)
+            Image.network(coverUrl!, fit: BoxFit.cover)
+          else
+            DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: context.semanticColors.splashGradient,
+              ),
+              child: const IslamicPattern(),
+            ),
+          // Soft overhead light, and — over a photo — the scrim that keeps
+          // the carousel text readable on any image.
+          DecoratedBox(
+            decoration: BoxDecoration(
+              gradient: RadialGradient(
+                center: const Alignment(0, -0.75),
+                radius: 1.1,
+                colors: [
+                  AppColors.white.withValues(alpha: 0.10),
+                  AppColors.green900.withValues(
+                    alpha: coverUrl == null ? 0.18 : 0.62,
+                  ),
+                ],
               ),
             ),
-            // Top corner (opposite the notification / theme buttons) so the
-            // logo never covers it.
-            PositionedDirectional(
-              start: AppSpacing.space4,
-              end: 112,
-              top: MediaQuery.paddingOf(context).top + AppSpacing.space4,
-              child: Align(
-                alignment: AlignmentDirectional.centerStart,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppSpacing.space2,
-                    vertical: AppSpacing.space1,
-                  ),
-                  decoration: BoxDecoration(
-                    color: AppColors.green900.withValues(alpha: 0.6),
-                    borderRadius: BorderRadius.circular(AppRadius.sm),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(
-                        Icons.photo_outlined,
-                        size: 14,
-                        color: AppColors.green100,
-                      ),
-                      const SizedBox(width: AppSpacing.space1),
-                      Flexible(
-                        child: Text(
-                          context.l10n.coverPhotoPending,
-                          style: Theme.of(context).textTheme.bodySmall
-                              ?.copyWith(color: AppColors.green100),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Honest label while no cover photo has been uploaded. Kept in the top
+/// corner opposite the action buttons so it never covers them or the logo.
+class _CoverPendingChip extends StatelessWidget {
+  const _CoverPendingChip();
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: AlignmentDirectional.centerStart,
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.space2,
+          vertical: AppSpacing.space1,
+        ),
+        decoration: BoxDecoration(
+          color: AppColors.green900.withValues(alpha: 0.6),
+          borderRadius: BorderRadius.circular(AppRadius.sm),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(
+              Icons.photo_outlined,
+              size: 14,
+              color: AppColors.green100,
+            ),
+            const SizedBox(width: AppSpacing.space1),
+            Flexible(
+              child: Text(
+                context.l10n.coverPhotoPending,
+                style: Theme.of(context).textTheme.bodySmall
+                    ?.copyWith(color: AppColors.green100),
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Soft dark wash behind the bell and theme toggle: keeps white icons legible
+/// when a bright cover photo or slide sits underneath.
+class _HeaderActionsScrim extends StatelessWidget {
+  const _HeaderActionsScrim();
+
+  @override
+  Widget build(BuildContext context) {
+    return IgnorePointer(
+      child: Container(
+        width: 96,
+        height: 48,
+        decoration: BoxDecoration(
+          color: AppColors.green900.withValues(alpha: 0.28),
+          borderRadius: BorderRadius.circular(AppRadius.full),
         ),
       ),
     );

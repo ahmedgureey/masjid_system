@@ -375,6 +375,42 @@ class AppLocalizationsAr extends AppLocalizations {
   String get homeMenuTitle => 'خدمات المسجد';
 
   @override
+  String get heroSalahTitle => 'الصلاة ومواقيتها';
+
+  @override
+  String get heroSalahSubtitle => 'ابقَ على صلة بالصلوات اليومية.';
+
+  @override
+  String get heroQuranTitle => 'القرآن والتعليم الإسلامي';
+
+  @override
+  String get heroQuranSubtitle => 'تعلّم القرآن الكريم والعلوم الإسلامية.';
+
+  @override
+  String get heroProjectsTitle => 'مشاريع المسجد';
+
+  @override
+  String get heroProjectsSubtitle => 'تعرّف على مشاريعنا ومبادرات المجتمع.';
+
+  @override
+  String get heroDonationsTitle => 'التبرعات والصدقات';
+
+  @override
+  String get heroDonationsSubtitle => 'ادعم مسجدك وساعد المحتاجين.';
+
+  @override
+  String get heroEventsTitle => 'المناسبات الإسلامية';
+
+  @override
+  String get heroEventsSubtitle => 'تابع مناسبات المسجد وأنشطته.';
+
+  @override
+  String get heroCommunityTitle => 'خدمات المجتمع';
+
+  @override
+  String get heroCommunitySubtitle => 'نخدم مجتمعنا بالإيمان والوحدة.';
+
+  @override
   String get profileTitle => 'معلومات المسجد';
 
   @override

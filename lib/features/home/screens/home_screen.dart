@@ -60,6 +60,7 @@ class HomeScreen extends ConsumerWidget {
                       ref.read(themeModeProvider.notifier).toggle(),
                   onNotificationsTap: () =>
                       context.pushIfCurrent(AppRoutes.notifications),
+                  onServiceTap: (route) => context.pushIfCurrent(route),
                 ),
                 SafeArea(
                   top: false,

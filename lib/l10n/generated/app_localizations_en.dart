@@ -378,6 +378,46 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeMenuTitle => 'Mosque services';
 
   @override
+  String get heroSalahTitle => 'Salah & Prayer Times';
+
+  @override
+  String get heroSalahSubtitle => 'Stay connected with daily prayers.';
+
+  @override
+  String get heroQuranTitle => 'Quran & Islamic Education';
+
+  @override
+  String get heroQuranSubtitle => 'Learn the Holy Quran and Islamic teachings.';
+
+  @override
+  String get heroProjectsTitle => 'Mosque Projects';
+
+  @override
+  String get heroProjectsSubtitle =>
+      'Discover our projects and community initiatives.';
+
+  @override
+  String get heroDonationsTitle => 'Donations & Charity';
+
+  @override
+  String get heroDonationsSubtitle =>
+      'Support your mosque and help those in need.';
+
+  @override
+  String get heroEventsTitle => 'Islamic Events';
+
+  @override
+  String get heroEventsSubtitle =>
+      'Stay informed about mosque events and activities.';
+
+  @override
+  String get heroCommunityTitle => 'Community Services';
+
+  @override
+  String get heroCommunitySubtitle =>
+      'Serving our community through faith and unity.';
+
+  @override
   String get profileTitle => 'Mosque Profile';
 
   @override
