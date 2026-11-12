@@ -129,7 +129,7 @@ class HomeHeader extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: AppSpacing.space3),
+        const SizedBox(height: AppSpacing.space2),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: AppSpacing.space5),
           child: Column(
@@ -151,11 +151,13 @@ class HomeHeader extends StatelessWidget {
                   ),
                 ),
               ],
-              const SizedBox(height: AppSpacing.space3),
+              const SizedBox(height: AppSpacing.space2),
+              // Compact enough that the date and the time sit on one line on
+              // a phone; the Wrap still stacks them at large text sizes.
               Wrap(
                 alignment: WrapAlignment.center,
                 spacing: AppSpacing.space2,
-                runSpacing: AppSpacing.space2,
+                runSpacing: AppSpacing.space1,
                 children: [
                   _InfoPill(icon: Icons.calendar_today_rounded, text: dateText),
                   _InfoPill(
@@ -351,12 +353,14 @@ class _InfoPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final style = Theme.of(context).textTheme.bodyMedium
-        ?.copyWith(color: context.semanticColors.brandText);
+    final style = Theme.of(context).textTheme.bodySmall?.copyWith(
+      color: context.semanticColors.brandText,
+      fontWeight: FontWeight.w500,
+    );
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: AppSpacing.space3,
-        vertical: AppSpacing.space2,
+        vertical: 6,
       ),
       decoration: BoxDecoration(
         color: context.semanticColors.tintedBackground,
@@ -365,8 +369,8 @@ class _InfoPill extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 16, color: Theme.of(context).colorScheme.primary),
-          const SizedBox(width: AppSpacing.space2),
+          Icon(icon, size: 14, color: Theme.of(context).colorScheme.primary),
+          const SizedBox(width: AppSpacing.space1),
           Flexible(
             child: Text(
               text,

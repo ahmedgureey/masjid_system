@@ -67,7 +67,7 @@ class HomeScreen extends ConsumerWidget {
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(
                       AppSpacing.space4,
-                      AppSpacing.space5,
+                      AppSpacing.space4,
                       AppSpacing.space4,
                       AppSpacing.space6,
                     ),
@@ -172,6 +172,13 @@ class _DemoSessionBanner extends ConsumerWidget {
                     ),
                   ),
                   TextButton(
+                    // Flush with the text above it; still a full-height tap
+                    // target.
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.zero,
+                      minimumSize: const Size(0, AppSizes.minTouchTarget),
+                      alignment: AlignmentDirectional.centerStart,
+                    ),
                     onPressed: () {
                       ref.read(demoSessionProvider.notifier).signOut();
                       context.go(AppRoutes.home);
